@@ -1,0 +1,127 @@
+[
+  {
+    "id": "exp_3f1bcdb8",
+    "name": "Weekly flagged spend",
+    "dataset": "transactions",
+    "cadence": "weekly",
+    "recipient": "controller@stripe.com",
+    "filters": {
+      "flagged": true
+    },
+    "seed": 7,
+    "fmt": "csv",
+    "enabled": true,
+    "created_at": "2026-06-24T16:33:12.615749+00:00",
+    "last_run_at": "2026-07-07T15:36:13.810724+00:00",
+    "next_run_at": "2026-07-13T08:00:00+00:00",
+    "runs": [
+      {
+        "id": "run_5daea944",
+        "at": "2026-07-07T15:36:13.810724+00:00",
+        "rows": 907,
+        "bytes": 117694,
+        "recipient": "controller@stripe.com",
+        "filename": "transactions-20260707T153613Z.csv",
+        "ok": true,
+        "error": null,
+        "eml": true,
+        "delivery": {
+          "channel": "outbox",
+          "ok": true,
+          "detail": "Wrote .eml to outbox for controller@stripe.com",
+          "subject": "[Comptroller] Weekly flagged spend \u2014 Jul 07, 2026",
+          "to": "controller@stripe.com",
+          "error": null
+        }
+      },
+      {
+        "id": "run_42081f27",
+        "at": "2026-06-24T16:33:12.743609+00:00",
+        "rows": 907,
+        "bytes": 117694,
+        "recipient": "controller@stripe.com",
+        "filename": "transactions-20260624T163312Z.csv",
+        "ok": true,
+        "error": null,
+        "eml": true,
+        "delivery": {
+          "channel": "outbox",
+          "ok": true,
+          "detail": "Wrote .eml to outbox for controller@stripe.com",
+          "subject": "[Comptroller] Weekly flagged spend \u2014 Jun 24, 2026",
+          "to": "controller@stripe.com",
+          "error": null
+        }
+      }
+    ]
+  },
+  {
+    "id": "exp_dd3994f0",
+    "name": "Monthly card roster",
+    "dataset": "cards",
+    "cadence": "monthly",
+    "recipient": "cfo@stripe.com",
+    "filters": {},
+    "seed": 7,
+    "fmt": "csv",
+    "enabled": true,
+    "created_at": "2026-06-24T16:33:12.678098+00:00",
+    "last_run_at": "2026-07-07T15:36:13.810724+00:00",
+    "next_run_at": "2026-08-01T08:00:00+00:00",
+    "runs": [
+      {
+        "id": "run_c0447117",
+        "at": "2026-07-07T15:36:13.810724+00:00",
+        "rows": 42,
+        "bytes": 3561,
+        "recipient": "cfo@stripe.com",
+        "filename": "cards-20260707T153613Z.csv",
+        "ok": true,
+        "error": null,
+        "eml": true,
+        "delivery": {
+          "channel": "outbox",
+          "ok": true,
+          "detail": "Wrote .eml to outbox for cfo@stripe.com",
+          "subject": "[Comptroller] Monthly card roster \u2014 Jul 07, 2026",
+          "to": "cfo@stripe.com",
+          "error": null
+        }
+      },
+      {
+        "id": "run_3168a6fc",
+        "at": "2026-06-24T16:33:13.060413+00:00",
+        "rows": 42,
+        "bytes": 3561,
+        "recipient": "cfo@stripe.com",
+        "filename": "cards-20260624T163313Z.csv",
+        "ok": true,
+        "error": null,
+        "eml": true,
+        "delivery": {
+          "channel": "outbox",
+          "ok": true,
+          "detail": "Wrote .eml to outbox for cfo@stripe.com",
+          "subject": "[Comptroller] Monthly card roster \u2014 Jun 24, 2026",
+          "to": "cfo@stripe.com",
+          "error": null
+        }
+      }
+    ]
+  },
+  {
+    "id": "exp_fec9d2b5",
+    "name": "Daily AP exceptions",
+    "dataset": "invoices",
+    "cadence": "daily",
+    "recipient": "ap@stripe.com",
+    "filters": {},
+    "seed": 7,
+    "fmt": "csv",
+    "enabled": false,
+    "created_at": "2026-06-24T16:33:12.714581+00:00",
+    "last_run_at": null,
+    "next_run_at": "2026-06-25T08:00:00+00:00",
+    "runs": []
+  }
+]

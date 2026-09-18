@@ -1,0 +1,23 @@
+# Core
+numpy>=1.26
+pandas>=2.1
+scikit-learn>=1.4
+networkx>=3.2
+pydantic>=2.6
+
+# API
+fastapi>=0.110
+uvicorn[standard]>=0.29
+python-multipart>=0.0.9   # FastAPI needs this for the receipt-upload Form/UploadFile endpoint
+
+# LLM
+anthropic>=0.40
+python-dotenv>=1.0
+
+# UX / tooling
+rich>=13.7
+httpx>=0.27
+Pillow>=10.0   # receipt / dashboard image generation (comptroller.documents)
+
+# Dev
+pytest>=8.0

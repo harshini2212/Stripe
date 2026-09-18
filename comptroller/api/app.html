@@ -1,0 +1,1482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Stripify</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --sans:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;
+    --mono:ui-monospace,'SF Mono',Menlo,Consolas,monospace;
+    --bg:#f3f2ef;--panel:#fff;--panel2:#f5f4f1;--panel3:#ecebe7;
+    --line:#e9e7e2;--line2:#f1efec;--hair:#eeece7;
+    --ink:#191919;--ink2:#40403f;--muted:#71717a;--faint:#a3a29c;
+    --pri:#18181b;--pri2:#0a0a0a;
+    --stripe:#635bff;--stripe2:#4f46e5;--stripebg:#efeeff;--stripebd:#d9d6ff;
+    --ai:#635bff;--ai2:#4f46e5;--aibg:#efeeff;--aibd:#d9d6ff;
+    --green:#16a34a;--greenbg:#e8f8ef;--amber:#d97706;--amberbg:#fdf3e3;--red:#e11d48;--redbg:#fdeaef;--crit:#be123c;
+    --blue:#3b82f6;--bluebg:#eaf1ff;--pink:#ec4899;--pinkbg:#fdeef6;
+    --peach:linear-gradient(135deg,#ffd0a3 0%,#ff9f7d 46%,#c6a2fb 100%);
+    --r1:9px;--r2:14px;--r3:18px;
+    --sh1:0 1px 2px rgba(40,34,28,.05),0 1px 3px rgba(40,34,28,.035);
+    --sh2:0 14px 38px rgba(40,34,28,.11),0 3px 9px rgba(40,34,28,.05);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.5 var(--sans);font-variant-numeric:tabular-nums;-webkit-font-smoothing:antialiased}
+  a{color:var(--stripe2);text-decoration:none}
+  ::selection{background:#e0ddff}
+  .app{min-height:100vh;display:flex}
+  /* ---------- left sidebar ---------- */
+  .sidebar{width:230px;flex-shrink:0;background:var(--panel);border-right:1px solid var(--hair);
+    display:flex;flex-direction:column;gap:3px;padding:15px 13px 14px;position:sticky;top:0;height:100vh;overflow:auto;z-index:14}
+  .sidebar::-webkit-scrollbar{width:0}
+  .brand{display:flex;align-items:center;gap:10px;padding:4px 6px 12px}
+  .logo{width:32px;height:32px;border-radius:10px;background:var(--pri);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:17px}
+  .brand .nm{font-weight:700;font-size:17px;letter-spacing:-.4px}
+  .nav{display:flex;flex-direction:column;align-items:stretch;gap:2px;min-width:0}
+  .nav .grp{display:block;font-size:10px;text-transform:uppercase;letter-spacing:.8px;color:var(--faint);font-weight:700;padding:13px 8px 5px}
+  .nav a{display:flex;align-items:center;gap:11px;padding:8px 10px;border-radius:10px;font-size:13.5px;font-weight:500;
+    cursor:pointer;color:var(--ink2);white-space:nowrap}
+  .nav a svg{width:17px;height:17px;flex-shrink:0;color:var(--faint)}
+  .nav a:hover{background:var(--panel2);color:var(--ink)}
+  .nav a.on{background:var(--pri);color:#fff;font-weight:600}
+  .nav a.on svg{color:#fff}
+  .nav a .cnt{margin-left:auto;font-size:10px;font-weight:700;background:var(--red);color:#fff;padding:0 6px;border-radius:20px}
+  .sidefoot{margin-top:auto;padding-top:13px;border-top:1px solid var(--hair);display:flex;flex-direction:column;gap:8px}
+  .sideuser{display:flex;align-items:center;gap:9px}
+  .sideuser select{flex:1;min-width:0}
+  .avatar{width:34px;height:34px;border-radius:50%;background:var(--peach);display:flex;align-items:center;justify-content:center;color:#5b2b12;font-weight:700;font-size:12.5px;flex-shrink:0}
+  .live{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 0 3px #d7f0e0}
+  .mainwrap{flex:1;min-width:0;display:flex;flex-direction:column}
+  .topbar{display:flex;align-items:center;gap:10px;padding:11px 26px;background:var(--panel);border-bottom:1px solid var(--hair);position:sticky;top:0;z-index:12}
+  .topbar .sp{flex:1;min-width:6px}
+  main{flex:1;min-width:0}
+  /* ---------- Stripe AI ask block ---------- */
+  .aiask{margin-top:14px;background:linear-gradient(160deg,#fff 40%,#f1f6ff);border:1px solid var(--aibd);border-radius:14px;padding:13px 14px}
+  .aiask-h{display:flex;align-items:center;gap:7px;font-size:13.5px;font-weight:700;letter-spacing:-.2px}
+  .aiask-h .aidiamond{color:var(--ai);font-size:15px}
+  .aiask-tag{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--ai);background:var(--aibg);border:1px solid var(--aibd);border-radius:20px;padding:1px 7px}
+  .aiask-sub{font-size:12px;color:var(--muted);margin:4px 0 10px;line-height:1.45}
+  .askchips{display:flex;flex-wrap:wrap;gap:7px;margin-top:10px}
+  .askchips span{font-size:11.5px;font-weight:500;color:var(--ink2);background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:5px 11px;cursor:pointer;transition:.13s}
+  .askchips span:hover{border-color:var(--ai);color:var(--ai);background:var(--aibg)}
+  .cosearch{display:flex;align-items:center;gap:7px;border:1px solid var(--line);background:var(--panel);border-radius:11px;padding:4px 5px 4px 10px;min-width:300px;box-shadow:var(--sh1)}
+  .cosearch svg{width:15px;height:15px;color:var(--faint);flex:none}
+  .cosearch input{border:none;background:transparent;outline:none;flex:1;min-width:0;font-size:12.5px;color:var(--ink);padding:4px 0}
+  .cosearch button.sm{white-space:nowrap;flex:none}
+  .cosearch-wrap{position:relative;min-width:300px}
+  .typeahead{position:absolute;top:calc(100% + 5px);left:0;right:0;background:var(--panel);border:1px solid var(--line);border-radius:11px;box-shadow:0 12px 32px rgba(40,34,28,.15);z-index:40;overflow:hidden;max-height:300px;overflow-y:auto}
+  .ta-item{display:flex;align-items:center;gap:10px;padding:9px 12px;font-size:13px;cursor:pointer;border-bottom:1px solid var(--line)}
+  .ta-item:last-child{border-bottom:none}
+  .ta-item:hover{background:var(--stripebg)}
+  .ta-item .sr-tk{font-weight:700;font-size:11.5px;color:var(--stripe);min-width:54px}
+  .cobanner{display:flex;align-items:center;gap:12px;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:11px 14px;margin-bottom:16px;box-shadow:var(--sh1);flex-wrap:wrap}
+  .edgarlink{display:flex;align-items:center;gap:9px;margin:2px 0 16px;padding:10px 14px;border:1px solid var(--aibd);background:var(--aibg);border-radius:11px;font-size:12.5px;font-weight:600;color:var(--ai2)}
+  .edgarlink svg{width:16px;height:16px;flex:none}
+  .edgarlink:hover{background:#e3edff}
+  .improvegrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(238px,1fr));gap:12px}
+  .impcard{background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:12px 13px}
+  .eff-low{background:var(--greenbg);color:var(--green)}
+  .eff-medium{background:var(--amberbg);color:var(--amber)}
+  .eff-high{background:var(--redbg);color:var(--crit)}
+  .agentsteps{display:flex;flex-direction:column;gap:8px}
+  .astep{border:1px solid var(--line);border-radius:11px;padding:10px 12px;background:var(--panel)}
+  .astep-h{display:flex;align-items:center;gap:9px;font-size:13px;margin-bottom:5px}
+  .astep-n{width:20px;height:20px;border-radius:50%;background:var(--pri);color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex:none}
+  .astep-b{padding-left:29px;display:flex;flex-direction:column;gap:2px}
+  @media(max-width:820px){.sidebar{width:74px;padding:14px 10px}.brand .nm,.nav .grp,.nav a span,.sideuser select,.emp{display:none}.nav a{justify-content:center;gap:0;padding:9px 0}.sideuser{justify-content:center}}
+  /* page header row (big title + controls) */
+  .pghead{display:flex;align-items:center;gap:14px;padding:22px 26px 4px;max-width:1320px;margin:0 auto;flex-wrap:wrap}
+  .pghead .tt{min-width:0}
+  .pghead .ttl{font-size:30px;font-weight:700;letter-spacing:-.9px;line-height:1.04}
+  .pghead .sub{font-size:13px;color:var(--muted);margin-top:3px}
+  .pghead .sp{flex:1;min-width:6px}
+  .pill{display:inline-flex;align-items:center;gap:7px;padding:8px 13px;border:1px solid var(--line);border-radius:12px;background:var(--panel);font-size:13px;font-weight:500;color:var(--ink2);cursor:pointer}
+  .pghead select{max-width:150px}
+  .search{display:flex;align-items:center;gap:8px;flex:0 1 210px;min-width:44px;padding:8px 12px;border:1px solid var(--line);border-radius:12px;background:var(--panel2);color:var(--muted);cursor:text;font-size:13px;overflow:hidden}
+  .search>span:not(.kbd){overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .search svg{width:15px;height:15px}
+  .search .kbd{margin-left:auto;font-size:11px;border:1px solid var(--line);border-radius:6px;padding:1px 5px;background:#fff;color:var(--faint);font-family:var(--mono)}
+  select,input,button,textarea{font:inherit}
+  select,input.t{padding:8px 11px;border:1px solid var(--line);border-radius:11px;background:var(--panel);color:var(--ink)}
+  button{cursor:pointer;border:1px solid var(--line);background:var(--panel);color:var(--ink);padding:8px 14px;border-radius:12px;font-weight:600;font-size:13px;display:inline-flex;align-items:center;gap:6px;transition:.14s}
+  button svg{width:15px;height:15px}
+  button.primary{background:var(--pri);color:#fff;border-color:var(--pri)}
+  button.ai{background:var(--stripe);color:#fff;border-color:var(--stripe)}
+  button.sm{padding:6px 10px;font-size:12px;font-weight:600;border-radius:10px}
+  button.ghost{background:transparent;border-color:transparent}
+  button:hover{filter:brightness(.985)}button.primary:hover,button.ai:hover{filter:brightness(1.14)}button:active{transform:translateY(.5px)}
+  .iconbtn{position:relative;width:38px;height:38px;padding:0;justify-content:center;border-radius:11px}
+  .iconbtn:hover{background:var(--panel2)}
+  .iconbtn .badge{position:absolute;top:-3px;right:-3px;background:var(--red);color:#fff;font-size:10px;font-weight:700;border-radius:20px;min-width:16px;height:16px;display:flex;align-items:center;justify-content:center;padding:0 4px}
+  .cost{font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
+  .page{padding:14px 26px 44px;max-width:1320px;margin:0 auto}
+  h1.pt{font-size:22px;font-weight:700;letter-spacing:-.6px;margin:0}
+  h2{font-size:11.5px;text-transform:uppercase;letter-spacing:.7px;color:var(--muted);margin:24px 0 11px;font-weight:600;display:flex;align-items:center;gap:8px}
+  h1 svg,h2 svg,h3 svg{width:16px;height:16px;flex:none}
+  h3{font-size:14px;font-weight:600;margin:0 0 8px}
+  .lede{color:var(--muted);margin:0 0 14px;font-size:13.5px}
+  .muted{color:var(--muted)}.green{color:var(--green)}.red{color:var(--red)}
+  /* ---------- stat cards ---------- */
+  .strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(178px,1fr));gap:13px}
+  .stat{background:var(--panel);border:1px solid var(--line);border-radius:var(--r2);padding:14px 15px;box-shadow:var(--sh1)}
+  .stat .k{font-size:11.5px;color:var(--muted);font-weight:500}
+  .stat .vrow{display:flex;align-items:flex-end;justify-content:space-between;gap:6px;margin-top:7px}
+  .stat .v{font-size:25px;font-weight:700;letter-spacing:-.6px;line-height:1}
+  .stat .s{font-size:12px;color:var(--muted);margin-top:8px;display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+  .stat.hero{background:linear-gradient(155deg,#fff 30%,var(--stripebg));border-color:var(--stripebd)}
+  .stat.hero .v{color:var(--stripe2)}
+  .stat.ai{background:linear-gradient(155deg,#fff 30%,var(--aibg));border-color:var(--aibd)}
+  .delta{font-weight:600;display:inline-flex;align-items:center;gap:2px;font-variant-numeric:tabular-nums}
+  .delta.up{color:var(--green)}.delta.down{color:var(--red)}
+  .pillbadge{font-size:11px;font-weight:600;padding:1px 8px;border-radius:20px;background:var(--panel2);color:var(--muted)}
+  .pill-healthy{background:var(--greenbg);color:var(--green)}.pill-watch{background:var(--amberbg);color:var(--amber)}.pill-critical{background:var(--redbg);color:var(--crit)}
+  /* ---------- cards / layout ---------- */
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:var(--r3);padding:16px 18px;box-shadow:var(--sh1)}
+  .card .ch{display:flex;align-items:center;gap:8px;margin-bottom:12px}
+  .card .ch h3{margin:0}.card .ch .sp{flex:1}
+  .row{display:grid;gap:16px}
+  .g2{grid-template-columns:1.55fr 1fr}
+  .g3{grid-template-columns:repeat(3,1fr)}
+  @media(max-width:960px){.g2,.g3{grid-template-columns:1fr}}
+  .dash{display:flex;flex-direction:column;gap:16px}
+  /* ---------- AI + insights ---------- */
+  .aidiamond{color:var(--ai)}
+  .aipill{display:inline-flex;gap:4px;align-items:center;background:var(--aibg);color:var(--ai2);border:1px solid var(--aibd);border-radius:20px;padding:1px 9px;font-size:10.5px;font-weight:600;letter-spacing:.2px;text-transform:none}
+  .insights{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  @media(max-width:820px){.insights{grid-template-columns:1fr}}
+  .insight{display:flex;gap:12px;padding:13px 15px;border:1px solid var(--line);border-radius:var(--r2);background:var(--panel);box-shadow:var(--sh1);align-items:flex-start}
+  .insight .ic{width:34px;height:34px;border-radius:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .insight .ic svg{width:17px;height:17px}
+  .ic-critical{background:var(--redbg);color:var(--crit)}.ic-high{background:var(--redbg);color:var(--red)}
+  .ic-medium{background:var(--amberbg);color:var(--amber)}.ic-low{background:var(--aibg);color:var(--ai2)}
+  .insight .bd{flex:1;min-width:0}
+  .insight .t{font-weight:600;font-size:13.5px;line-height:1.35}
+  .insight .amt{color:var(--stripe2)}
+  .insight .d{font-size:12.5px;color:var(--muted);margin-top:2px}
+  .insight .act{margin-top:9px}
+  .askbar{display:flex;gap:8px;align-items:center;background:linear-gradient(120deg,var(--aibg),#fff);border:1px solid var(--aibd);border-radius:12px;padding:8px 8px 8px 14px}
+  .askbar input{flex:1;border:none;background:transparent;outline:none;font-size:14px}
+  .chips{display:flex;gap:7px;flex-wrap:wrap;margin-top:9px}
+  .chip{font-size:12px;padding:5px 11px;border:1px solid var(--line);border-radius:20px;background:var(--panel);cursor:pointer;color:var(--ink2)}
+  .chip:hover{border-color:var(--ai);color:var(--ai2)}
+  /* ---------- tables / grid ---------- */
+  table{width:100%;border-collapse:collapse;font-size:13px}
+  th,td{padding:9px 11px;border-bottom:1px solid var(--line2);text-align:left;white-space:nowrap}
+  th{color:var(--muted);font-size:10.5px;text-transform:uppercase;letter-spacing:.4px;font-weight:600;position:sticky;top:0;background:var(--panel)}
+  td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
+  tbody tr:hover{background:var(--panel2)}tbody tr.click{cursor:pointer}
+  .tablewrap{background:var(--panel);border:1px solid var(--line);border-radius:var(--r3);overflow:auto;max-height:64vh;box-shadow:var(--sh1)}
+  .tbar{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+  .tbar .ct{font-size:12.5px;color:var(--muted)}.tbar .sp{flex:1}
+  th.sortable{cursor:pointer;user-select:none}th.sortable:hover{color:var(--stripe)}
+  th .arr{color:var(--stripe);font-size:10px}
+  .rb{padding:1px 8px;border-radius:20px;font-size:11px;font-weight:600;display:inline-block}
+  .rb-critical{background:var(--redbg);color:var(--crit)}.rb-high{background:var(--redbg);color:var(--red)}
+  .rb-medium{background:var(--amberbg);color:var(--amber)}.rb-low{background:var(--greenbg);color:var(--green)}
+  .tag{padding:1px 8px;border-radius:7px;font-size:11px;background:var(--panel2);color:var(--muted)}
+  .flagpill{padding:1px 7px;border-radius:7px;font-size:10.5px;background:var(--amberbg);color:var(--amber);margin-right:3px}
+  .filters{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:12px}
+  .filters label{font-size:12.5px;color:var(--muted);display:flex;align-items:center;gap:5px}
+  /* ---------- bars / hbars / progress ---------- */
+  .bars .barrow{display:grid;grid-template-columns:150px 1fr 92px;gap:9px;align-items:center;margin:6px 0;font-size:13px}
+  .bars .lb{color:var(--muted);overflow:hidden;text-overflow:ellipsis}
+  .bars .bt{background:var(--panel2);border-radius:6px;overflow:hidden;height:8px}
+  .bars .bf{height:8px;background:var(--stripe);border-radius:6px}
+  .bars .bv{text-align:right}
+  .hbars .hbar{display:grid;grid-template-columns:130px 1fr 74px;gap:10px;align-items:center;margin:7px 0;font-size:13px}
+  .hbars .hl{color:var(--ink2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .hbars .ht{background:var(--panel2);border-radius:6px;overflow:hidden;height:9px}
+  .hbars .ht i{display:block;height:9px;border-radius:6px}
+  .hbars .hv{text-align:right;color:var(--ink2)}
+  .prog{height:9px;border-radius:6px;background:var(--panel2);overflow:hidden}
+  .prog>i{display:block;height:100%;border-radius:6px;background:var(--stripe);transition:width .3s}
+  .prog.warn>i{background:var(--amber)}.prog.over>i{background:var(--red)}
+  .dleg{display:flex;align-items:center;gap:7px;font-size:12.5px;margin:4px 0}
+  .dleg i{width:9px;height:9px;border-radius:3px;flex-shrink:0}
+  /* ---------- charts ---------- */
+  .chart2{width:100%;height:auto;display:block;overflow:visible}
+  .axl{fill:var(--faint);font-size:11px;font-weight:500}
+  .spark{display:block}
+  .legend{display:flex;gap:14px;font-size:12px;color:var(--muted);margin-top:8px;flex-wrap:wrap}
+  .legend i{display:inline-block;width:16px;height:3px;border-radius:2px;vertical-align:middle;margin-right:5px}
+  .proof{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:8px 0}
+  .proof .p{border:1px solid var(--line);border-radius:10px;padding:12px 14px}
+  .proof .pl{font-size:11px;text-transform:uppercase;letter-spacing:.5px;color:var(--muted)}
+  .proof .pv{font-size:20px;font-weight:700;margin-top:3px}
+  .row2{display:grid;grid-template-columns:1.3fr 1fr;gap:16px}@media(max-width:900px){.row2{grid-template-columns:1fr}}
+  .ctrls{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0 12px}
+  .ctrls .iv{padding:6px 12px;border:1px solid var(--line);border-radius:20px;cursor:pointer;font-size:13px;background:var(--panel)}
+  .ctrls .iv:hover{border-color:var(--stripe);color:var(--stripe)}.ctrls .iv.on{background:var(--stripe);color:#fff;border-color:var(--stripe)}
+  iframe.rcpt{width:100%;height:80vh;border:1px solid var(--line);border-radius:var(--r3);background:#fff}
+  /* ---------- kpis (legacy compat) ---------- */
+  .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px}
+  .kpi2{background:var(--panel);border:1px solid var(--line);border-radius:var(--r2);padding:13px 15px;box-shadow:var(--sh1)}
+  .kpi2 .k{font-size:11px;text-transform:uppercase;letter-spacing:.4px;color:var(--muted)}
+  .kpi2 .v{font-size:22px;font-weight:700;margin-top:4px;letter-spacing:-.4px}
+  .kpi2 .s{font-size:12px;color:var(--muted);margin-top:2px}
+  .hero.kpi2{background:linear-gradient(150deg,#fff,var(--stripebg));border-color:var(--stripebd)}.hero .v{color:var(--stripe)}
+  /* ---------- skeleton ---------- */
+  .sk{background:linear-gradient(90deg,var(--panel2) 25%,var(--panel3) 37%,var(--panel2) 63%);background-size:400% 100%;animation:sh 1.3s ease infinite;border-radius:9px}
+  @keyframes sh{0%{background-position:100% 0}100%{background-position:-100% 0}}
+  .skgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(178px,1fr));gap:13px}
+  .spin{color:var(--muted);font-style:italic;padding:14px 2px}
+  .empty{text-align:center;color:var(--muted);padding:34px 18px;border:1px dashed var(--line);border-radius:var(--r3)}
+  .empty .eh{font-weight:600;color:var(--ink);font-size:14px;margin-bottom:4px}
+  /* ---------- AI drawer ---------- */
+  .ai{position:fixed;top:0;right:0;width:440px;max-width:94vw;height:100vh;background:var(--panel);
+    border-left:1px solid var(--line);box-shadow:-10px 0 34px rgba(16,24,40,.10);transform:translateX(100%);
+    transition:.22s cubic-bezier(.4,0,.2,1);z-index:24;display:flex;flex-direction:column}
+  .ai.open{transform:none}
+  .ai .h{display:flex;align-items:center;gap:8px;padding:14px 16px;border-bottom:1px solid var(--line);background:linear-gradient(120deg,var(--aibg),#fff)}
+  .ai .h b{color:var(--ai2)} .ai .h .x{margin-left:auto;cursor:pointer;color:var(--muted);font-size:18px}
+  .ai .body{flex:1;overflow:auto;padding:14px 16px}
+  .ai .starter{display:flex;gap:8px;margin-bottom:10px}
+  .ai textarea{flex:1;min-height:44px;padding:10px 11px;border:1px solid var(--line);border-radius:9px;resize:vertical}
+  .ask{background:var(--aibg);border:1px solid var(--aibd);border-radius:11px;padding:12px 14px;margin:10px 0}
+  .ask .q{font-weight:600;margin-bottom:9px;white-space:pre-wrap}
+  .opts{display:flex;flex-wrap:wrap;gap:7px}
+  .opt{padding:6px 12px;border:1px solid var(--line);border-radius:20px;background:var(--panel);cursor:pointer;font-size:12.5px}
+  .opt:hover{border-color:var(--ai);color:var(--ai2)}.opt.sel{background:var(--ai);color:#fff;border-color:var(--ai)}
+  .picked{font-size:12.5px;color:var(--muted);margin:6px 0}.picked b{color:var(--ink)}
+  .answer{background:var(--panel);border:1px solid var(--line);border-radius:11px;padding:14px;margin:8px 0}
+  .answer .narr{margin-top:10px}.answer .narr>div{margin:2px 0}
+  .answer table{margin:4px 0}.answer h2{font-size:14px;color:var(--ink);margin:10px 0 4px;text-transform:none;letter-spacing:0}
+  .answer h3{font-size:13px;margin:8px 0 3px}
+  .ftable td,.ftable th{padding:6px 8px}
+  .fcard{border:1px solid var(--line);border-radius:10px;padding:11px 13px;margin-bottom:10px}
+  .fcard .ft{font-size:11px;font-weight:600;color:var(--ai2);text-transform:uppercase;letter-spacing:.5px;margin-bottom:7px;display:flex;align-items:center;gap:5px}
+  .verified{color:var(--green);font-weight:600}.notver{color:var(--red);font-weight:600}
+  .trace{margin-top:10px;border-top:1px solid var(--line);padding-top:8px}
+  .trace .hh{font-size:11px;text-transform:uppercase;letter-spacing:1px;color:var(--muted);cursor:pointer}
+  .step{font-size:11.5px;color:var(--muted);font-family:var(--mono)}.step b{color:var(--ai2)}
+  /* ---------- modal + palette ---------- */
+  .modal{position:fixed;inset:0;background:rgba(16,20,28,.42);display:flex;align-items:center;justify-content:center;z-index:30;padding:20px}
+  .modal .box{background:var(--panel);border-radius:var(--r3);max-width:580px;width:100%;max-height:86vh;overflow:auto;padding:20px 22px;box-shadow:var(--sh2)}
+  .emailhdr{border:1px solid var(--line);border-radius:10px;padding:10px 13px;font-size:13px;background:var(--panel2)}
+  .emailhdr>div{margin:2px 0}
+  .emailhdr .el{display:inline-block;width:58px;color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.4px}
+  .emailbody{white-space:pre-wrap;font:12.5px/1.55 var(--mono);background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:12px 0;max-height:36vh;overflow:auto}
+  .attchip{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);border-radius:9px;padding:7px 11px;background:var(--stripebg);cursor:pointer;font-size:13px}
+  .attchip:hover{border-color:var(--stripe)}
+  .cmdk{position:fixed;inset:0;background:rgba(16,20,28,.4);z-index:40;display:none;align-items:flex-start;justify-content:center;padding-top:12vh}
+  .cmdk.open{display:flex}
+  .cmdbox{width:min(620px,92vw);background:var(--panel);border:1px solid var(--line);border-radius:14px;box-shadow:var(--sh2);overflow:hidden}
+  .cmdbox>input{width:100%;border:none;padding:15px 18px;font-size:15.5px;outline:none;background:transparent}
+  .cmdlist{max-height:52vh;overflow:auto;border-top:1px solid var(--line2);padding:6px}
+  .cmdgrp{font-size:10px;text-transform:uppercase;letter-spacing:.7px;color:var(--faint);font-weight:600;padding:9px 12px 4px}
+  .cmditem{display:flex;align-items:center;gap:10px;padding:9px 12px;cursor:pointer;font-size:13.5px;border-radius:8px}
+  .cmditem svg{width:16px;height:16px;color:var(--muted)}
+  .cmditem .cs{margin-left:auto;font-size:11.5px;color:var(--faint)}
+  .cmditem.sel{background:var(--stripebg);color:var(--stripe2)}.cmditem.sel svg{color:var(--stripe)}
+  .menu{position:absolute;background:var(--panel);border:1px solid var(--line);border-radius:11px;box-shadow:var(--sh2);padding:6px;z-index:26;min-width:190px}
+  .menu button{width:100%;justify-content:flex-start;border:none;background:transparent;font-weight:500;font-size:13px;padding:8px 10px}
+  .menu button:hover{background:var(--panel2)}
+  /* ---------- sub-tabs, drill-downs, tiles, research ---------- */
+  .subtabs{display:flex;gap:3px;border-bottom:1px solid var(--hair);margin-bottom:16px;flex-wrap:wrap}
+  .stab{padding:8px 13px;cursor:pointer;font-size:13.5px;font-weight:500;color:var(--muted);border-bottom:2px solid transparent;margin-bottom:-1px}
+  .stab:hover{color:var(--ink)}
+  .stab.on{color:var(--stripe2);border-bottom-color:var(--stripe);font-weight:600}
+  .backbtn{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--muted);cursor:pointer;margin-bottom:14px;font-weight:500}
+  .backbtn:hover{color:var(--stripe)}
+  .tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(216px,1fr));gap:14px}
+  .ctile{border-radius:14px;padding:15px 16px;color:#fff;cursor:pointer;position:relative;overflow:hidden;min-height:126px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:var(--sh1);transition:transform .15s,box-shadow .15s}
+  .ctile:hover{transform:translateY(-2px);box-shadow:var(--sh2)}
+  .ctile .crow{display:flex;justify-content:space-between;align-items:flex-start}
+  .ctile .cnum{font-family:var(--mono);letter-spacing:1px;font-size:13px;opacity:.85}
+  .ctile .cnm{font-weight:600;font-size:14px;margin-top:2px}
+  .ctile .cdept{font-size:11.5px;opacity:.82}
+  .ctile .cspend{font-size:21px;font-weight:700;letter-spacing:-.4px}
+  .ctile .clab{font-size:10.5px;opacity:.82;text-transform:uppercase;letter-spacing:.5px}
+  .ctile .cutil{height:5px;border-radius:4px;background:rgba(255,255,255,.28);overflow:hidden;margin-top:8px}
+  .ctile .cutil>i{display:block;height:100%;background:#fff;border-radius:4px}
+  .ctag{font-size:10px;font-weight:600;background:rgba(255,255,255,.22);border-radius:20px;padding:1px 8px}
+  .co-hd{display:flex;align-items:center;gap:14px}
+  .co-logo{width:48px;height:48px;border-radius:12px;background:var(--stripebg);color:var(--stripe2);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:17px;flex-shrink:0}
+  .tieoutrow{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--line2);font-size:13px}
+  .tieoutrow:last-child{border-bottom:none}.tieoutrow .tk{flex:1;font-weight:500}
+  .sr-item{padding:10px 13px;border:1px solid var(--line);border-radius:10px;margin-bottom:8px;cursor:pointer;display:flex;align-items:center;gap:12px}
+  .sr-item:hover{border-color:var(--stripe);background:var(--stripebg)}
+  .sr-tk{font-family:var(--mono);font-weight:700;color:var(--stripe2);min-width:66px}
+  .brief{background:linear-gradient(120deg,var(--aibg),#fff);border:1px solid var(--aibd);border-radius:14px;padding:15px 17px}
+  .brief .bt{white-space:pre-wrap;font-size:13.5px;line-height:1.6;color:var(--ink)}
+  .brief .ba{margin-top:10px;display:flex;flex-direction:column;gap:6px}
+  .brief .ba div{font-size:13px;display:flex;gap:8px}.brief .ba div b{color:var(--ai2)}
+  /* ---------- Zentra signature components ---------- */
+  .peachcard{border-radius:18px;padding:20px 22px;color:#fff;background:var(--peach);position:relative;overflow:hidden;box-shadow:var(--sh1);display:flex;flex-direction:column;justify-content:flex-end;min-height:220px}
+  .peachcard .lab{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.6px;opacity:.92;display:inline-flex;align-items:center;gap:6px;align-self:flex-start;background:rgba(255,255,255,.22);padding:3px 10px;border-radius:20px}
+  .peachcard .big{font-size:46px;font-weight:700;letter-spacing:-1.6px;line-height:1;margin-top:auto}
+  .peachcard .desc{font-size:15px;font-weight:600;margin-top:8px;line-height:1.35}
+  .peachcard .psub{font-size:12px;opacity:.92;margin-top:8px;line-height:1.45;border-top:1px solid rgba(255,255,255,.28);padding-top:9px}
+  .bignum{font-size:44px;font-weight:700;letter-spacing:-1.5px;line-height:1}
+  .gbadge{display:inline-flex;align-items:center;gap:3px;font-size:12px;font-weight:700;color:var(--green);background:var(--greenbg);border-radius:20px;padding:2px 9px}
+  .prows{display:flex;flex-direction:column;gap:13px;margin-top:14px}
+  .prow .pl{display:flex;justify-content:space-between;align-items:baseline;font-size:13px;margin-bottom:6px}
+  .prow .pl b{font-weight:700}
+  .ptrack{height:8px;border-radius:6px;background:var(--panel2);overflow:hidden}
+  .ptrack>i{display:block;height:100%;border-radius:6px}
+  .waffle{display:grid;grid-auto-flow:column;grid-template-rows:repeat(4,10px);gap:4px;align-content:end}
+  .waffle i{width:10px;height:10px;border-radius:3px;background:var(--panel3)}
+  .peakpill{font-size:11px;font-weight:600;color:var(--ink2);background:var(--panel2);border:1px solid var(--line);border-radius:20px;padding:2px 9px}
+  .vsperiod{font-size:11.5px;color:var(--muted);text-align:right}.vsperiod b{color:var(--green);font-size:14px}
+  .token{background:var(--stripebg);color:var(--stripe2);border:1px solid var(--stripebd);border-radius:7px;padding:1px 7px;font-weight:600;font-size:13px}
+  .stat.hero{background:linear-gradient(155deg,#fff 38%,#efeeff);border-color:#f6dcc6}
+  .stat.hero .v{color:#4f46e5}
+  .askbar{background:var(--panel);border:1px solid var(--line);box-shadow:var(--sh1)}
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar">
+    <div class="brand"><div class="logo">B</div><div class="nm">Stripify</div></div>
+    <nav class="nav" id="nav"></nav>
+    <div class="sidefoot">
+      <span class="emp" id="empWrap" style="display:none"><select id="emp"></select></span>
+      <div class="sideuser"><div class="avatar" id="avatar" title="Signed in">FA</div><select id="role" title="Viewing as"></select></div>
+    </div>
+  </aside>
+  <div class="mainwrap">
+    <div class="topbar">
+      <div class="search" onclick="openPalette()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg><span>Search…</span><span class="kbd">⌘K</span></div>
+      <div class="sp"></div>
+      <button class="iconbtn ghost" id="createBtn" title="Create"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button>
+      <button class="iconbtn ghost" id="bell" title="Tasks" onclick="SUB.automation='tasks';openPage('automation')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9a6 6 0 1 1 12 0c0 5 2 6 2 6H4s2-1 2-6z"/><path d="M10 20a2 2 0 0 0 4 0"/></svg><span class="badge" id="bellBadge" style="display:none">0</span></button>
+      <select id="model" title="AI model">
+        <option value="claude-opus-4-8">Opus 4.8</option>
+        <option value="claude-sonnet-4-6">Sonnet 4.6</option>
+        <option value="claude-haiku-4-5">Haiku 4.5</option>
+      </select>
+      <button class="ai" id="askBtn"><span class="aidiamond" style="color:#fff">◆</span> Ask AI</button>
+      <span class="cost" id="cost">$0.0000</span>
+    </div>
+    <main>
+      <div class="pghead">
+        <div class="tt"><div class="ttl" id="ttl">Home</div><div class="sub" id="sub">Command center</div></div>
+      </div>
+      <div class="page" id="page"><div class="spin">loading…</div></div>
+    </main>
+  </div>
+</div>
+
+<div class="ai" id="ai">
+  <div class="h"><span class="aidiamond">◆</span> <b>Stripe AI</b><span class="muted" id="aiCtx"></span><span class="x" onclick="closeAI()">×</span></div>
+  <div class="body" id="aiBody"></div>
+</div>
+<div class="cmdk" id="cmdk" onclick="if(event.target===this)closePalette()">
+  <div class="cmdbox"><input id="cmdInput" placeholder="Search pages and actions…" autocomplete="off"><div class="cmdlist" id="cmdList"></div></div>
+</div>
+<div id="modalHost"></div>
+<div id="menuHost"></div>
+
+<script>
+const $=s=>document.querySelector(s), el=id=>document.getElementById(id);
+const money=n=>(n<0?'-$':'$')+Math.round(Math.abs(+n||0)).toLocaleString();
+const money1=n=>{n=+n||0;const a=Math.abs(n),s=n<0?'-':'';const U=[[1e12,'T',2],[1e9,'B',2],[1e6,'M',2],[1e3,'K',1]];
+  for(let i=0;i<U.length;i++){const[d,suf,p]=U[i];if(a>=d){if(+(a/d).toFixed(p)>=1000&&i>0)return s+'$'+(a/U[i-1][0]).toFixed(U[i-1][2])+U[i-1][1];return s+'$'+(a/d).toFixed(p)+suf;}}
+  return s+'$'+Math.round(a).toLocaleString();};
+// Safe JS-string literal for a double-quoted onclick attribute: single-quoted, with
+// quotes/backslashes escaped and any " HTML-encoded so it can't terminate the attribute.
+const q1=s=>"'"+String(s==null?'':s).replace(/\\/g,'\\\\').replace(/'/g,"\\'").replace(/"/g,'&quot;')+"'";
+const pct=n=>(n*100).toFixed(1)+'%';
+const esc=s=>String(s==null?'':s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+const rb=(b,t)=>`<span class="rb rb-${b}">${t}</span>`;
+const kpis=p=>'<div class="kpis">'+p.map(([k,v,s])=>`<div class="kpi2 ${s==='hero'?'hero':''}"><div class="k">${k}</div><div class="v">${v}</div>${s&&s!=='hero'?`<div class="s">${s}</div>`:''}</div>`).join('')+'</div>';
+const ftable=(h,r)=>r.length?'<table class="ftable"><tr>'+h.map(x=>`<th>${x}</th>`).join('')+'</tr>'+r.map(row=>'<tr>'+row.map(c=>`<td>${c}</td>`).join('')+'</tr>').join('')+'</table>':'<div class="muted">none</div>';
+function bars(p){p=p.filter(x=>x&&x[1]!=null);const m=Math.max(...p.map(x=>+x[1]||0),1);return '<div class="bars">'+p.slice(0,8).map(([k,v])=>`<div class="barrow"><div class="lb">${k}</div><div class="bt"><div class="bf" style="width:${Math.max(3,100*(+v||0)/m)}%"></div></div><div class="bv">${money(v)}</div></div>`).join('')+'</div>';}
+function hbars(p,o){o=o||{};p=p.filter(x=>x&&x[1]!=null);const m=Math.max(...p.map(x=>+x[1]||0),1),col=o.color||'#3b82f6';return '<div class="hbars">'+p.slice(0,o.n||8).map(([k,v])=>`<div class="hbar"><div class="hl">${esc(k)}</div><div class="ht"><i style="width:${Math.max(2,100*(+v||0)/m).toFixed(1)}%;background:${col}"></i></div><div class="hv">${money1(v)}</div></div>`).join('')+'</div>';}
+function delta(p,goodUp){if(p==null)return '';const up=p>=0,good=(goodUp!==false)?up:!up;return `<span class="delta ${good?'up':'down'}">${up?'▲':'▼'} ${Math.abs(p*100).toFixed(1)}%</span>`;}
+function stat(label,value,o){o=o||{};const sk=o.spark&&o.spark.length>1?spark(o.spark,o.accent||(o.hero?'#3b82f6':'#9aa1ab')):'';const d=o.delta!=null?delta(o.delta,o.goodUp):'';const sub=o.sub?`<span>${o.sub}</span>`:'';return `<div class="stat ${o.hero?'hero':''} ${o.ai?'ai':''}"><div class="k">${esc(label)}</div><div class="vrow"><div class="v">${value}</div>${sk}</div><div class="s">${d}${sub||(d?'':'&nbsp;')}</div></div>`;}
+
+// ---------- icons (feather-style, 2px stroke) ----------
+const ICON={
+  home:'<path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/>',
+  grid:'<rect x="3" y="3" width="7.5" height="7.5" rx="1.4"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="1.4"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="1.4"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="1.4"/>',
+  receipt:'<path d="M6 2h12v20l-3-2-3 2-3-2-3 2z"/><path d="M9 7h6M9 11h6M9 15h4"/>',
+  card:'<rect x="2" y="5" width="20" height="14" rx="2.5"/><path d="M2 10h20"/>',
+  target:'<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="0.6"/>',
+  box:'<path d="M21 8l-9-5-9 5 9 5 9-5z"/><path d="M3 8v8l9 5 9-5V8"/><path d="M12 13v8"/>',
+  tasks:'<path d="M4 5h16v14H4z"/><path d="M8.5 12l2.2 2.2L16 9"/>',
+  bill:'<path d="M14 2H6v20h12V8z"/><path d="M14 2v6h6"/><path d="M9 13h6M9 17h4"/>',
+  scan:'<path d="M4 8V5a1 1 0 0 1 1-1h3M16 4h3a1 1 0 0 1 1 1v3M20 16v3a1 1 0 0 1-1 1h-3M8 20H5a1 1 0 0 1-1-1v-3"/><path d="M4 12h16"/>',
+  check:'<circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/>',
+  shield:'<path d="M12 2l8 3v6c0 5-3.5 8-8 11-4.5-3-8-6-8-11V5z"/>',
+  book:'<path d="M5 4a2 2 0 0 1 2-2h11v20H7a2 2 0 0 1-2-2z"/><path d="M9 2v18"/>',
+  bank:'<path d="M3 10l9-6 9 6"/><path d="M5 10v9M19 10v9M9 10v9M15 10v9"/><path d="M3 21h18"/>',
+  trend:'<path d="M3 17l6-6 4 4 7-8"/><path d="M17 7h4v4"/>',
+  export:'<path d="M12 3v13"/><path d="M7 11l5 5 5-5"/><path d="M4 21h16"/>',
+  people:'<circle cx="9" cy="8" r="3"/><path d="M3.5 20c0-3.3 2.7-5.5 5.5-5.5s5.5 2.2 5.5 5.5"/><path d="M16.5 5.2a3 3 0 0 1 0 5.6"/>',
+  alert:'<path d="M12 3l9 16H3z"/><path d="M12 10v4M12 17.5v.5"/>',
+  copy:'<rect x="9" y="9" width="12" height="12" rx="2"/><path d="M6 15H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v2"/>',
+  layers:'<path d="M12 3l9 5-9 5-9-5z"/><path d="M3 13l9 5 9-5"/>',
+  trending:'<path d="M22 7l-8.5 8.5-5-5L2 17"/><path d="M16 7h6v6"/>',
+  clock:'<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/>',
+  bolt:'<path d="M13 2L4 14h7l-1 8 9-12h-7z"/>'};
+function ic(n){return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${ICON[n]||ICON.grid}</svg>`;}
+
+// ---------- charts ----------
+function spark(vals,color){color=color||'#3b82f6';const W=110,H=30,p=3,n=vals.length,min=Math.min(...vals),max=Math.max(...vals);
+  const X=i=>p+(W-2*p)*i/(n-1),Y=v=>H-p-(H-2*p)*(v-min)/((max-min)||1);
+  const d=vals.map((v,i)=>(i?'L':'M')+X(i).toFixed(1)+' '+Y(v).toFixed(1)).join(' ');
+  const area=d+` L${X(n-1).toFixed(1)} ${H-p} L${X(0).toFixed(1)} ${H-p} Z`;
+  return `<svg viewBox="0 0 ${W} ${H}" width="86" height="26" class="spark"><path d="${area}" fill="${color}" opacity=".11"/><path d="${d}" fill="none" stroke="${color}" stroke-width="1.75"/><circle cx="${X(n-1).toFixed(1)}" cy="${Y(vals[n-1]).toFixed(1)}" r="2" fill="${color}"/></svg>`;}
+function lineChart(o){
+  const S=o.series||[],labels=o.labels||[];
+  const all=S.flatMap(s=>s.data||[]).filter(v=>v!=null).concat(o.band?o.band.lo.concat(o.band.hi).filter(v=>v!=null):[]);
+  if(!all.length)return '<div class="muted" style="padding:20px">no data</div>';
+  const H=o.height||250,W=880,padL=62,padR=18,padT=14,padB=26;
+  let min=Math.min(...all),max=Math.max(...all);if(min>0)min=Math.min(min,min*.9);const span=(max-min)||1;min-=span*.04;max+=span*.06;
+  const n=Math.max(labels.length,2);
+  const X=i=>padL+(W-padL-padR)*i/(n-1),Y=v=>padT+(H-padT-padB)*(1-(v-min)/((max-min)||1));
+  const fY=o.fmtY||money1;
+  let g='';for(let k=0;k<=4;k++){const v=min+(max-min)*k/4,y=Y(v);g+=`<line x1="${padL}" y1="${y.toFixed(1)}" x2="${W-padR}" y2="${y.toFixed(1)}" stroke="var(--line2)"/><text x="${padL-8}" y="${(y+4).toFixed(1)}" text-anchor="end" class="axl">${fY(v)}</text>`;}
+  const st=Math.max(1,Math.floor(n/6));for(let i=0;i<n;i+=st)g+=`<text x="${X(i).toFixed(1)}" y="${H-8}" text-anchor="middle" class="axl">${esc(labels[i]||'')}</text>`;
+  const path=d=>{let p='',on=false;d.forEach((v,i)=>{if(v==null){on=false;return;}p+=(on?'L':'M')+X(i).toFixed(1)+' '+Y(v).toFixed(1)+' ';on=true;});return p;};
+  const area=d=>{let p='',on=false,f=null,l=null;d.forEach((v,i)=>{if(v==null)return;if(!on){p+='M'+X(i).toFixed(1)+' '+Y(v).toFixed(1)+' ';f=i;on=true;}else p+='L'+X(i).toFixed(1)+' '+Y(v).toFixed(1)+' ';l=i;});if(!on)return '';return p+`L${X(l).toFixed(1)} ${Y(min).toFixed(1)} L${X(f).toFixed(1)} ${Y(min).toFixed(1)} Z`;};
+  let svg=g;
+  if(o.band){const lo=o.band.lo,hi=o.band.hi,pts=lo.map((v,i)=>v==null?null:i).filter(i=>i!=null);
+    if(pts.length){const top=pts.map((i,k)=>(k?'L':'M')+X(i).toFixed(1)+' '+Y(hi[i]).toFixed(1)).join(' ');
+      const bot=pts.slice().reverse().map(i=>'L'+X(i).toFixed(1)+' '+Y(lo[i]).toFixed(1)).join(' ');
+      svg+=`<path d="${top} ${bot} Z" fill="${o.band.color||'#3b82f6'}" opacity=".11"/>`;}}
+  if(o.forecastFrom!=null&&o.forecastFrom>0&&o.forecastFrom<n){const x=X(o.forecastFrom);svg+=`<line x1="${x.toFixed(1)}" y1="${padT}" x2="${x.toFixed(1)}" y2="${H-padB}" stroke="var(--muted)" stroke-dasharray="4 4" opacity=".5"/><text x="${(x+5).toFixed(1)}" y="${padT+9}" class="axl">today</text>`;}
+  if(min<0&&max>0){const y=Y(0);svg+=`<line x1="${padL}" y1="${y.toFixed(1)}" x2="${W-padR}" y2="${y.toFixed(1)}" stroke="var(--red)" stroke-dasharray="3 3" opacity=".55"/>`;}
+  S.forEach(s=>{if(s.fill!==false)svg+=`<path d="${area(s.data)}" fill="${s.color}" opacity=".07"/>`;});
+  S.forEach(s=>{svg+=`<path d="${path(s.data)}" fill="none" stroke="${s.color}" stroke-width="2.25" ${s.dashed?'stroke-dasharray="6 4"':''} stroke-linejoin="round" stroke-linecap="round"/>`;
+    const l=[...s.data].map((v,i)=>v==null?null:i).filter(i=>i!=null).pop();if(l!=null)svg+=`<circle cx="${X(l).toFixed(1)}" cy="${Y(s.data[l]).toFixed(1)}" r="3.4" fill="${s.color}"/>`;});
+  const leg=(S.length>1||o.band)?`<div class="legend">${S.map(s=>`<span><i style="background:${s.color}"></i>${esc(s.name)}</span>`).join('')}${o.band?`<span><i style="background:${o.band.color||'#3b82f6'};opacity:.5"></i>${esc(o.band.name||'range')}</span>`:''}${min<0?'<span style="color:var(--red)">cash-out risk</span>':''}</div>`:'';
+  return `<svg viewBox="0 0 ${W} ${H}" class="chart2" preserveAspectRatio="xMidYMid meet" role="img">${svg}</svg>${leg}`;}
+function cashChart(months,series,band){return lineChart({labels:months,series:series,band:band&&band.p10?{lo:band.p10,hi:band.p90,name:'p10–p90'}:null,height:200});}
+function barChart(labels,vals,o){o=o||{};const H=o.height||210,W=880,padL=62,padR=14,padT=12,padB=26,n=vals.length||1;
+  const max=Math.max(...vals,1)*1.12,gap=(W-padL-padR)/n,bw=gap*0.56,Y=v=>padT+(H-padT-padB)*(1-v/max),fY=o.fmtY||money1;
+  let g='';for(let k=0;k<=3;k++){const y=padT+(H-padT-padB)*(1-k/3);g+=`<line x1="${padL}" y1="${y}" x2="${W-padR}" y2="${y}" stroke="var(--line2)"/><text x="${padL-8}" y="${y+4}" text-anchor="end" class="axl">${fY(max*k/3)}</text>`;}
+  vals.forEach((v,i)=>{const x=padL+gap*i+(gap-bw)/2,y=Y(v),h=(H-padB)-y;g+=`<rect x="${x.toFixed(1)}" y="${y.toFixed(1)}" width="${bw.toFixed(1)}" height="${Math.max(0,h).toFixed(1)}" rx="4" fill="${o.color||'#3b82f6'}"/><text x="${(x+bw/2).toFixed(1)}" y="${H-8}" text-anchor="middle" class="axl">${esc(labels[i]||'')}</text>`;});
+  return `<svg viewBox="0 0 ${W} ${H}" class="chart2" preserveAspectRatio="xMidYMid meet">${g}</svg>`;}
+const DCOL=['#3b82f6','#ec4899','#22c55e','#f59e0b','#8b5cf6','#06b6d4','#a3a29c'];
+function donut(pairs,o){o=o||{};pairs=pairs.filter(p=>p&&p[1]>0);const rest=pairs.slice(5).reduce((a,p)=>a+p[1],0);pairs=pairs.slice(0,5);if(rest>0)pairs.push(['Other',rest]);
+  const total=pairs.reduce((a,p)=>a+p[1],0)||1,R=52,r=33,cx=60,cy=60;let a=-Math.PI/2,seg='';
+  pairs.forEach((p,i)=>{const fr=p[1]/total,a2=a+fr*2*Math.PI,x1=cx+R*Math.cos(a),y1=cy+R*Math.sin(a),x2=cx+R*Math.cos(a2),y2=cy+R*Math.sin(a2),xi1=cx+r*Math.cos(a2),yi1=cy+r*Math.sin(a2),xi2=cx+r*Math.cos(a),yi2=cy+r*Math.sin(a),lg=fr>.5?1:0;
+    seg+=`<path d="M${x1.toFixed(1)} ${y1.toFixed(1)} A${R} ${R} 0 ${lg} 1 ${x2.toFixed(1)} ${y2.toFixed(1)} L${xi1.toFixed(1)} ${yi1.toFixed(1)} A${r} ${r} 0 ${lg} 0 ${xi2.toFixed(1)} ${yi2.toFixed(1)} Z" fill="${DCOL[i%DCOL.length]}"/>`;a=a2;});
+  const leg=pairs.map((p,i)=>`<div class="dleg"><i style="background:${DCOL[i%DCOL.length]}"></i><span style="flex:1">${esc(String(p[0]).replace(/_/g,' '))}</span><span class="muted">${money1(p[1])}</span></div>`).join('');
+  return `<div style="display:flex;gap:18px;align-items:center;flex-wrap:wrap"><svg viewBox="0 0 120 120" width="120" height="120" style="flex-shrink:0">${seg}<text x="60" y="57" text-anchor="middle" style="font-size:9px;fill:var(--muted)">total</text><text x="60" y="70" text-anchor="middle" style="font-size:13px;font-weight:700;fill:var(--ink)">${money1(total)}</text></svg><div style="flex:1;min-width:150px">${leg}</div></div>`;}
+
+// ---------- signature visuals (hatched funnel bars, waffle, stepped area, progress rows, peach) ----------
+function funnelBars(items){
+  const W=680,H=210,padT=30,padB=42,n=items.length,max=Math.max(...items.map(i=>+i.value||0),1);
+  const gap=W/n,bw=gap*0.6,Y=v=>padT+(H-padT-padB)*(1-v/max);
+  const defs=`<defs><linearGradient id="fg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#6aa2ff"/><stop offset="1" stop-color="#1f56e0"/></linearGradient>`+
+    `<pattern id="hatch" width="7" height="7" patternTransform="rotate(45)" patternUnits="userSpaceOnUse"><rect width="7" height="7" fill="#3b82f6" opacity=".10"/><line x1="0" y1="0" x2="0" y2="7" stroke="#3b82f6" stroke-width="3" opacity=".26"/></pattern></defs>`;
+  let g='';
+  items.forEach((it,i)=>{const x=gap*i+(gap-bw)/2,y=Y(+it.value||0),h=Math.max(2,(H-padB)-y),act=it.active;
+    g+=`<rect x="${x.toFixed(1)}" y="${y.toFixed(1)}" width="${bw.toFixed(1)}" height="${h.toFixed(1)}" rx="7" fill="${act?'url(#fg)':'url(#hatch)'}"/>`;
+    g+=`<text x="${(x+bw/2).toFixed(1)}" y="${(y-9).toFixed(1)}" text-anchor="middle" style="font-size:14px;font-weight:700;fill:${act?'#1f56e0':'#71717a'}">${esc(it.value_label)}</text>`;
+    g+=`<text x="${(x+bw/2).toFixed(1)}" y="${(H-padB+18).toFixed(1)}" text-anchor="middle" style="font-size:11px;fill:#8b8a83">${esc(it.label)}</text>`;});
+  return `<svg viewBox="0 0 ${W} ${H}" class="chart2" preserveAspectRatio="xMidYMid meet">${defs}${g}</svg>`;}
+function waffle(vals,color){color=color||'#22c55e';vals=(vals||[]).slice(-16);const max=Math.max(...vals,1);
+  return '<div class="waffle">'+vals.map(v=>{const f=Math.max(0,Math.round((+v||0)/max*4));let c='';for(let r=0;r<4;r++)c+=`<i style="background:${r>=(4-f)?color:'var(--panel3)'}"></i>`;return c;}).join('')+'</div>';}
+function steppedArea(vals,color){color=color||'#ec4899';const W=560,H=180,padL=4,padR=4,padT=14,padB=8,n=vals.length;
+  const min=Math.min(...vals),max=Math.max(...vals),X=i=>padL+(W-padL-padR)*i/(n-1),Y=v=>padT+(H-padT-padB)*(1-(v-min)/((max-min)||1));
+  let line='M'+X(0).toFixed(1)+' '+Y(vals[0]).toFixed(1);
+  for(let i=1;i<n;i++)line+=' H'+X(i).toFixed(1)+' V'+Y(vals[i]).toFixed(1);
+  const area=line+` V${(H-padB).toFixed(1)} H${X(0).toFixed(1)} Z`;
+  return `<svg viewBox="0 0 ${W} ${H}" class="chart2" preserveAspectRatio="none" style="height:150px"><path d="${area}" fill="${color}" opacity=".14"/><path d="${line}" fill="none" stroke="${color}" stroke-width="2.2" vector-effect="non-scaling-stroke"/></svg>`;}
+function progressRows(items){const max=Math.max(...items.map(i=>+i.value||0),1);
+  return '<div class="prows">'+items.map(it=>`<div class="prow"><div class="pl"><span>${esc(it.label)}</span><b>${money(it.value)}</b></div><div class="ptrack"><i style="width:${Math.max(3,100*(+it.value||0)/max).toFixed(0)}%;background:${it.color}"></i></div></div>`).join('')+'</div>';}
+function peachInsight(o){return `<div class="peachcard"><span class="lab"><span class="aidiamond" style="color:#fff">◆</span> ${esc(o.label||'Insight')}</span><div class="big">${esc(o.big)}</div><div class="desc">${esc(o.desc)}</div>${o.sub?`<div class="psub">${esc(o.sub)}</div>`:''}</div>`;}
+
+// ---------- interactive data grid ----------
+const GRIDS={};
+function grid(id,cols,rows,opts){opts=opts||{};
+  GRIDS[id]={cols,rows,sort:opts.sort||null,rowClick:opts.rowClick||null,file:opts.file||'export',title:opts.title||'',serverCsv:opts.serverCsv||null};
+  return `<div class="grid" id="${id}">${gridBody(id)}</div>`;}
+function dlUrl(u){const a=document.createElement('a');a.href=u;a.download='';document.body.appendChild(a);a.click();a.remove();}
+function gridRows(id){const g=GRIDS[id];let rows=g.rows.slice();
+  if(g.sort){const c=g.cols.find(x=>x.key===g.sort.key),dir=g.sort.dir==='asc'?1:-1;
+    if(c)rows.sort((a,b)=>{let va=c.get(a),vb=c.get(b);
+      if(c.type==='num')return ((+va||0)-(+vb||0))*dir;
+      va=String(va==null?'':va).toLowerCase();vb=String(vb==null?'':vb).toLowerCase();
+      return va<vb?-dir:va>vb?dir:0;});}
+  return rows;}
+function gridBody(id){const g=GRIDS[id],rows=gridRows(id);
+  const head='<tr>'+g.cols.map(c=>{const al=c.align==='n'?'n':'';
+    if(c.nosort)return `<th class="${al}">${esc(c.label)}</th>`;
+    const on=g.sort&&g.sort.key===c.key,ar=on?(g.sort.dir==='asc'?'▲':'▼'):'';
+    return `<th class="sortable ${al}" onclick="sortGrid('${id}','${c.key}')">${esc(c.label)}<span class="arr"> ${ar}</span></th>`;}).join('')+'</tr>';
+  const body=rows.map(r=>{const cl=g.rowClick?` class="click" onclick="${g.rowClick(r)}"`:'';
+    return `<tr${cl}>`+g.cols.map(c=>`<td class="${c.align==='n'?'n':''}">${c.cell?c.cell(r):esc(c.get(r))}</td>`).join('')+'</tr>';}).join('');
+  return `<div class="tbar">${g.title?`<span class="ct"><b>${esc(g.title)}</b></span>`:''}<span class="ct">${rows.length.toLocaleString()} row${rows.length===1?'':'s'}</span><span class="sp"></span>
+    ${g.serverCsv?`<button class="sm" onclick="dlUrl('${g.serverCsv}')" title="Server-side full export (all rows)">⤓ Export all</button>`:''}
+    <button class="sm" onclick="exportGrid('${id}')" title="Download what's shown (current sort) as CSV">⤓ Export CSV</button></div>
+    <div class="tablewrap"><table>${head}${body}</table></div>`;}
+function sortGrid(id,key){const g=GRIDS[id],c=g.cols.find(x=>x.key===key);
+  if(g.sort&&g.sort.key===key)g.sort.dir=g.sort.dir==='asc'?'desc':'asc';
+  else g.sort={key,dir:c.type==='num'?'desc':'asc'};
+  el(id).innerHTML=gridBody(id);}
+function exportGrid(id){const g=GRIDS[id],rows=gridRows(id),cols=g.cols.filter(c=>!c.noexport);
+  const q=v=>{v=v==null?'':String(v);return /[",\n\r]/.test(v)?'"'+v.replace(/"/g,'""')+'"':v;};
+  const csv=[cols.map(c=>q(c.label)).join(',')].concat(rows.map(r=>cols.map(c=>q(c.get(r))).join(','))).join('\r\n');
+  const blob=new Blob([String.fromCharCode(0xFEFF)+csv],{type:'text/csv;charset=utf-8'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);
+  a.download=(g.file||'export')+'.csv';document.body.appendChild(a);a.click();a.remove();
+  setTimeout(()=>URL.revokeObjectURL(a.href),1500);}
+
+async function jget(u){const r=await fetch(u);if(!r.ok)throw new Error(u+' '+r.status);return r.json();}
+async function jpost(u,b){return (await (await fetch(u,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(b)})).json());}
+async function jfetch(method,u,b){const o={method,headers:{'content-type':'application/json'}};if(b!==undefined)o.body=JSON.stringify(b);const r=await fetch(u,o);if(!r.ok)throw new Error(u+' '+r.status);return r.json();}
+
+const STATE={role:'finance',personas:[],model:'claude-opus-4-8',employee:null,cost:0,page:null,sessionId:null,aiTab:'forensics',multi:[],selAns:0,navIds:new Set(),tasks:0};
+
+// ---------- pages + nav ----------
+const PAGES={
+  home:{title:'Home',sub:'Command center',ai:'forensics',render:pgHome},
+  expenses:{title:'Expenses',sub:'Transactions, people & receipts',ai:'forensics',render:pgExpenses},
+  cards:{title:'Cards',sub:'Card portfolio',ai:'forensics',render:pgCards},
+  payables:{title:'Payables',sub:'Bills & vendors',ai:'ap',render:pgPayables},
+  controls:{title:'Controls',sub:'Fraud, policy, budgets & close',ai:'forensics',render:pgControls},
+  treasury:{title:'Treasury',sub:'Cash, forecast & runway',ai:'treasury',render:pgTreasuryTab},
+  research:{title:'Research',sub:'Live SEC EDGAR company analysis',ai:null,render:pgResearch},
+  automation:{title:'Automation',sub:'Tasks, insights & exports',ai:'forensics',render:pgAutomation},
+  investor:{title:'Investor Room',sub:'Read-only diligence',ai:'investor_room',render:pgInvestor},
+  myspend:{title:'My Spend',sub:'Your card',ai:'my_spend',render:pgMySpend},
+  receipts:{title:'Receipts',sub:'Vision capture & match',ai:null,render:pgReceipts},
+  // sub-renderers referenced by wrapper tabs (not shown directly in nav)
+};
+const NAVGROUPS={
+  finance:[
+    ['Overview',[['home','Home','home'],['research','Research','grid'],['cards','Cards','card']]],
+    ['Spend',[['expenses','Expenses','receipt'],['payables','Payables','bill']]],
+    ['Intelligence',[['controls','Controls','shield'],['treasury','Treasury','bank'],['automation','Automation','bolt']]],
+  ],
+  executive:[
+    ['Workspace',[['home','Home','home'],['research','Research','grid'],['treasury','Treasury','bank']]],
+    ['Intelligence',[['controls','Controls','shield'],['automation','Automation','bolt'],['investor','Investor Room','trend']]],
+  ],
+  investor:[['Diligence',[['research','Research','grid'],['treasury','Treasury','bank'],['investor','Investor Room','shield']]]],
+  employee:[['Me',[['myspend','My Spend','receipt'],['cards','My Cards','card'],['receipts','Receipts','scan'],['automation','Tasks','tasks']]]],
+};
+
+async function boot(){
+  STATE.personas=await jget('/api/personas');
+  el('role').innerHTML=STATE.personas.map(p=>`<option value="${p.persona}">${p.label}</option>`).join('');
+  el('role').onchange=e=>setRole(e.target.value);
+  el('model').onchange=e=>{STATE.model=e.target.value;};
+  const emps=await jget('/api/employees'); STATE.employee=emps[0]?.id;
+  el('emp').innerHTML=emps.map(e=>`<option value="${e.id}">${e.name} · ${e.department}</option>`).join('');
+  el('emp').onchange=e=>{STATE.employee=e.target.value; if(STATE.page==='myspend'||STATE.page==='home') openPage(STATE.page);};
+  el('askBtn').onclick=()=>openAI(PAGES[STATE.page]?.ai||'forensics');
+  el('createBtn').onclick=createMenu;
+  document.addEventListener('keydown',e=>{if((e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==='k'){e.preventDefault();openPalette();}if(e.key==='Escape'){closePalette();closeMenu();}});
+  el('cmdInput').oninput=renderPalette;
+  el('cmdInput').onkeydown=paletteKey;
+  refreshTasks();
+  const params=new URLSearchParams(location.search);
+  setRole(params.get('persona')||'finance');
+}
+function setRole(role){
+  STATE.role=role; el('role').value=role; closeAI();
+  el('empWrap').style.display=role==='employee'?'inline':'none';
+  const av=el('avatar');if(av){const lbl=((STATE.personas.find(p=>p.persona===role)||{}).label||role).replace(/[^a-zA-Z /]/g,'');
+    av.textContent=lbl.split(/[\s/]+/).filter(Boolean).slice(0,2).map(w=>w[0].toUpperCase()).join('')||'U';}
+  const groups=NAVGROUPS[role]||[]; STATE.navIds=new Set();
+  el('nav').innerHTML=groups.map(([g,items])=>`<div class="grp">${g}</div>`+items.map(([id,t,icn])=>{STATE.navIds.add(id);return `<a data-p="${id}">${ic(icn)}<span>${t}</span>${id==='automation'?'<span class="cnt" id="navTasks" style="display:none"></span>':''}</a>`;}).join('')).join('');
+  el('nav').querySelectorAll('a').forEach(a=>a.onclick=()=>openPage(a.dataset.p));
+  openPage(groups[0][1][0][0]); refreshTasks();
+}
+function openPage(id){
+  if(!PAGES[id])return; STATE.page=id; navGen();
+  el('ttl').textContent=PAGES[id].title; el('sub').textContent=PAGES[id].sub||'';
+  el('nav').querySelectorAll('a').forEach(a=>a.classList.toggle('on',a.dataset.p===id));
+  el('askBtn').style.display=PAGES[id].ai?'inline-flex':'none';
+  const pg=document.getElementById('page'); pg.innerHTML=skeleton();
+  Promise.resolve().then(()=>PAGES[id].render()).catch(e=>{pg.innerHTML='<div class="card">Error loading page: '+esc(String(e))+'</div>';});
+  closePalette();
+}
+// sub-tab infrastructure: a top-level tab renders a sub-tab bar + #subview; each
+// sub-renderer paints into view() (=#subview when present, else the whole page).
+const SUB={expenses:'transactions',payables:'bills',controls:'fraud',treasury:'cash',automation:'tasks'};
+function view(){return document.getElementById('subview')||document.getElementById('page');}
+// navigation generation: async renderers capture navGen() and bail if a newer
+// navigation happened during their fetch, so late writes can't clobber a new page.
+function navGen(){return STATE.nav=(STATE.nav||0)+1;}
+function fresh(g){return g===(STATE.nav||0);}
+function subtabs(tab,items){
+  return `<div class="subtabs">${items.map(([s,l])=>`<span class="stab ${SUB[tab]===s?'on':''}" onclick="pickSub('${tab}','${s}')">${l}</span>`).join('')}</div><div id="subview"><div class="spin">loading…</div></div>`;}
+function pickSub(tab,s){SUB[tab]=s;navGen();PAGES[tab].render();}
+// insight/task backend link ids -> [top-level page, sub-tab]. Resolves the deep-link
+// to the right tab+sub so the action buttons actually navigate.
+const LINKMAP={fraud:['controls','fraud'],policy:['controls','policy'],billpay:['payables','bills'],
+  vendors:['payables','vendors'],transactions:['expenses','transactions'],treasury:['treasury','cash'],
+  runway:['treasury','runway'],investor:['investor',null],cards:['cards',null]};
+function goInsight(link){const m=LINKMAP[link]||[link,null];if(!PAGES[m[0]])return;if(m[1]&&SUB[m[0]]!==undefined)SUB[m[0]]=m[1];openPage(m[0]);}
+function backTo(fn,label){return `<div class="backbtn" onclick="${fn}"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg> ${label}</div>`;}
+function skeleton(){return `<div class="skgrid">${Array(4).fill('<div class="sk" style="height:86px"></div>').join('')}</div><div class="sk" style="height:250px;margin-top:16px"></div>`;}
+const askLink=ctx=>`<button class="sm ai" style="margin-left:8px" onclick="openAI('${ctx}')"><span class="aidiamond" style="color:#fff">◆</span> Ask AI</button>`;
+
+// ---------- Command palette ----------
+let PAL={items:[],sel:0};
+function paletteItems(){
+  const nav=Object.keys(PAGES).filter(id=>STATE.navIds.has(id)).map(id=>({grp:'Go to',label:PAGES[id].title,sub:PAGES[id].sub,icon:navIcon(id),run:()=>openPage(id)}));
+  const acts=[
+    {grp:'Actions',label:'Ask Stripe AI',icon:'bolt',run:()=>openAI(PAGES[STATE.page]?.ai||'forensics')},
+    {grp:'Actions',label:'Research a company (SEC EDGAR)',icon:'grid',run:()=>openPage('research')},
+    {grp:'Actions',label:'Export all expenses (CSV)',icon:'export',run:()=>dlUrl('/api/transactions.csv?seed=7')},
+    {grp:'Actions',label:'CFO morning brief',icon:'bolt',run:()=>{openPage('home');setTimeout(genBrief,900);}},
+    {grp:'Actions',label:'Run month-end close',icon:'check',run:()=>{SUB.controls='close';openPage('controls');}},
+    {grp:'Actions',label:'Scheduled exports',icon:'export',run:()=>{SUB.automation='exports';openPage('automation');}},
+  ];
+  return nav.concat(acts);
+}
+function navIcon(id){for(const g of (NAVGROUPS[STATE.role]||[]))for(const it of g[1])if(it[0]===id)return it[2];return 'grid';}
+function openPalette(){el('cmdk').classList.add('open');el('cmdInput').value='';el('cmdInput').focus();renderPalette();}
+function closePalette(){el('cmdk').classList.remove('open');}
+function renderPalette(){const q=el('cmdInput').value.trim().toLowerCase();
+  let items=paletteItems();if(q)items=items.filter(i=>(i.label+' '+(i.sub||'')).toLowerCase().includes(q));
+  PAL.items=items;PAL.sel=0;
+  let html='',grp='';items.forEach((it,i)=>{if(it.grp!==grp){grp=it.grp;html+=`<div class="cmdgrp">${grp}</div>`;}html+=`<div class="cmditem ${i===0?'sel':''}" data-i="${i}" onmouseover="PAL.sel=${i};paintPalette()" onclick="runPalette(${i})">${ic(it.icon)}<span>${esc(it.label)}</span>${it.sub?`<span class="cs">${esc(it.sub)}</span>`:''}</div>`;});
+  el('cmdList').innerHTML=html||'<div class="cmdgrp">No matches</div>';}
+function paintPalette(){el('cmdList').querySelectorAll('.cmditem').forEach(e=>e.classList.toggle('sel',+e.dataset.i===PAL.sel));}
+function runPalette(i){const it=PAL.items[i];closePalette();if(it)it.run();}
+function paletteKey(e){if(e.key==='ArrowDown'){e.preventDefault();PAL.sel=Math.min(PAL.sel+1,PAL.items.length-1);paintPalette();scrollSel();}
+  else if(e.key==='ArrowUp'){e.preventDefault();PAL.sel=Math.max(PAL.sel-1,0);paintPalette();scrollSel();}
+  else if(e.key==='Enter'){e.preventDefault();runPalette(PAL.sel);}}
+function scrollSel(){const s=el('cmdList').querySelector('.cmditem.sel');if(s)s.scrollIntoView({block:'nearest'});}
+function createMenu(){const items=[['Issue a card',"openPage('cards')"],['Pay a bill',"SUB.payables='bills';openPage('payables')"],['Review budgets',"SUB.controls='budgets';openPage('controls')"],['Research a company',"openPage('research')"],['Schedule an export',"SUB.automation='exports';openPage('automation')"],['Ask Stripe AI',"openAI('forensics')"]];
+  showMenu(el('createBtn'),items.map(([l,fn])=>`<button onclick="closeMenu();${fn}">${l}</button>`).join(''));}
+function showMenu(anchor,html){const r=anchor.getBoundingClientRect();el('menuHost').innerHTML=`<div class="menu" style="top:${r.bottom+6}px;left:${r.left}px" onclick="event.stopPropagation()">${html}</div>`;setTimeout(()=>document.addEventListener('click',closeMenu,{once:true}),0);}
+function closeMenu(){el('menuHost').innerHTML='';}
+async function refreshTasks(){try{const d=await jget('/api/insights');STATE.tasks=d.count;const b=el('bellBadge');if(b){b.style.display=d.count?'flex':'none';b.textContent=d.count;}const nt=el('navTasks');if(nt){nt.style.display=d.count?'inline':'none';nt.textContent=d.count;}}catch(e){}}
+
+// ---------- Home: command center ----------
+function insightCard(i){const c=({critical:'critical',high:'high',medium:'medium',low:'low'})[i.severity]||'low';
+  return `<div class="insight"><div class="ic ic-${c}">${ic(i.icon||'alert')}</div><div class="bd"><div class="t">${esc(i.title)}${i.amount_usd?` <span class="amt">· ${money1(i.amount_usd)}</span>`:''}</div><div class="d">${esc(i.detail)}</div><div class="act"><button class="sm" onclick="goInsight('${i.link}')">${esc(i.action)} →</button></div></div></div>`;}
+// ---------- company typeahead + public-company Home takeover ----------
+let HOME_CO=null, RESEARCH_TICKER='';
+function coSearchHTML(inp,dd,ph){return `<div class="cosearch-wrap"><div class="cosearch"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg><input id="${inp}" placeholder="${esc(ph)}" autocomplete="off"></div><div class="typeahead" id="${dd}" style="display:none"></div></div>`;}
+function wireCoSearch(inp,dd){
+  const i=el(inp); if(!i)return; const hide=()=>{const d=el(dd);if(d)d.style.display='none';};
+  i.oninput=()=>{clearTimeout(window._cot);const q=i.value.trim();if(q.length<2){hide();return;}
+    window._cot=setTimeout(async()=>{try{const r=await jget('/api/research/search?q='+encodeURIComponent(q));const d=el(dd);if(!d)return;
+      if(!r.results||!r.results.length){d.innerHTML='<div class="ta-item" style="cursor:default;color:var(--muted)">No matches</div>';d.style.display='block';return;}
+      d.innerHTML=r.results.map(x=>`<div class="ta-item" onmousedown="pickCompany(${q1(x.ticker)})"><span class="sr-tk">${esc(x.ticker)}</span><span>${esc(x.name)}</span></div>`).join('');d.style.display='block';
+    }catch(e){hide();}},220);};
+  i.onkeydown=e=>{if(e.key==='Enter'){const f=el(dd)&&el(dd).querySelector('.ta-item[onmousedown]');if(f)f.dispatchEvent(new MouseEvent('mousedown'));}else if(e.key==='Escape')hide();};
+  i.onblur=()=>setTimeout(hide,160);
+}
+function pickCompany(t){HOME_CO=t; openPage('home');}
+function clearHomeCo(){HOME_CO=null; openPage('home');}
+function goResearchProfile(t){RESEARCH_TICKER=t; openPage('research');}
+function costBars(cs){cs=cs||[];const mp=Math.max(...cs.map(c=>c.pct_of_revenue||0),0.01),bc=['#3b82f6','#ec4899','#f59e0b','#22c55e'];
+  return cs.length?cs.map((c,i)=>`<div style="margin:10px 0"><div style="display:flex;justify-content:space-between;font-size:12.5px;margin-bottom:4px"><span style="font-weight:500">${esc(c.label)}</span><span class="muted">${money1(c.usd)} · <b style="color:var(--ink)">${c.pct_of_revenue!=null?pct(c.pct_of_revenue):'—'}</b></span></div><div class="ptrack"><i style="width:${Math.max(2,100*(c.pct_of_revenue||0)/mp).toFixed(1)}%;background:${bc[i%bc.length]}"></i></div></div>`).join(''):'<div class="muted">cost lines not separately filed</div>';}
+function oppInner(sp){sp=sp||{};const levers=sp.levers||[];
+  return `<div class="bignum">${sp.addressable_spend_usd!=null?money1(sp.addressable_spend_usd):'—'}</div><div class="muted" style="font-size:11.5px;margin:2px 0 12px">${esc(sp.addressable_basis||'')}</div>${levers.map(l=>`<div style="display:flex;align-items:baseline;gap:8px;margin:7px 0;font-size:12.5px"><span style="width:7px;height:7px;border-radius:50%;background:var(--stripe);flex:none;align-self:center"></span><span style="flex:1"><b>${esc(l.lever)}</b><br><span class="muted" style="font-size:11px">${esc(l.note)}</span></span><span style="font-weight:700;color:var(--green);white-space:nowrap">${money1(l.savings_usd)}</span></div>`).join('')}<div style="margin-top:auto;padding-top:12px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:baseline"><span style="font-weight:600">Identified annual savings</span><span style="font-size:20px;font-weight:800;color:var(--green)">${sp.total_savings_usd!=null?money1(sp.total_savings_usd):'—'}</span></div>${sp.savings_pct_of_revenue!=null?`<div class="muted" style="font-size:11.5px;text-align:right;margin-top:2px">${pct(sp.savings_pct_of_revenue)} of revenue</div>`:''}`;}
+async function renderCompanyHome(ticker){
+  const g=navGen(); view().innerHTML='<div class="spin">loading '+esc(ticker)+' from SEC EDGAR…</div>';
+  let p; try{p=await jget('/api/research/company/'+ticker);}catch(e){if(!fresh(g))return;view().innerHTML='<div class="card">Could not load '+esc(ticker)+' from EDGAR. <button class="sm" onclick="clearHomeCo()">← My dashboard</button></div>';return;}
+  if(!fresh(g))return;
+  const s=p.series,R=p.ratios,sp=p.spend||{},f=p.filing||{},last=v=>v.length?v[v.length-1].value:null,fyy=v=>v.map(r=>r.fy),val=v=>v.map(r=>r.value);
+  view().innerHTML=`
+    <div class="cobanner">
+      <div class="co-logo">${esc(p.ticker.slice(0,2))}</div>
+      <div><div style="font-weight:700;font-size:17px">${esc(p.name)} <span class="muted" style="font-weight:500;font-size:13px">${p.ticker} · CIK ${p.cik}</span></div><div class="muted" style="font-size:12px">Viewing public company · SEC EDGAR as filed · FY${p.latest_fy}</div></div>
+      <div style="flex:1;min-width:10px"></div>
+      ${coSearchHTML('homeCoq2','homeCoDD2','Switch company…')}
+      <button class="sm" onclick="clearHomeCo()">✕ My dashboard</button>
+    </div>
+    ${kpis([['Revenue FY'+p.latest_fy,s.revenue.length?money1(last(s.revenue)):'—','hero'],
+      ['Revenue YoY',R.revenue_yoy!=null?((R.revenue_yoy>=0?'+':'')+pct(R.revenue_yoy)):'—'],
+      ['Net margin',R.net_margin!=null?pct(R.net_margin):'—'],
+      ['Operating margin',R.operating_margin!=null?pct(R.operating_margin):'—'],
+      ['Cash & equivalents',s.cash.length?money1(last(s.cash)):'—'],
+      ['Addressable Stripe spend',sp.addressable_spend_usd!=null?money1(sp.addressable_spend_usd):'—'],
+      ['Identified savings / yr',sp.total_savings_usd!=null?money1(sp.total_savings_usd):'—','hero']])}
+    <div class="row g2" style="margin-top:16px">
+      <div class="card"><div class="ch"><h3>Revenue · 6-yr (as filed)</h3></div>${s.revenue.length?barChart(fyy(s.revenue),val(s.revenue)):'<div class="muted">n/a</div>'}</div>
+      <div class="card"><div class="ch"><h3>Operating cost lines · FY${p.latest_fy}</h3><span class="sp"></span><span class="muted" style="font-size:12px">% of revenue</span></div>${costBars(sp.cost_structure)}</div>
+    </div>
+    <div class="row g2" style="margin-top:16px">
+      <div class="card" style="display:flex;flex-direction:column"><div class="ch"><h3>Addressable spend Stripe would manage</h3></div>${oppInner(sp)}</div>
+      <div class="card" style="display:flex;flex-direction:column;justify-content:center;gap:11px;background:linear-gradient(155deg,#fff 26%,var(--aibg))">
+        <div class="aiask-h"><span class="aidiamond">◆</span> Full workup in Research</div>
+        <div class="muted" style="font-size:12.5px;line-height:1.5">Open ${esc(p.ticker)}'s full profile — cost structure, accounting tie-outs recomputed from the filing, the actual SEC 10-K, an AI improvement plan, and a deployable agentic workflow.</div>
+        <button class="ai" onclick="goResearchProfile(${q1(ticker)})" style="align-self:flex-start"><span class="aidiamond" style="color:#fff">◆</span> Open full research & AI workflow →</button>
+        <a class="edgarlink" style="margin:0" href="${esc(f.latest_10k_url||f.browse_url||'#')}" target="_blank" rel="noopener">${ic('scan')} Open the actual ${esc(f.form||'10-K')} filing on SEC EDGAR <span style="margin-left:auto;font-weight:600">↗</span></a>
+      </div>
+    </div>`;
+  wireCoSearch('homeCoq2','homeCoDD2');
+}
+async function pgHome(){
+  if(HOME_CO) return renderCompanyHome(HOME_CO);
+  const g=navGen();
+  const [d,txa,cardsd]=await Promise.all([jget('/api/dashboard?seed=7'),jget('/api/transactions?limit=1'),jget('/api/cards?seed=7')]);
+  if(!fresh(g))return;
+  const k=d.kpis, cf=d.cashflow;
+  const hist=cf.history.map(h=>h.balance_usd), fcst=cf.forecast.map(f=>f.p50_usd);
+  const months=cf.history.map(h=>h.date).concat(cf.forecast.map(f=>f.date));
+  const cashSeries=hist.concat(fcst);
+  const band={lo:cf.history.map(_=>null).concat(cf.forecast.map(f=>f.p10_usd)),hi:cf.history.map(_=>null).concat(cf.forecast.map(f=>f.p90_usd)),name:'p10–p90'};
+  const trend=d.monthly_trend.map(m=>m.spend_usd), totalSpend=trend.reduce((a,b)=>a+b,0);
+  const txnCount=txa.count, cardCount=cardsd.cards.length, activeCards=cardsd.cards.filter(c=>c.status==='active').length;
+  const cats=Object.entries(d.by_category), catColors=['#3b82f6','#22c55e','#ec4899','#f59e0b'];
+  const funnel=d.monthly_trend.map((m,i)=>({label:m.month,value:m.spend_usd,value_label:money1(m.spend_usd),active:i===d.monthly_trend.length-1}));
+  const sd=k.spend_delta_pct||0;
+  view().innerHTML=`
+    <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:16px">
+      <span class="pill" onclick="openPage('cards')">${ic('card')} Issue card</span>
+      <span class="pill" onclick="SUB.payables='bills';openPage('payables')">${ic('bill')} Pay bill</span>
+      <span class="pill" onclick="dlUrl('/api/transactions.csv?seed=7')">${ic('export')} Export</span>
+      <div style="flex:1"></div>
+      <div style="display:flex;flex-direction:column;align-items:flex-end;gap:6px">
+        <span class="muted" style="font-size:12.5px">${esc(d.company)} · as of ${esc(d.as_of||'today')}</span>
+        ${coSearchHTML('homeCoq','homeCoDD','Search any public company — AAPL, Costco…')}
+      </div>
+    </div>
+    <div class="strip">
+      ${stat('Cash on hand',money1(k.cash_usd),{delta:k.cash_delta_pct,sub:'vs 30d ago',spark:hist.slice(-30),accent:'#3b82f6'})}
+      ${stat('Net burn / mo',money1(k.net_burn_usd),{sub:'monthly outflow'})}
+      ${stat('Runway',(k.runway_months==null?'∞':k.runway_months+' mo'),{sub:`<span class="pillbadge pill-${k.runway_status}">${k.runway_status}</span>`})}
+      ${stat('Spend MTD',money1(k.spend_mtd_usd),{delta:k.spend_delta_pct,goodUp:false,sub:'vs last mo',spark:trend,accent:'#ec4899'})}
+      ${stat('Spend in policy',pct(k.compliance_rate),{sub:k.fraud_alerts+' fraud alerts'})}
+      ${stat('Value identified',money1(k.value_identified_usd),{hero:true,sub:'recoverable + yield'})}
+    </div>
+
+    <div class="row g2" style="margin-top:16px">
+      <div class="card"><div class="ch"><h3>Spend</h3><span class="muted" style="font-size:12px">last ${d.monthly_trend.length} months</span><span class="sp"></span><span class="muted">⋯</span></div>
+        ${funnelBars(funnel)}
+        <div class="aiask">
+          <div class="aiask-h"><span class="aidiamond">◆</span> Stripe AI <span class="aiask-tag">beta</span></div>
+          <div class="aiask-sub">Ask me anything related to your spend, cash flow, cards, vendors or savings — I read your live data before answering.</div>
+          <div class="askbar"><span class="aidiamond" style="font-size:16px">◆</span><input id="askData" placeholder="What would you like to explore next?" onkeydown="if(event.key==='Enter')askData(this.value||'What caused the change in spend this month?')"><button class="ai sm" onclick="askData(el('askData').value||'What caused the change in spend this month?')">Ask</button></div>
+          <div class="askchips">
+            <span onclick="askData('Why did total spend change this month, and which categories and merchants drove it?')">Why did spend change this month?</span>
+            <span onclick="askData('Which vendors, subscriptions or duplicate charges can we consolidate or cancel to cut costs?')">Where can we cut costs?</span>
+            <span onclick="askData('Who are my top 5 card spenders this period and what are they buying?')">Top card spenders</span>
+            <span onclick="askData('What is our current cash runway, and how does it change if net burn stays flat?')">What is our runway?</span>
+            <span onclick="askData('Are there any suspicious, out-of-policy or potentially fraudulent transactions I should review?')">Any fraud to review?</span>
+          </div>
+        </div>
+      </div>
+      <div class="card"><div class="ch"><h3>Gross spend</h3><span class="muted" style="font-size:12px">this period</span></div>
+        <div style="display:flex;align-items:center;gap:10px"><div class="bignum">${money1(totalSpend)}</div><span class="gbadge" style="${sd<0?'color:var(--green)':''}">${sd>=0?'▲':'▼'} ${Math.abs(sd*100).toFixed(0)}%</span></div>
+        ${progressRows(cats.slice(0,4).map((c,i)=>({label:c[0].replace(/_/g,' '),value:c[1],color:catColors[i%catColors.length]})))}
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1.1fr 1fr 1fr;gap:16px;margin-top:16px">
+      <div class="card"><div class="ch"><h3>Spend trend</h3><span class="sp"></span><span class="peakpill">${d.monthly_trend.length} mo</span></div>${steppedArea(trend,'#ec4899')}</div>
+      <div style="display:flex;flex-direction:column;gap:16px">
+        <div class="card"><div class="ch"><h3>Transactions</h3></div><div style="display:flex;justify-content:space-between;align-items:flex-end;gap:10px"><div class="bignum" style="font-size:32px">${txnCount.toLocaleString()}</div><div class="vsperiod">vs last period<br><b>${sd>=0?'+':''}${(sd*100).toFixed(0)}%</b></div></div><div style="margin-top:12px">${waffle(trend.length?trend:[1],'#22c55e')}</div></div>
+        <div class="card"><div class="ch"><h3>Active cards</h3></div><div style="display:flex;justify-content:space-between;align-items:flex-end;gap:10px"><div class="bignum" style="font-size:32px">${cardCount}</div><span class="peakpill">${activeCards} active</span></div><div style="margin-top:12px">${waffle(cardsd.cards.slice(0,16).map(c=>c.spend_usd),'#3b82f6')}</div></div>
+      </div>
+      ${peachInsight({label:'AI insight',big:pct(k.compliance_rate),desc:'of spend is in policy',sub:`Claude reviewed 100% of ${txnCount.toLocaleString()} transactions · ${money1(k.value_identified_usd)} recoverable value identified this period across fraud, duplicates and idle-cash yield.`})}
+    </div>
+
+    <div class="brief" id="briefCard" style="margin-top:16px">
+      <div style="display:flex;align-items:center;gap:8px"><span class="aipill"><span class="aidiamond">◆</span> Stripe AI</span><b style="font-size:13.5px">CFO morning brief</b><span style="flex:1"></span><button class="ai sm" onclick="genBrief()"><span class="aidiamond" style="color:#fff">◆</span> Generate</button></div>
+      <div id="briefBody" class="muted" style="font-size:12.5px;margin-top:8px">Claude reads today's live spend data — cash, burn, fraud, savings — and writes your brief with actions.</div>
+    </div>
+
+    <h2>Needs attention <span class="aipill"><span class="aidiamond">◆</span> AI</span> <span class="muted" style="text-transform:none;letter-spacing:0;font-weight:400">Claude reviewed 100% of transactions</span></h2>
+    <div class="insights">${(d.insights||[]).slice(0,4).map(insightCard).join('')||'<div class="empty"><div class="eh">All clear</div>No anomalies need your attention.</div>'}</div>
+
+    <div class="card" style="margin-top:16px"><div class="ch"><h3>Cash position &amp; forecast</h3><span class="sp"></span><span class="muted" style="font-size:12px">${cf.shortfall_date?('cash-out ~'+cf.shortfall_date):'no shortfall in horizon'} · backtest MAPE ${(cf.backtest_mape*100).toFixed(1)}%</span></div>
+      ${lineChart({labels:months,series:[{name:'balance',color:'#18181b',data:cashSeries}],band:band,forecastFrom:hist.length,height:230})}</div>
+
+    <div class="row g2" style="margin-top:16px">
+      <div class="card"><div class="ch"><h3>Top merchants</h3></div>${hbars(d.top_merchants.map(m=>[m.merchant,m.spend_usd]),{n:7})}</div>
+      <div class="card"><div class="ch"><h3>Spend by category</h3></div>${donut(cats)}</div>
+    </div>
+
+    <h2>Recent flagged transactions ${askLink('forensics')}</h2><div id="ovtx"></div>`;
+  wireCoSearch('homeCoq','homeCoDD');
+  const tx=await jget('/api/transactions?flagged=true&limit=8');
+  const ov=el('ovtx'); if(ov) ov.innerHTML=txTable(tx.transactions,'govtx','flagged-transactions');
+}
+
+// ---------- Insights ----------
+async function pgInsights(){
+  const d=await jget('/api/dashboard?seed=7'); const ins=await jget('/api/insights?seed=7');
+  view().innerHTML=`
+    <div class="askbar"><span class="aidiamond" style="font-size:18px">◆</span><input id="askData" placeholder="Ask your spend data — e.g. how much did we spend on meals last month?"><button class="ai" onclick="askData(el('askData').value||'What are our biggest savings opportunities?')">Ask</button></div>
+    <div class="chips">${['How much did we spend on travel?','Top 5 vendors by spend','Which teams are over budget?','Where can we cut costs?'].map(q=>`<span class="chip" onclick="askData('${q.replace(/'/g,"\\'")}')">${q}</span>`).join('')}</div>
+    <h2>AI-surfaced findings <span class="aipill"><span class="aidiamond">◆</span> AI</span> <span class="muted" style="text-transform:none;letter-spacing:0;font-weight:400">${ins.count} items · ${money1(ins.total_opportunity_usd)} identified</span></h2>
+    <div class="insights">${ins.insights.map(insightCard).join('')}</div>
+    <div class="row g2" style="margin-top:18px">
+      <div class="card"><div class="ch"><h3>Spend by category</h3></div>${donut(Object.entries(d.by_category))}</div>
+      <div class="card"><div class="ch"><h3>Monthly trend</h3></div>${barChart(d.monthly_trend.map(m=>m.month.slice(5)),d.monthly_trend.map(m=>m.spend_usd))}</div>
+    </div>
+    <div class="row g2" style="margin-top:16px">
+      <div class="card"><div class="ch"><h3>Top merchants</h3></div>${hbars(d.top_merchants.map(m=>[m.merchant,m.spend_usd]),{n:8})}</div>
+      <div class="card"><div class="ch"><h3>Spend by department</h3></div>${hbars(Object.entries(d.by_department),{n:8,color:'#2f6bff'})}</div>
+    </div>`;
+}
+function askData(q){openAI(PAGES[STATE.page]?.ai||'forensics');setTimeout(()=>{const t=el('aiq');if(!t)return;t.value=q||'';if(q&&q.trim())aiStart();else t.focus();},80);}
+
+// ---------- tab wrappers (sub-tabs) ----------
+function pgExpenses(){document.getElementById('page').innerHTML=subtabs('expenses',[['transactions','Transactions'],['people','People'],['receipts','Receipts']]);
+  ({transactions:pgTransactions,people:pgPeople,receipts:pgReceipts}[SUB.expenses]||pgTransactions)();}
+function pgPayables(){document.getElementById('page').innerHTML=subtabs('payables',[['bills','Bills'],['vendors','Vendors']]);
+  ({bills:pgBillpay,vendors:pgVendors}[SUB.payables]||pgBillpay)();}
+function pgControls(){document.getElementById('page').innerHTML=subtabs('controls',[['fraud','Fraud & Risk'],['policy','Policy'],['budgets','Budgets'],['close','Close']]);
+  ({fraud:pgFraud,policy:pgPolicy,budgets:pgBudgets,close:pgClose}[SUB.controls]||pgFraud)();}
+function pgTreasuryTab(){document.getElementById('page').innerHTML=subtabs('treasury',[['cash','Cash forecast'],['runway','Runway Lab']]);
+  ({cash:pgTreasury,runway:pgRunway}[SUB.treasury]||pgTreasury)();}
+function pgAutomation(){document.getElementById('page').innerHTML=subtabs('automation',[['tasks','Tasks'],['insights','Insights'],['exports','Exports']]);
+  ({tasks:pgTasks,insights:pgInsights,exports:pgExports}[SUB.automation]||pgTasks)();}
+
+// ---------- drill-downs ----------
+async function cardDetail(id){
+  const g=navGen(); view().innerHTML='<div class="spin">loading card…</div>';
+  const d=await jget('/api/cards/'+id+'?seed=7'); const c=d.card; if(!fresh(g))return;
+  view().innerHTML=backTo('pgCards()','All cards')+
+    `<div class="co-hd" style="margin-bottom:14px"><div class="co-logo">${esc(c.employee.split(' ').map(w=>w[0]).join('').slice(0,2))}</div>
+       <div><div style="font-weight:700;font-size:17px">${esc(c.employee)} · ••${c.last4}</div><div class="muted" style="font-size:12.5px">${esc(c.department)} · ${c.type} card · ${c.status} · per-txn ${money1(c.per_txn_limit_usd)}</div></div></div>`+
+    kpis([['Total spend',money(d.total_usd)],['Transactions',d.txns],['Avg / mo',money(d.avg_monthly_usd)],['Utilization',d.utilization!=null?pct(d.utilization):'—'],['Flagged',d.flagged]])+
+    `<div class="row g2" style="margin-top:16px"><div class="card"><div class="ch"><h3>Monthly spend</h3></div>${barChart(d.monthly_trend.map(m=>m.month.slice(5)),d.monthly_trend.map(m=>m.spend_usd))}</div>
+       <div class="card"><div class="ch"><h3>By category</h3></div>${donut(Object.entries(d.by_category))}</div></div>
+     <div class="card" style="margin-top:16px"><div class="ch"><h3>Top merchants</h3></div>${hbars(d.top_merchants.map(m=>[m.merchant,m.spend_usd]),{n:7})}</div>
+     <h2>Recent transactions <button class="sm ai" onclick="askData(${q1('Analyze card '+id+' for '+c.employee+' — any risky, duplicate, or off-policy spend?')})"><span class="aidiamond" style="color:#fff">◆</span> Ask AI</button></h2>${txTable(d.recent,'gcarddetail','card-'+id)}`;
+}
+async function vendorDetail(name){
+  const g=navGen(); view().innerHTML='<div class="spin">loading vendor…</div>';
+  const d=await jget('/api/vendors/detail?seed=7&name='+encodeURIComponent(name)); if(!fresh(g))return;
+  view().innerHTML=backTo("SUB.payables='vendors';pgPayables()",'All vendors')+
+    `<div class="co-hd" style="margin-bottom:14px"><div class="co-logo">${esc(d.vendor.slice(0,2).toUpperCase())}</div><div><div style="font-weight:700;font-size:17px">${esc(d.vendor)}</div><div class="muted" style="font-size:12.5px">${d.unique_users} card users · ${d.txns} transactions</div></div></div>`+
+    kpis([['Total spend',money(d.total_usd)],['Transactions',d.txns],['Avg txn',money(d.avg_txn_usd)],['Median txn',money(d.median_txn_usd)],['Users',d.unique_users]])+
+    `<div class="row g2" style="margin-top:16px"><div class="card"><div class="ch"><h3>Monthly spend</h3></div>${barChart(d.monthly_trend.map(m=>m.month.slice(5)),d.monthly_trend.map(m=>m.spend_usd),{color:'#2f6bff'})}</div>
+       <div class="card"><div class="ch"><h3>By category</h3></div>${donut(Object.entries(d.by_category))}</div></div>
+     <h2>Recent transactions <button class="sm ai" onclick="askData(${q1('Is our spend with '+name+' efficient? Any duplicate or redundant charges to consolidate?')})"><span class="aidiamond" style="color:#fff">◆</span> Ask AI</button></h2>${txTable(d.recent,'gvendordetail','vendor')}`;
+}
+async function categoryDetail(cat){
+  const g=navGen(); view().innerHTML='<div class="spin">loading…</div>';
+  const d=await jget('/api/categories/'+cat+'?seed=7'); if(!fresh(g))return;
+  view().innerHTML=backTo("SUB.controls='budgets';pgControls()",'All budgets')+
+    `<h1 class="pt" style="text-transform:capitalize">${esc(cat.replace(/_/g,' '))}</h1><div class="muted" style="font-size:12.5px;margin:2px 0 12px">category deep-dive</div>`+
+    kpis([['Total spend',money(d.total_usd)],['Avg / mo',money(d.avg_monthly_usd)],['Monthly budget',d.monthly_budget_usd?money(d.monthly_budget_usd):'—'],['Utilization',d.utilization!=null?pct(d.utilization):'—',(d.utilization&&d.utilization<=1)?'hero':''],['Transactions',d.txns]])+
+    `<div class="row g2" style="margin-top:16px"><div class="card"><div class="ch"><h3>Monthly spend</h3></div>${barChart(d.monthly_trend.map(m=>m.month.slice(5)),d.monthly_trend.map(m=>m.spend_usd))}${d.monthly_budget_usd?`<div class="muted" style="font-size:12px;margin-top:6px">monthly budget: ${money(d.monthly_budget_usd)}</div>`:''}</div>
+       <div class="card"><div class="ch"><h3>Top merchants</h3></div>${hbars(d.top_merchants.map(m=>[m.merchant,m.spend_usd]),{n:7})}</div></div>
+     <h2>Recent transactions</h2>${txTable(d.recent,'gcatdetail','category-'+cat)}`;
+}
+
+// ---------- Research: live SEC EDGAR ----------
+let RESEARCH_PENDING='';
+function goResearch(q){RESEARCH_PENDING=(q||'').trim();openPage('research');}
+function pgResearch(){
+  if(RESEARCH_TICKER){const t=RESEARCH_TICKER;RESEARCH_TICKER='';companyProfile(t);return;}
+  view().innerHTML=`<p class="lede">Pull any US public company's <b>as-filed</b> financials from live SEC EDGAR (XBRL), recompute the ratios and accounting tie-outs, size the Stripe spend opportunity, then let Claude analyze and act on it — the same financial-correctness discipline we apply to spend.</p>
+    <div class="askbar" style="max-width:520px"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#2f6bff" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg><input id="resq" placeholder="Search a company or ticker — e.g. Costco, AAPL, Nike…" autocomplete="off"></div>
+    <div class="chips">${['AAPL','MSFT','COST','NKE','AMZN','WMT'].map(t=>`<span class="chip" onclick="companyProfile('${t}')">${t}</span>`).join('')}</div>
+    <div id="resout" style="margin-top:16px"></div>`;
+  el('resq').oninput=()=>{clearTimeout(window._rt);window._rt=setTimeout(resSearch,300);};
+  if(RESEARCH_PENDING){el('resq').value=RESEARCH_PENDING;RESEARCH_PENDING='';resSearch();}
+  else el('resq').focus();
+}
+async function resSearch(){const q=el('resq').value.trim();if(q.length<2){el('resout').innerHTML='';return;}
+  el('resout').innerHTML='<div class="spin">searching EDGAR…</div>';
+  try{const d=await jget('/api/research/search?q='+encodeURIComponent(q));
+    el('resout').innerHTML=d.results.length?d.results.map(r=>`<div class="sr-item" onclick="companyProfile('${r.ticker}')"><span class="sr-tk">${r.ticker}</span><span>${esc(r.name)}</span></div>`).join(''):'<div class="muted">No matches.</div>';
+  }catch(e){el('resout').innerHTML='<div class="red">EDGAR unavailable: '+esc(String(e))+'</div>';}
+}
+async function companyProfile(ticker){
+  const g=navGen(); view().innerHTML='<div class="spin">pulling '+esc(ticker)+' from SEC EDGAR…</div>';
+  let p;try{p=await jget('/api/research/company/'+ticker);}catch(e){if(!fresh(g))return;view().innerHTML=backTo('pgResearch()','Search')+'<div class="card"><span class="red">Could not load '+esc(ticker)+': '+esc(String(e))+'</span></div>';return;}
+  if(!fresh(g))return;
+  const s=p.series,R=p.ratios,sp=p.spend||{},f=p.filing||{},fy=v=>v.map(r=>r.fy),val=v=>v.map(r=>r.value),last=v=>v.length?v[v.length-1].value:null;
+  const filingUrl=f.latest_10k_url||f.browse_url, cs=sp.cost_structure||[], levers=sp.levers||[];
+  const maxpct=Math.max(...cs.map(c=>c.pct_of_revenue||0),0.01);
+  const barcol=['#2f6bff','#ec4899','#f59e0b','#22c55e'];
+  const issues=levers.map(l=>l.lever);
+  view().innerHTML=backTo('pgResearch()','Search')+
+    `<div class="co-hd" style="margin-bottom:6px"><div class="co-logo">${esc(p.ticker.slice(0,2))}</div><div><div style="font-weight:700;font-size:18px">${esc(p.name)} <span class="muted" style="font-weight:500;font-size:13px">${p.ticker} · CIK ${p.cik}</span></div><div class="muted" style="font-size:12px">${esc(p.source)} · latest FY ${p.latest_fy}</div></div><div style="flex:1"></div><button class="ai" id="resAnalyze"><span class="aidiamond" style="color:#fff">◆</span> Analyze with Claude</button></div>
+     <a class="edgarlink" href="${esc(filingUrl)}" target="_blank" rel="noopener">${ic('scan')} Open the actual ${esc(f.form||'10-K')} filing on SEC EDGAR${f.latest_10k_date?' ('+esc(f.latest_10k_date)+')':''} <span style="margin-left:auto;font-weight:600">↗</span></a>`+
+    kpis([['Revenue FY'+p.latest_fy,s.revenue.length?money1(last(s.revenue)):'—','hero'],
+      ['Net income',s.net_income.length?money1(last(s.net_income)):'—'],
+      ['Net margin',R.net_margin!=null?pct(R.net_margin):'—'],
+      ['Operating margin',R.operating_margin!=null?pct(R.operating_margin):'—'],
+      ['Revenue YoY',R.revenue_yoy!=null?((R.revenue_yoy>=0?'+':'')+pct(R.revenue_yoy)):'—'],
+      ['ROE',R.roe!=null?pct(R.roe):'—'],['Debt / Equity',R.debt_to_equity!=null?R.debt_to_equity.toFixed(2):'—']])+
+    `<div class="row g2" style="margin-top:16px">
+       <div class="card"><div class="ch"><h3>Revenue · 6-yr (as filed)</h3></div>${s.revenue.length?barChart(fy(s.revenue),val(s.revenue)):'<div class="muted">n/a</div>'}</div>
+       <div class="card"><div class="ch"><h3>Net income</h3></div>${s.net_income.length?barChart(fy(s.net_income),val(s.net_income),{color:'#22c55e'}):'<div class="muted">n/a</div>'}</div></div>
+     ${s.assets.length&&s.equity.length?`<div class="card" style="margin-top:16px"><div class="ch"><h3>Balance sheet: assets vs liabilities + equity</h3></div>${lineChart({labels:fy(s.assets),series:[{name:'assets',color:'#18181b',data:val(s.assets)},{name:'liabilities',color:'#3b82f6',data:val(s.liabilities)},{name:'equity',color:'#22c55e',data:val(s.equity)}],height:220})}</div>`:''}
+
+     <h2>Cost structure & spend opportunity <span class="aipill">Stripe spend lens</span></h2>
+     <div class="row g2">
+       <div class="card"><div class="ch"><h3>Operating cost lines · FY${p.latest_fy}</h3><span class="sp"></span><span class="muted" style="font-size:12px">% of revenue</span></div>
+         ${cs.length?cs.map((c,i)=>`<div style="margin:10px 0"><div style="display:flex;justify-content:space-between;font-size:12.5px;margin-bottom:4px"><span style="font-weight:500">${esc(c.label)}</span><span class="muted">${money1(c.usd)} · <b style="color:var(--ink)">${c.pct_of_revenue!=null?pct(c.pct_of_revenue):'—'}</b></span></div><div class="ptrack"><i style="width:${Math.max(2,100*(c.pct_of_revenue||0)/maxpct).toFixed(1)}%;background:${barcol[i%barcol.length]}"></i></div></div>`).join(''):'<div class="muted">cost lines not separately filed</div>'}
+         ${s.sga.length>1?`<div style="margin-top:14px"><div class="muted" style="font-size:11.5px;margin-bottom:6px">SG&amp;A · 6-yr (as filed)</div>${barChart(fy(s.sga),val(s.sga),{color:'#ec4899'})}</div>`:''}
+       </div>
+       <div class="card" style="display:flex;flex-direction:column">
+         <div class="ch"><h3>Addressable spend Stripe would manage</h3></div>
+         <div class="bignum">${sp.addressable_spend_usd!=null?money1(sp.addressable_spend_usd):'—'}</div>
+         <div class="muted" style="font-size:11.5px;margin:2px 0 12px">${esc(sp.addressable_basis||'')}</div>
+         ${levers.map(l=>`<div style="display:flex;align-items:baseline;gap:8px;margin:7px 0;font-size:12.5px"><span style="width:7px;height:7px;border-radius:50%;background:var(--stripe);flex:none;align-self:center"></span><span style="flex:1"><b>${esc(l.lever)}</b><br><span class="muted" style="font-size:11px">${esc(l.note)}</span></span><span style="font-weight:700;color:var(--green);white-space:nowrap">${money1(l.savings_usd)}</span></div>`).join('')}
+         <div style="margin-top:auto;padding-top:12px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:baseline"><span style="font-weight:600">Identified annual savings</span><span style="font-size:20px;font-weight:800;color:var(--green)">${sp.total_savings_usd!=null?money1(sp.total_savings_usd):'—'}</span></div>
+         ${sp.savings_pct_of_revenue!=null?`<div class="muted" style="font-size:11.5px;text-align:right;margin-top:2px">${pct(sp.savings_pct_of_revenue)} of revenue</div>`:''}
+       </div>
+     </div>
+
+     <h2>How Stripe would improve this <span class="aipill"><span class="aidiamond">◆</span> AI</span> <span class="muted" style="text-transform:none;letter-spacing:0;font-weight:400">generated for ${esc(p.ticker)} on open</span></h2>
+     <div id="resImprove"><div class="brief"><span class="spin" style="padding:2px">Claude is drafting the improvement plan…</span></div></div>
+     <div class="aiask" style="margin-top:12px"><div class="aiask-h"><span class="aidiamond">◆</span> Ask Stripe AI about ${esc(p.ticker)}</div><div class="aiask-sub">Ask me anything about this company's spend, filings or how we'd optimize it.</div><div class="askbar"><span class="aidiamond" style="font-size:16px">◆</span><input id="coAsk" placeholder="e.g. Where is the fastest 90-day saving?" onkeydown="if(event.key==='Enter')askData('For '+${q1(p.ticker)}+' ('+${q1(p.name)}+'): '+this.value)"><button class="ai sm" onclick="askData('For '+${q1(p.ticker)}+' ('+${q1(p.name)}+'): '+(el('coAsk').value||'What is the single highest-impact spend change and why?'))">Ask</button></div></div>
+
+     <h2>Deploy agentic workflow <span class="aipill"><span class="aidiamond">◆</span> multi-step agent</span></h2>
+     <div class="card">
+       <div style="font-size:13px;margin-bottom:10px">Pick one spend issue and Claude will run an <b>autonomous tool-using workflow</b> — pulling the breakdown, consolidating SaaS, negotiating rates, drafting controls and sweeping idle cash — then report every action it took and the annual savings.</div>
+       <div style="display:flex;gap:9px;flex-wrap:wrap;align-items:center">
+         <select id="agentIssue" style="flex:1;min-width:240px" onchange="deployAgent(${q1(ticker)})">${(issues.length?issues:['reduce overall operating spend']).map(i=>`<option value="${esc(i)}">${esc(i)}</option>`).join('')}</select>
+         <button class="ai" id="agentBtn" onclick="deployAgent(${q1(ticker)})"><span class="aidiamond" style="color:#fff">◆</span> Deploy agent</button>
+       </div>
+       <div class="muted" style="font-size:11.5px;margin-top:7px">Pick an issue above (or hit Deploy) and the agent runs immediately — ~15-30s on Opus, faster on Haiku (switch the model top-right).</div>
+       <div id="agentOut" style="margin-top:12px"></div>
+     </div>
+
+     <h2>Accounting tie-outs <span class="aipill">recomputed from filing</span></h2><div class="card">${p.tieouts.map(t=>`<div class="tieoutrow"><span class="tk">${esc(t.check)}</span><span class="muted" style="font-size:12px">${money1(t.lhs_usd)} vs ${money1(t.rhs_usd)} · Δ ${money1(t.delta_usd)}</span>${t.passed?rb('low','✓ ties out'):rb('high','✗ mismatch')}</div>`).join('')||'<div class="muted">no comparable identities filed</div>'}</div>
+     <div id="resAnalysis" style="margin-top:16px"></div>`;
+  el('resAnalyze').onclick=()=>analyzeCompany(ticker);
+  improveCompany(ticker,g);
+}
+async function improveCompany(ticker,g){
+  try{const a=await jpost('/api/research/improve',{ticker,model:STATE.model});
+    if(!fresh(g)||!el('resImprove'))return;
+    if(a.detail){el('resImprove').innerHTML='<div class="card"><span class="muted">'+esc(a.detail)+' — set your key in <b>.env</b> and restart to auto-generate this plan.</span></div>';return;}
+    const imp=a.improvements||[];
+    el('resImprove').innerHTML=`<div class="brief"><div style="display:flex;align-items:center;gap:8px;margin-bottom:8px"><span class="aipill"><span class="aidiamond">◆</span> Claude · ${esc(a.model||'')}</span><b style="font-size:13.5px">${esc(a.headline||'')}</b><span style="flex:1"></span><span class="pillbadge pill-healthy">${money1(a.total_savings_usd||0)}/yr</span></div>
+      <div class="bt" style="margin-bottom:12px">${esc(a.summary||'')}</div>
+      <div class="improvegrid">${imp.map(x=>`<div class="impcard"><div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px"><b style="font-size:13px">${esc(x.area)}</b><span class="pillbadge eff-${esc(x.effort)}">${esc(x.effort)}</span></div>
+        <div class="muted" style="font-size:11.5px;margin:5px 0"><b>Problem:</b> ${esc(x.problem)}</div>
+        <div style="font-size:12px;margin:5px 0"><b>Action:</b> ${esc(x.action)}</div>
+        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-top:8px;padding-top:8px;border-top:1px solid var(--line)"><span style="font-size:18px;font-weight:800;color:var(--green)">${money1(x.savings_usd)}</span><span class="muted" style="font-size:11px">${x.savings_pct!=null?pct(x.savings_pct)+' · ':''}${esc(x.timeline)}</span></div></div>`).join('')}</div></div>`;
+  }catch(e){if(el('resImprove'))el('resImprove').innerHTML='<div class="card"><span class="red">'+esc(String(e))+'</span></div>';}
+}
+async function deployAgent(ticker){
+  if(window._agentBusy)return; window._agentBusy=true;
+  const issue=el('agentIssue')?el('agentIssue').value:'reduce overall operating spend';
+  const done=()=>{window._agentBusy=false;if(el('agentBtn'))el('agentBtn').disabled=false;if(el('agentIssue'))el('agentIssue').disabled=false;};
+  if(el('agentBtn'))el('agentBtn').disabled=true; if(el('agentIssue'))el('agentIssue').disabled=true;
+  el('agentOut').innerHTML=`<div class="brief"><span class="spin" style="padding:2px">Agent is working on “${esc(issue)}” — calling tools (this runs several steps, ~15-30s)…</span></div>`;
+  try{const r=await jpost('/api/research/agent',{ticker,issue,model:STATE.model});
+    done();
+    if(!el('agentOut'))return;
+    if(r.detail){el('agentOut').innerHTML='<div class="card"><span class="muted">'+esc(r.detail)+' — set your key in <b>.env</b> and restart.</span></div>';return;}
+    const steps=r.steps||[];
+    el('agentOut').innerHTML=`<div style="display:flex;align-items:center;gap:8px;margin-bottom:10px"><span class="aipill"><span class="aidiamond">◆</span> Agent · ${esc(r.model||'')}</span><span class="muted" style="font-size:12px">${steps.length} action${steps.length===1?'':'s'} taken · cost $${(r.cost_usd||0).toFixed(4)}</span></div>
+      <div class="agentsteps">${steps.map((st,i)=>`<div class="astep"><div class="astep-h"><span class="astep-n">${i+1}</span><b>${esc(prettyTool(st.tool))}</b></div><div class="astep-b">${agentResult(st.output)}</div></div>`).join('')}</div>
+      <div class="brief" style="margin-top:12px"><div class="aiask-h" style="margin-bottom:6px"><span class="aidiamond">◆</span> Workflow summary</div><div class="bt">${mdLite(r.final)}</div></div>`;
+  }catch(e){done();if(el('agentOut'))el('agentOut').innerHTML='<div class="card"><span class="red">'+esc(String(e))+'</span></div>';}
+}
+function mdLite(t){return esc(t||'').replace(/^\s*---+\s*$/gm,'<hr style="border:none;border-top:1px solid var(--line);margin:8px 0">').replace(/^#{1,4}\s*(.+)$/gm,'<b>$1</b>').replace(/\*\*(.+?)\*\*/g,'<b>$1</b>').replace(/\n{2,}/g,'<br><br>').replace(/\n/g,'<br>');}
+function prettyTool(t){return ({pull_spend_breakdown:'Pulled spend breakdown',find_duplicate_saas:'Consolidated duplicate SaaS',benchmark_vendor_rates:'Benchmarked vendor rates & rebates',draft_policy_controls:'Drafted real-time spend controls',deploy_treasury_sweep:'Deployed idle-cash treasury sweep',project_total_savings:'Projected total annual savings'})[t]||t;}
+// ---------- Cards: Stripe AI + agentic card audit ----------
+function cardsAiSection(){return `
+     <h2>Stripe AI · card intelligence <span class="aipill"><span class="aidiamond">◆</span> AI</span></h2>
+     <div class="aiask">
+       <div class="aiask-h"><span class="aidiamond">◆</span> Ask Stripe AI about your cards</div>
+       <div class="aiask-sub">Ask anything about card spend, limits, policy or specific transactions — I read the live card data before answering.</div>
+       <div class="askbar"><span class="aidiamond" style="font-size:16px">◆</span><input id="cardAsk" placeholder="e.g. Which cards are riskiest right now?" onkeydown="if(event.key==='Enter')askData(this.value||'Which cards should I review first, and why?')"><button class="ai sm" onclick="askData(el('cardAsk').value||'Which cards should I review first, and why?')">Ask</button></div>
+       <div class="askchips">
+         <span onclick="askData('Which cards have the most policy violations, and what are those employees buying?')">Most policy violations</span>
+         <span onclick="askData('Which SaaS subscriptions are duplicated across many cards and could be consolidated to one org plan?')">Duplicate SaaS across cards</span>
+         <span onclick="askData('Which card limits are set far too high relative to actual spend?')">Over-provisioned limits</span>
+         <span onclick="askData('Are there transactions on company cards that look like fraud or personal misuse?')">Fraud / misuse check</span>
+       </div>
+     </div>
+     <h2>Deploy agentic card audit <span class="aipill"><span class="aidiamond">◆</span> multi-step agent</span></h2>
+     <div class="card">
+       <div style="font-size:13px;margin-bottom:10px">Pick an objective and Claude runs an <b>autonomous tool-using workflow</b> over your live card data — pulling the portfolio, detecting out-of-policy spend, duplicate SaaS and over-provisioned limits, checking receipt compliance — then reports every action it took and the annual savings + risk reduction.</div>
+       <div style="display:flex;gap:9px;flex-wrap:wrap;align-items:center">
+         <select id="cardGoal" style="flex:1;min-width:260px" onchange="deployCardAgent()">
+           <option value="audit the card program and cut waste">Audit the card program and cut waste</option>
+           <option value="reduce credit risk and exposure across cards">Reduce credit risk &amp; exposure</option>
+           <option value="find and consolidate duplicate SaaS subscriptions">Consolidate duplicate SaaS</option>
+           <option value="enforce spend policy and fix receipt compliance">Enforce policy &amp; receipt compliance</option>
+         </select>
+         <button class="ai" id="cardAgentBtn" onclick="deployCardAgent()"><span class="aidiamond" style="color:#fff">◆</span> Deploy agent</button>
+       </div>
+       <div class="muted" style="font-size:11.5px;margin-top:7px">Pick an objective (or hit Deploy) and the agent runs immediately — it works through several tools over your live card data, so give it ~30-60s.</div>
+       <div id="cardAgentOut" style="margin-top:12px"></div>
+     </div>`;}
+function prettyCardTool(t){return ({pull_card_portfolio:'Pulled card portfolio',detect_out_of_policy:'Detected out-of-policy spend',find_duplicate_subscriptions:'Found duplicate SaaS subscriptions',right_size_limits:'Right-sized card limits',find_receipt_gaps:'Checked receipt compliance',project_impact:'Projected savings & risk reduction'})[t]||t;}
+async function deployCardAgent(){
+  if(window._cardAgentBusy)return; window._cardAgentBusy=true;
+  const goal=el('cardGoal')?el('cardGoal').value:'audit the card program and cut waste';
+  const done=()=>{window._cardAgentBusy=false;if(el('cardAgentBtn'))el('cardAgentBtn').disabled=false;if(el('cardGoal'))el('cardGoal').disabled=false;};
+  if(el('cardAgentBtn'))el('cardAgentBtn').disabled=true; if(el('cardGoal'))el('cardGoal').disabled=true;
+  el('cardAgentOut').innerHTML=`<div class="brief"><span class="spin" style="padding:2px">Agent is auditing your cards — “${esc(goal)}” (several steps, ~15-30s)…</span></div>`;
+  try{const r=await jpost('/api/cards/agent',{seed:7,goal,model:STATE.model});
+    done(); if(!el('cardAgentOut'))return;
+    if(r.detail){el('cardAgentOut').innerHTML='<div class="card"><span class="muted">'+esc(r.detail)+' — set your key in <b>.env</b> and restart.</span></div>';return;}
+    const steps=r.steps||[];
+    el('cardAgentOut').innerHTML=`<div style="display:flex;align-items:center;gap:8px;margin-bottom:10px"><span class="aipill"><span class="aidiamond">◆</span> Agent · ${esc(r.model||'')}</span><span class="muted" style="font-size:12px">${steps.length} action${steps.length===1?'':'s'} taken · cost $${(r.cost_usd||0).toFixed(4)}</span></div>
+      <div class="agentsteps">${steps.map((st,i)=>`<div class="astep"><div class="astep-h"><span class="astep-n">${i+1}</span><b>${esc(prettyCardTool(st.tool))}</b></div><div class="astep-b">${agentResult(st.output)}</div></div>`).join('')}</div>
+      <div class="brief" style="margin-top:12px"><div class="aiask-h" style="margin-bottom:6px"><span class="aidiamond">◆</span> Audit summary</div><div class="bt">${mdLite(r.final)}</div></div>`;
+  }catch(e){done();if(el('cardAgentOut'))el('cardAgentOut').innerHTML='<div class="card"><span class="red">'+esc(String(e))+'</span></div>';}
+}
+function agentResult(o){
+  if(o==null)return '';
+  const money=k=>/(usd|savings|yield|cash|spend)/i.test(k);
+  const rows=[];
+  for(const k in o){const v=o[k];
+    if(Array.isArray(v)){rows.push(`<div class="muted" style="font-size:11.5px;margin-top:4px">${esc(k.replace(/_/g,' '))}:</div>`+v.map(it=>typeof it==='object'?`<div style="font-size:11.5px;margin-left:8px">• ${Object.entries(it).map(([kk,vv])=>esc(kk.replace(/_/g,' '))+' '+(money(kk)&&typeof vv==='number'?money1(vv):esc(String(vv)))).join(' · ')}</div>`:`<div style="font-size:11.5px;margin-left:8px">• ${esc(String(it))}</div>`).join(''));}
+    else if(typeof v==='object'){/*skip nested*/}
+    else rows.push(`<div style="font-size:12px;display:flex;justify-content:space-between;gap:10px"><span class="muted">${esc(k.replace(/_/g,' '))}</span><span style="font-weight:600">${money(k)&&typeof v==='number'?money1(v):(typeof v==='number'&&v<1&&v>0?pct(v):esc(String(v)))}</span></div>`);}
+  return rows.join('');
+}
+async function analyzeCompany(ticker){
+  el('resAnalyze').disabled=true;
+  el('resAnalysis').innerHTML=`<div class="brief"><span class="spin" style="padding:2px">Claude is analyzing ${esc(ticker)}’s filed financials…</span></div>`;
+  try{const a=await jpost('/api/research/analyze',{ticker,model:STATE.model});
+    if(a.detail){el('resAnalysis').innerHTML='<div class="card"><span class="red">'+esc(a.detail)+'</span></div>';el('resAnalyze').disabled=false;return;}
+    el('resAnalysis').innerHTML=`<div class="brief"><div style="display:flex;align-items:center;gap:8px;margin-bottom:8px"><span class="aipill"><span class="aidiamond">◆</span> Claude · ${esc(a.model||'')}</span></div>
+      <div class="bt">${esc(a.summary)}</div>
+      <div class="row g2" style="margin-top:12px"><div><h3 style="color:#12a150">Strengths</h3>${(a.strengths||[]).map(x=>'<div style="font-size:13px;margin:3px 0">• '+esc(x)+'</div>').join('')}</div>
+        <div><h3 style="color:#e0322c">Risks</h3>${(a.risks||[]).map(x=>'<div style="font-size:13px;margin:3px 0">• '+esc(x)+'</div>').join('')}</div></div>
+      <h3 style="margin-top:12px">Underwriting view (as a Stripe customer)</h3><div style="font-size:13px">${esc(a.underwriting_view)}</div>
+      <h3 style="margin-top:10px">Spend-discipline benchmark</h3><div style="font-size:13px">${esc(a.spend_discipline_note)}</div></div>`;
+  }catch(e){el('resAnalysis').innerHTML='<div class="card"><span class="red">'+esc(String(e))+'</span></div>';el('resAnalyze').disabled=false;}
+}
+
+// ---------- CFO morning brief (live Claude) ----------
+async function genBrief(){el('briefBody').innerHTML='<span class="spin" style="padding:0">Claude is reading your live spend data…</span>';
+  try{const b=await jpost('/api/ai/brief',{seed:7,model:STATE.model});
+    if(b.detail){el('briefBody').innerHTML='<span class="red">'+esc(b.detail)+'</span>';return;}
+    el('briefBody').innerHTML=`<div class="bt">${esc(b.brief)}</div><div class="ba">${(b.actions||[]).map((a,i)=>`<div><b>${i+1}.</b> <span>${esc(a)}</span></div>`).join('')}</div>`;
+  }catch(e){el('briefBody').innerHTML='<span class="red">'+esc(String(e))+'</span>';}
+}
+
+// ---------- Budgets ----------
+async function pgBudgets(){
+  const d=await jget('/api/budgets?seed=7');
+  const over=d.categories.filter(c=>c.over).length;
+  view().innerHTML=kpis([['Monthly budget',money1(d.total_budget_usd)],['Actual (avg/mo)',money1(d.total_actual_usd)],['Utilization',pct(d.total_actual_usd/(d.total_budget_usd||1))],['Over budget',over+' categories',over?'':'hero']])+
+    `<h2>Category budgets ${askLink('policy_studio')}</h2><div class="card">`+
+    d.categories.map(c=>{const u=Math.min(c.utilization,1.5),cls=c.over?'over':c.utilization>0.85?'warn':'';
+      return `<div style="margin:12px 0;cursor:pointer" onclick="categoryDetail('${c.category}')"><div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:5px"><span style="font-weight:500">${esc(c.category.replace(/_/g,' '))} <span class="muted" style="font-weight:400">›</span></span><span class="muted">${money1(c.actual_usd)} / ${money1(c.monthly_limit_usd)} · <b style="color:${c.over?'var(--red)':'var(--ink)'}">${pct(c.utilization)}</b></span></div><div class="prog ${cls}"><i style="width:${Math.min(100,u*100).toFixed(0)}%"></i></div></div>`;}).join('')+
+    `</div><h2>Spend by department</h2><div class="card">${hbars(d.departments.map(x=>[x.department,x.monthly_avg_usd]),{n:12,color:'#2f6bff'})}</div>`;
+}
+
+// ---------- Vendors & subscriptions ----------
+async function pgVendors(){
+  const d=await jget('/api/vendors?seed=7');
+  view().innerHTML=kpis([['Subscriptions',d.subscription_count],['Annualized SaaS',money1(d.total_annualized_usd)],['Redundant licenses',d.redundant.length],['Consolidation savings',money1(d.redundant_savings_usd),d.redundant_savings_usd?'hero':'']])+
+    (d.redundant_savings_usd?`<div class="insight" style="margin-top:14px"><div class="ic ic-medium">${ic('layers')}</div><div class="bd"><div class="t">Redundant SaaS licenses · <span class="amt">${money1(d.redundant_savings_usd)}/yr</span></div><div class="d">${d.redundant.length} vendors have overlapping subscriptions consolidatable to one org plan.</div></div></div>`:'')+
+    `<h2>Subscriptions ${askLink('forensics')}</h2>`+grid('gsubs',[
+      {key:'merchant',label:'vendor',get:s=>s.merchant},
+      {key:'cadence',label:'cadence',get:s=>s.cadence},
+      {key:'unit',label:'unit cost',type:'num',align:'n',get:s=>s.unit_cost_usd,cell:s=>money(s.unit_cost_usd)},
+      {key:'monthly',label:'monthly',type:'num',align:'n',get:s=>s.monthly_cost_usd,cell:s=>money(s.monthly_cost_usd)},
+      {key:'annual',label:'annualized',type:'num',align:'n',get:s=>s.annualized_usd,cell:s=>money(s.annualized_usd)},
+      {key:'subs',label:'seats',type:'num',align:'n',get:s=>s.subscribers},
+      {key:'flag',label:'status',get:s=>s.redundant?'redundant':'ok',cell:s=>s.redundant?rb('medium','redundant'):rb('low','ok')},
+    ],d.subscriptions,{file:'subscriptions',sort:{key:'annual',dir:'desc'},rowClick:s=>`vendorDetail(${q1(s.merchant)})`})+
+    `<h2>Top vendors by spend <span class="muted" style="text-transform:none;letter-spacing:0;font-weight:400">click to drill in</span></h2><div class="card"><div class="hbars">`+
+    d.top_vendors.slice(0,8).map(v=>{const m=Math.max(...d.top_vendors.map(x=>x.spend_usd),1);return `<div class="hbar" style="cursor:pointer" onclick="vendorDetail(${q1(v.merchant)})"><div class="hl">${esc(v.merchant)}</div><div class="ht"><i style="width:${Math.max(2,100*v.spend_usd/m).toFixed(1)}%;background:#3b82f6"></i></div><div class="hv">${money1(v.spend_usd)}</div></div>`;}).join('')+`</div></div>`;
+}
+
+// ---------- Tasks / action inbox ----------
+async function pgTasks(){
+  const d=await jget('/api/insights?seed=7');
+  view().innerHTML=`<p class="lede">Your action inbox — everything that needs a decision, surfaced by the AI agents. ${d.count} open · ${money1(d.total_opportunity_usd)} at stake.</p>`+
+    (d.insights.length?`<div style="display:flex;flex-direction:column;gap:10px">${d.insights.map(i=>{const c=({critical:'critical',high:'high',medium:'medium',low:'low'})[i.severity]||'low';
+      return `<div class="insight"><div class="ic ic-${c}">${ic(i.icon||'alert')}</div><div class="bd"><div class="t">${esc(i.title)}${i.amount_usd?` <span class="amt">· ${money1(i.amount_usd)}</span>`:''} <span class="rb rb-${c==='low'?'low':c==='medium'?'medium':'high'}">${i.severity}</span></div><div class="d">${esc(i.detail)}</div></div><button class="sm" onclick="goInsight('${i.link}')">${esc(i.action)} →</button></div>`;}).join('')}</div>`
+     :`<div class="empty"><div class="eh">Inbox zero 🎉</div>No pending items — you're all caught up.</div>`);
+}
+
+// ---------- Expenses / transactions ----------
+function txTable(rows,id,file){
+  return grid(id||'gtx',[
+    {key:'date',label:'date',type:'text',get:t=>t.date},
+    {key:'merchant',label:'merchant',type:'text',get:t=>t.merchant},
+    {key:'employee',label:'employee',type:'text',get:t=>t.employee},
+    {key:'category',label:'category',type:'text',get:t=>t.category,cell:t=>t.category.replace(/_/g,' ')},
+    {key:'amount',label:'amount',type:'num',align:'n',get:t=>t.amount_usd,cell:t=>money(t.amount_usd)},
+    {key:'flags',label:'flags',type:'text',get:t=>((t.is_fraud?'fraud ':'')+(t.violations||[]).join(' ')).trim(),
+      cell:t=>(t.is_fraud?rb('high','fraud'):'')+(t.violations||[]).map(v=>`<span class="flagpill">${v.replace(/_/g,' ')}</span>`).join('')},
+    {key:'fraud',label:'fraud %',type:'num',align:'n',get:t=>Math.round(t.fraud_score*100),cell:t=>Math.round(t.fraud_score*100)+'%'},
+  ],rows,{rowClick:t=>`drillTxn('${t.txn_id}')`,file:file||'transactions'});
+}
+let TXF={q:'',category:'',department:'',flagged:false,fraud:false};
+async function pgTransactions(){
+  const f=await jget('/api/transactions?limit=1');
+  view().innerHTML=`
+    <div class="filters">
+      <input class="t" id="txq" placeholder="search merchant / id" style="width:200px">
+      <select id="txcat"><option value="">All categories</option>${f.facets.categories.map(c=>`<option value="${c}">${c.replace(/_/g,' ')}</option>`).join('')}</select>
+      <select id="txdep"><option value="">All departments</option>${f.facets.departments.map(d=>`<option value="${d}">${d}</option>`).join('')}</select>
+      <label><input type="checkbox" id="txflag"> flagged only</label>
+      <label><input type="checkbox" id="txfraud"> fraud only</label>
+      ${askLink('forensics')}
+      <span style="flex:1"></span>
+      <button class="sm" id="txExportAll" onclick="exportAllTx()" title="Stream every matching transaction (server-side, no row cap) as CSV">⤓ Export all</button>
+    </div>
+    <div id="txkpi"></div><div id="txtable" style="margin-top:12px"></div>`;
+  const reload=()=>loadTx();
+  el('txq').oninput=()=>{TXF.q=el('txq').value;clearTimeout(window._t);window._t=setTimeout(reload,300);};
+  el('txcat').onchange=()=>{TXF.category=el('txcat').value;reload();};
+  el('txdep').onchange=()=>{TXF.department=el('txdep').value;reload();};
+  el('txflag').onchange=()=>{TXF.flagged=el('txflag').checked;reload();};
+  el('txfraud').onchange=()=>{TXF.fraud=el('txfraud').checked;reload();};
+  loadTx();
+}
+function txParams(){const p=new URLSearchParams();
+  if(TXF.q)p.set('q',TXF.q); if(TXF.category)p.set('category',TXF.category); if(TXF.department)p.set('department',TXF.department);
+  if(TXF.flagged)p.set('flagged','true'); if(TXF.fraud)p.set('fraud','true'); return p;}
+function exportAllTx(){dlUrl('/api/transactions.csv?'+txParams().toString());}
+async function loadTx(){
+  const p=txParams(); p.set('limit','250');
+  const d=await jget('/api/transactions?'+p);
+  const shown=Math.min(d.count,250);
+  el('txkpi').innerHTML=kpis([['Matching',d.count.toLocaleString()],['Total',money(d.total_usd)],['Showing',shown.toLocaleString()+(d.count>shown?' of '+d.count.toLocaleString():'')]]);
+  el('txExportAll').textContent='⤓ Export all '+d.count.toLocaleString();
+  el('txtable').innerHTML=txTable(d.transactions);
+}
+async function drillTxn(id){
+  showModal('<div class="spin">loading…</div>');
+  const a=await jget('/fraud/assess/'+id+'?seed=7');
+  showModal(`<h2 style="margin-top:0">${id}</h2>
+    ${kpis([['Amount',money(a.amount_usd)],['Fraud risk',Math.round(a.risk_score*100)+'%',a.risk_band],['Action',a.recommended_action.replace(/_/g,' ')]])}
+    <h3 style="margin:14px 0 6px">Merchant</h3><div>${a.merchant} · ring ${a.ring_id||'—'}</div>
+    <h3 style="margin:14px 0 6px">Why it scored</h3>
+    ${(a.drivers||[]).length?'<ul style="margin:0;padding-left:18px">'+a.drivers.map(d=>`<li>${esc(d.explanation)} <span class="muted">(+${(d.risk_contribution*100).toFixed(0)}%)</span></li>`).join('')+'</ul>':'<div class="muted">no dominant driver</div>'}
+    <div style="margin-top:16px"><button onclick="closeModal()">Close</button> <button class="ai" onclick="closeModal();openAI('forensics')"><span class="aidiamond" style="color:#fff">◆</span> Ask AI to investigate</button></div>`);
+}
+
+const CGRAD=['linear-gradient(135deg,#3b82f6,#1d4ed8)','linear-gradient(135deg,#ff9f7d,#c6a2fb)','linear-gradient(135deg,#22c55e,#0b6e39)','linear-gradient(135deg,#ec4899,#a21c67)','linear-gradient(135deg,#1e293b,#475569)'];
+async function pgCards(){
+  const d=await jget('/api/cards?seed=7');
+  const active=d.cards.filter(c=>c.status==='active');
+  const tot=d.cards.reduce((a,c)=>a+c.spend_usd,0);
+  const top=[...d.cards].sort((a,b)=>b.spend_usd-a.spend_usd);
+  const util=c=>c.monthly_limit_usd?Math.min(100,(c.spend_usd/3)/c.monthly_limit_usd*100):0;
+  view().innerHTML=kpis([['Cards',d.cards.length],['Active',active.length],['Total spend',money(tot)],['Avg / card',money(tot/(d.cards.length||1))]])+
+    `<h2>Card portfolio <span class="muted" style="text-transform:none;letter-spacing:0;font-weight:400">click any card for a full analysis</span></h2>
+     <div class="tiles">`+top.slice(0,5).map((c,i)=>`<div class="ctile" style="background:${CGRAD[i%CGRAD.length]}" onclick="cardDetail('${c.card_id}')">
+       <div class="crow"><div><div class="cnm">${esc(c.employee)}</div><div class="cdept">${esc(c.department)} · ${c.type}</div></div><span class="ctag">${c.status}</span></div>
+       <div><div class="cnum">•••• ${c.last4}</div><div style="display:flex;justify-content:space-between;align-items:flex-end;margin-top:4px"><div><div class="clab">spend</div><div class="cspend">${money1(c.spend_usd)}</div></div><div style="text-align:right"><div class="clab">per-txn limit</div><div style="font-size:13px">${money1(c.per_txn_limit_usd)}</div></div></div><div class="cutil"><i style="width:${util(c).toFixed(0)}%"></i></div></div></div>`).join('')+`</div>
+     `+cardsAiSection()+`
+     <h2>All cards</h2>`+grid('gcards',[
+      {key:'card_id',label:'card',get:c=>c.card_id},
+      {key:'employee',label:'employee',get:c=>c.employee},
+      {key:'department',label:'dept',get:c=>c.department},
+      {key:'type',label:'type',get:c=>c.type},
+      {key:'last4',label:'last4',get:c=>c.last4,cell:c=>'••'+c.last4},
+      {key:'status',label:'status',get:c=>c.status},
+      {key:'per_txn_limit_usd',label:'per-txn limit',type:'num',align:'n',get:c=>c.per_txn_limit_usd,cell:c=>money(c.per_txn_limit_usd)},
+      {key:'spend_usd',label:'spend',type:'num',align:'n',get:c=>c.spend_usd,cell:c=>money(c.spend_usd)},
+      {key:'txns',label:'txns',type:'num',align:'n',get:c=>c.txns},
+    ],d.cards,{file:'cards',sort:{key:'spend_usd',dir:'desc'},serverCsv:'/api/cards.csv?seed=7',rowClick:c=>`cardDetail('${c.card_id}')`});
+}
+async function pgPeople(){
+  const d=await jget('/api/people?seed=7');
+  view().innerHTML=grid('gpeople',[
+    {key:'name',label:'name',get:p=>p.name},
+    {key:'department',label:'department',get:p=>p.department},
+    {key:'role',label:'role',get:p=>p.role},
+    {key:'email',label:'email',get:p=>p.email,cell:p=>`<span class="muted">${esc(p.email)}</span>`},
+    {key:'spend_usd',label:'spend',type:'num',align:'n',get:p=>p.spend_usd,cell:p=>money(p.spend_usd)},
+    {key:'flagged',label:'flagged',type:'num',align:'n',get:p=>p.flagged},
+  ],d.people,{file:'people',sort:{key:'spend_usd',dir:'desc'},serverCsv:'/api/people.csv?seed=7'});
+}
+async function pgFraud(){
+  const f=await jget('/fraud/alerts?seed=7&top=15'); const r=await jget('/fraud/rings?seed=7'); const m=f.metrics;
+  view().innerHTML=kpis([['Model ROC-AUC',m.roc_auc.toFixed(3)],['Precision / Recall',m.precision.toFixed(2)+' / '+m.recall.toFixed(2)],['Rings',r.rings.length],['Top alert',Math.round(f.alerts[0].risk_score*100)+'%',f.alerts[0].merchant]])+
+    `<h2>Top alerts ${askLink('forensics')}</h2>`+grid('galerts',[
+      {key:'txn_id',label:'txn',get:a=>a.txn_id},
+      {key:'merchant',label:'merchant',get:a=>a.merchant},
+      {key:'amount',label:'amount',type:'num',align:'n',get:a=>a.amount_usd,cell:a=>money(a.amount_usd)},
+      {key:'risk',label:'risk',type:'num',align:'n',get:a=>Math.round(a.risk_score*100),cell:a=>Math.round(a.risk_score*100)+'%'},
+      {key:'band',label:'band',get:a=>a.risk_band,cell:a=>rb(a.risk_band,a.risk_band.toUpperCase())},
+      {key:'action',label:'action',get:a=>a.recommended_action.replace(/_/g,' ')},
+      {key:'ring',label:'ring',get:a=>a.ring_id||'—'},
+      {key:'act',label:'',nosort:true,noexport:true,get:()=>'',cell:a=>`<button class="sm" onclick="investigate('${a.txn_id}')">Investigate</button>`},
+    ],f.alerts,{file:'fraud-alerts',sort:{key:'risk',dir:'desc'}})+
+    `<h2>Detected rings</h2>`+grid('grings',[
+      {key:'ring_id',label:'ring',get:x=>x.ring_id},
+      {key:'cards',label:'cards',type:'num',align:'n',get:x=>x.cards.length},
+      {key:'n_txns',label:'txns',type:'num',align:'n',get:x=>x.n_txns},
+      {key:'exposure',label:'exposure',type:'num',align:'n',get:x=>x.total_exposure_usd,cell:x=>money(x.total_exposure_usd)},
+      {key:'band',label:'band',get:x=>x.risk_band,cell:x=>rb(x.risk_band,x.risk_band.toUpperCase())},
+    ],r.rings,{file:'fraud-rings',sort:{key:'exposure',dir:'desc'}});
+}
+async function investigate(id){
+  showModal('<div class="spin">running autonomous investigation…</div>');
+  const d=await jget('/agent/investigate/'+id+'?seed=7');
+  showModal(`<h2 style="margin-top:0">Investigation · ${id}</h2><p>${esc(d.narrative)}</p>
+    <h3>Recommended actions</h3><ul>${d.recommended_actions.map(a=>'<li>'+esc(a)+'</li>').join('')}</ul>
+    <div class="muted" style="font-size:12px">tools: ${d.steps.join(' → ')}</div>
+    <div style="margin-top:14px"><button onclick="closeModal()">Close</button></div>`);
+}
+async function pgBillpay(){
+  const d=await jget('/api/invoices?seed=7');
+  const open=d.invoices.filter(i=>i.status==='open'); const flagged=d.invoices.filter(i=>i.anomaly!=='clean');
+  const badge=a=>a==='clean'?'':a==='duplicate'||a==='bank_changed'?rb('high',a.replace('_',' ')):rb('medium',a.replace('_',' '));
+  view().innerHTML=kpis([['Open invoices',open.length],['Open total',money(open.reduce((a,i)=>a+i.amount_usd,0))],['Flagged',flagged.length],['Vendors',Object.keys(d.vendor_bank).length]])+
+    `<h2>Invoices ${askLink('ap')}</h2>`+grid('gap',[
+      {key:'id',label:'invoice',get:i=>i.id},
+      {key:'vendor',label:'vendor',get:i=>i.vendor},
+      {key:'amount',label:'amount',type:'num',align:'n',get:i=>i.amount_usd,cell:i=>money(i.amount_usd)},
+      {key:'due',label:'due',get:i=>i.due},
+      {key:'po',label:'PO',get:i=>i.po_id||'—'},
+      {key:'bank',label:'bank',get:i=>i.bank_account},
+      {key:'status',label:'status',get:i=>i.status},
+      {key:'anomaly',label:'flag',get:i=>i.anomaly==='clean'?'':i.anomaly.replace('_',' '),cell:i=>badge(i.anomaly)},
+    ],d.invoices,{file:'invoices',serverCsv:'/api/invoices.csv?seed=7'})+
+    `<p class="lede" style="margin-top:12px">Use <b>Ask AI</b> to run the three-way match and pay/hold workflow — it will refuse to pay the duplicate and the changed-bank invoice.</p>`;
+}
+async function pgPolicy(){
+  const p=await jget('/api/policy?seed=7');
+  view().innerHTML=`<h2>Current spend policy ${askLink('policy_studio')}</h2>
+    ${kpis([['Per-txn limit',money(p.per_txn_limit_usd)],['Receipt required over',money(p.receipt_required_over_usd)],['Approval required over',money(p.approval_required_over_usd)]])}
+    <div class="card" style="margin-top:14px">
+      <div style="margin-bottom:6px"><b>Blocked categories:</b> ${p.blocked_categories.join(', ')||'none'}</div>
+      <div style="margin-bottom:6px"><b>Weekend meals:</b> ${p.weekend_meals_personal?'treated as personal spend':'allowed'}</div>
+      <h3 style="margin:12px 0 6px">Category budgets</h3>
+      <table><tr><th>category</th><th class="n">monthly limit</th></tr>${p.category_budgets.map(b=>`<tr><td>${b.category.replace(/_/g,' ')}</td><td class="n">${money(b.monthly_limit_usd)}</td></tr>`).join('')}</table>
+    </div>
+    <p class="lede" style="margin-top:12px">Open <b>Policy Studio</b> (Ask AI) to write a new policy in plain English, confirm the rules, and replay it over history to see the dollar impact.</p>`;
+}
+async function pgClose(){
+  const o=await jget('/overview?seed=7');
+  view().innerHTML=kpis([['Card spend',money(o.tenant.total_card_spend_usd)],['Cash',money(o.treasury.balance_usd)],['Policy exceptions',o.tenant.policy_violations],['Fraud exceptions',o.tenant.fraud_transactions]])+
+    `<div class="card" style="margin-top:16px"><h3 style="margin-top:0">Month-end close</h3>
+    <p>Run the AI close: reconcile card + cash to the GL, propose accruals, and surface exceptions for sign-off.</p>
+    <button class="ai" onclick="openAI('close')"><span class="aidiamond" style="color:#fff">◆</span> Run close with AI</button></div>`;
+}
+async function pgReceipts(){ view().innerHTML='<iframe class="rcpt" src="/receipt"></iframe>'; }
+async function pgTreasury(){
+  const t=await jget('/treasury/forecast?seed=7'); const y=t.yield_opportunity;
+  const months=t.history.map(h=>h.date).concat(t.forecast.map(f=>f.date));
+  const data=t.history.map(h=>h.balance_usd).concat(t.forecast.map(f=>f.p50_usd));
+  const band={lo:t.history.map(_=>null).concat(t.forecast.map(f=>f.p10_usd)),hi:t.history.map(_=>null).concat(t.forecast.map(f=>f.p90_usd)),name:'p10–p90'};
+  view().innerHTML=kpis([['Balance',money1(t.current_balance_usd)],['Net / mo',money(t.monthly_net_usd)],['Runway',(t.runway_months??'∞')+' mo',t.status],['Idle-cash yield',money(y.incremental_annual_yield_usd)+'/yr']])+
+    `<div class="card" style="margin-top:14px"><div class="ch"><h3>Cash forecast</h3><span class="sp"></span>${askLink('treasury')}</div>${lineChart({labels:months,series:[{name:'balance',color:'#1b1e25',data}],band,forecastFrom:t.history.length,height:230})}</div>
+    <div class="card" style="margin-top:14px"><div class="ch"><h3>Yield optimization</h3></div>${esc(y.recommendation)}</div>`;
+}
+async function pgInvestor(){
+  const o=await jget('/overview?seed=7'); const c=await jget('/credit/underwrite?seed=7');
+  view().innerHTML=`<p class="lede">Read-only diligence · every figure is tie-out-verified by the agent. No employee PII.</p>
+    ${kpis([['Cash',money1(o.treasury.balance_usd)],['Monthly burn',money(o.treasury.monthly_burn_usd||0)],['Runway',(o.treasury.runway_months??'∞')+' mo',o.treasury.status],['Underwriting',c.risk_band.toUpperCase(),'PD '+pct(c.pd)]])}
+    <div class="card" style="margin-top:16px"><h3 style="margin-top:0">Diligence ${askLink('investor_room')}</h3>
+    <p>Ask the read-only analyst: burn, runway, spend efficiency, top risks, is this underwritable. It cannot see employee-level detail.</p>
+    <button class="ai" onclick="openAI('investor_room')"><span class="aidiamond" style="color:#fff">◆</span> Open Investor Room</button></div>`;
+}
+async function pgMySpend(){
+  const eid=STATE.employee;
+  const d=await jget('/api/transactions?employee_id='+eid+'&limit=60');
+  view().innerHTML=kpis([['My spend',money(d.total_usd)],['Transactions',d.count],['Flagged',d.transactions.filter(t=>t.violations.length).length]])+
+    `<h2>My transactions ${askLink('my_spend')}</h2>${txTable(d.transactions,'gmytx','my-spend')}
+     <p class="lede" style="margin-top:12px">Ask the assistant "why was this flagged?" or "what's my limit?" — it's scoped to you only.</p>`;
+}
+async function pgOverview(){ return pgHome(); }
+
+// ---------- Runway Lab ----------
+let RW={scenario:null,horizon:18};
+async function pgRunway(){
+  view().innerHTML=`<p class="lede">Causal what-if — Rung 2. Pick an intervention; the model severs it from its parents and propagates through the structural equations. Not a re-plotted trend. ${askLink('runway')}</p>
+    <div class="ctrls" id="rwctrls">
+      <span class="iv" data-s="hire">Hire +20/mo</span>
+      <span class="iv" data-s="freeze">Freeze hiring</span>
+      <span class="iv" data-s="churn">Churn → 0</span>
+      <span class="iv" data-s="price">Price +10%</span>
+      <span class="iv" data-s="mkt">Marketing +50%</span>
+      <span class="iv" data-s="rec">Recruiting +50%</span>
+    </div>
+    <div id="rwout"><div class="spin">loading baseline…</div></div>`;
+  el('rwctrls').querySelectorAll('.iv').forEach(b=>b.onclick=()=>{RW.scenario=b.dataset.s;
+    el('rwctrls').querySelectorAll('.iv').forEach(x=>x.classList.toggle('on',x===b)); runRW();});
+  const base=await jget('/api/runway/baseline?seed=7&horizon=18');
+  el('rwout').innerHTML=kpis([['Runway (Rung 1)',base.runway_months+' mo'],['Cash now',money1(base.cash_now_usd)],['Burn / mo',money(base.monthly_burn_usd)],['Revenue / mo',money(base.monthly_revenue_usd)]])+
+    `<div class="card" style="margin-top:12px">${lineChart({labels:base.months,series:[{name:'baseline (Rung 1)',color:'#1b1e25',data:base.cash}],height:220})}</div>
+     <p class="lede" style="margin-top:10px">Pick an intervention above to run the causal what-if.</p>`;
+}
+async function runRW(){
+  const map={hire:{hires_per_month:20},freeze:{freeze_hiring:true},churn:{churn_monthly:0},price:{price_change_pct:0.10},mkt:{marketing_change_pct:0.5},rec:{recruiting_change_pct:0.5}};
+  el('rwout').innerHTML='<div class="spin">running do() intervention + Monte Carlo…</div>';
+  const d=await jpost('/api/runway/intervene',{...map[RW.scenario],horizon:18,seed:7});
+  const cf=d.confounded;
+  el('rwout').innerHTML=kpis([['Baseline runway',d.baseline_runway_months+' mo'],['After do('+d.scenario+')',(d.intervened_runway_months==null?'∞':d.intervened_runway_months+' mo')],['Δ runway',(d.delta_months>0?'+':'')+d.delta_months+' mo']])+
+    `<div class="card" style="margin-top:12px">${lineChart({labels:d.months,series:[{name:'baseline (Rung 1)',color:'#1b1e25',data:d.baseline_cash},{name:'do('+d.scenario+') (Rung 2)',color:'#3b82f6',dashed:true,data:d.intervened_cash}],band:{lo:d.p10_cash,hi:d.p90_cash,name:'p10–p90'},height:230})}</div>
+    <h2>The confounder proof — recruiting → revenue</h2>
+    <div class="proof"><div class="p"><div class="pl">naive (correlational)</div><div class="pv">${money(cf.naive_correlational_revenue_effect_usd)}/mo</div></div>
+      <div class="p"><div class="pl">interventional do(X)</div><div class="pv">${money(cf.interventional_revenue_effect_usd)}/mo</div></div></div>
+    <p class="lede">${esc(cf.explanation)}</p>`;
+}
+
+// ---------- Scheduled Exports ----------
+let EXP={datasets:[],cadences:[]};
+const CAD_LABEL={hourly:'Hourly',daily:'Daily · 8:00',weekly:'Weekly · Mon 8:00',monthly:'Monthly · 1st'};
+function fmtTime(iso){if(!iso)return '—';try{return new Date(iso).toLocaleString([],{month:'short',day:'numeric',hour:'2-digit',minute:'2-digit'});}catch(e){return iso;}}
+async function pgExports(){
+  const meta=await jget('/api/exports/datasets'); EXP.datasets=meta.datasets; EXP.cadences=meta.cadences; EXP.delivery=meta.delivery||{};
+  const dv=EXP.delivery, smtp=dv.channel==='smtp';
+  view().innerHTML=`
+    <p class="lede">Recurring email delivery — define <b>dataset + filters + cadence + recipient</b>; a background runner fires due schedules, builds a real MIME email with the CSV attached, and ${smtp?'sends it over SMTP':'drops it to the outbox as an openable <code>.eml</code>'}.</p>
+    <div class="card" style="display:flex;align-items:center;gap:10px;margin-bottom:14px">
+      <span class="rb rb-${smtp?'low':'medium'}">${smtp?'SMTP':'OUTBOX'}</span>
+      <div><b>Delivery channel:</b> ${smtp?('sending via '+esc(dv.detail)):'writing <code>.eml</code> files'} <span class="muted">· from ${esc(dv.sender||'comptroller@stripe.com')}</span><br>
+      <span class="muted" style="font-size:12.5px">${smtp?'Live SMTP send is active.':'Set <code>SMTP_HOST</code> / <code>SMTP_PORT</code> / <code>SMTP_USERNAME</code> / <code>SMTP_PASSWORD</code> to send real email — the message path is identical.'}</span></div>
+    </div>
+    <div class="card">
+      <h3 style="margin-top:0">New scheduled export</h3>
+      <div class="filters">
+        <input class="t" id="exName" placeholder="e.g. Weekly flagged spend" style="width:210px">
+        <select id="exDataset">${EXP.datasets.map(d=>`<option value="${d}">${d}</option>`).join('')}</select>
+        <select id="exCadence">${EXP.cadences.map(c=>`<option value="${c}">${CAD_LABEL[c]||c}</option>`).join('')}</select>
+        <input class="t" id="exEmail" placeholder="recipient@stripe.com" value="finance@stripe.com" style="width:190px">
+        <label id="exFlagWrap"><input type="checkbox" id="exFlag"> flagged only</label>
+        <label id="exFraudWrap"><input type="checkbox" id="exFraud"> fraud only</label>
+        <button class="primary" id="exCreate">＋ Create schedule</button>
+      </div>
+      <div class="muted" id="exMsg" style="font-size:12.5px;margin-top:6px"></div>
+    </div>
+    <h2>Schedules</h2><div id="exList"><div class="spin">loading…</div></div>`;
+  const tf=()=>{const tx=el('exDataset').value==='transactions';el('exFlagWrap').style.display=tx?'flex':'none';el('exFraudWrap').style.display=tx?'flex':'none';};
+  el('exDataset').onchange=tf; tf();
+  el('exCreate').onclick=createSchedule;
+  loadSchedules();
+}
+async function createSchedule(){
+  const ds=el('exDataset').value, filters={};
+  if(ds==='transactions'){if(el('exFlag').checked)filters.flagged=true; if(el('exFraud').checked)filters.fraud=true;}
+  try{
+    const s=await jpost('/api/exports/schedules',{name:el('exName').value,dataset:ds,cadence:el('exCadence').value,recipient:el('exEmail').value||'finance@stripe.com',filters});
+    el('exMsg').innerHTML=`✓ Created <b>${esc(s.name)}</b> — next run ${fmtTime(s.next_run_at)}`;
+    el('exName').value=''; loadSchedules();
+  }catch(e){el('exMsg').innerHTML='<span class="red">'+esc(String(e))+'</span>';}
+}
+async function loadSchedules(){
+  const d=await jget('/api/exports/schedules');
+  if(!d.schedules.length){el('exList').innerHTML='<div class="card muted">No schedules yet — create one above. Try “Weekly flagged spend → transactions, weekly, flagged only”.</div>';return;}
+  el('exList').innerHTML='<div class="tablewrap"><table><tr><th>name</th><th>dataset</th><th>cadence</th><th>recipient</th><th>next run</th><th>last delivery</th><th>status</th><th>actions</th></tr>'+
+    d.schedules.map(s=>{const last=s.runs&&s.runs[0];const dlv=last&&last.delivery;
+      const lastCell=last?(last.ok?`<a href="#" onclick="viewEmail('${s.id}','${last.id}');return false">✉ view email</a>
+        <span class="muted">· ${last.rows.toLocaleString()} rows · ${fmtTime(last.at)}</span>${dlv&&!dlv.ok?' <span class="red">(send failed)</span>':''}`
+        :'<span class="red">failed</span>'):'<span class="muted">never</span>';
+      return `<tr>
+        <td><b>${esc(s.name)}</b></td><td>${s.dataset}</td><td>${CAD_LABEL[s.cadence]||s.cadence}</td>
+        <td class="muted">${esc(s.recipient)}</td><td>${fmtTime(s.next_run_at)}</td><td>${lastCell}</td>
+        <td>${s.enabled?rb('low','ON'):rb('medium','PAUSED')}</td>
+        <td style="white-space:nowrap">
+          <button class="sm" onclick="runNow('${s.id}')">Run now</button>
+          <button class="sm" onclick="toggleSched('${s.id}',${s.enabled})">${s.enabled?'Pause':'Resume'}</button>
+          <button class="sm" onclick="delSched('${s.id}')">Delete</button></td></tr>`;}).join('')+'</table></div>';
+}
+async function runNow(id){el('exMsg').textContent='Running…';
+  try{const r=await jpost('/api/exports/schedules/'+id+'/run',{});
+    const ch=r.delivery&&r.delivery.channel==='smtp'?'sent via SMTP':'written to outbox (.eml)';
+    el('exMsg').innerHTML=r.ok?`✓ <b>${r.rows.toLocaleString()} rows</b> emailed to ${esc(r.recipient)} — ${ch} · <a href="#" onclick="viewEmail('${id}','${r.id}');return false">view email</a>`:'<span class="red">Run failed: '+esc(r.error||'')+'</span>';
+    loadSchedules();
+  }catch(e){el('exMsg').innerHTML='<span class="red">'+esc(String(e))+'</span>';}
+}
+async function toggleSched(id,en){await jfetch('PATCH','/api/exports/schedules/'+id,{enabled:!en});loadSchedules();}
+async function delSched(id){await jfetch('DELETE','/api/exports/schedules/'+id);loadSchedules();}
+function dlRun(sid,rid,kind){dlUrl('/api/exports/schedules/'+sid+'/runs/'+rid+'/download'+(kind?'?kind='+kind:''));}
+async function viewEmail(sid,rid){
+  showModal('<div class="spin">loading email…</div>');
+  try{const m=await jget('/api/exports/schedules/'+sid+'/runs/'+rid+'/email');
+    const att=m.attachment;
+    showModal(`<h2 style="margin-top:0">✉ Email preview</h2>
+      <div class="emailhdr">
+        <div><span class="el">From</span> ${esc(m.from||'')}</div>
+        <div><span class="el">To</span> ${esc(m.to||'')}</div>
+        <div><span class="el">Date</span> ${esc(m.date||'')}</div>
+        <div><span class="el">Subject</span> <b>${esc(m.subject||'')}</b></div>
+      </div>
+      <pre class="emailbody">${esc(m.body||'')}</pre>
+      ${att?`<div class="attchip" onclick="dlRun('${sid}','${rid}','csv')" title="Download CSV">📎 ${esc(att.filename)} <span class="muted">· ${(att.bytes/1024).toFixed(1)} KB</span></div>`:''}
+      <div style="margin-top:14px">
+        <button class="primary" onclick="dlRun('${sid}','${rid}','eml')">Download .eml</button>
+        <button onclick="dlRun('${sid}','${rid}','csv')">Download CSV</button>
+        <button onclick="closeModal()">Close</button></div>`);
+  }catch(e){showModal('<div class="red">'+esc(String(e))+'</div><div style="margin-top:12px"><button onclick="closeModal()">Close</button></div>');}
+}
+
+// ---------- AI findings renderers ----------
+const FIND={
+  fraud_scan:o=>kpis([['High-risk',o.high_risk_count||0],['Rings',o.rings||0]])+ftable(['txn','merchant','amount','risk','action'],(o.alerts||[]).slice(0,8).map(a=>[a.txn_id,a.merchant,money(a.amount_usd),rb(a.band,Math.round((a.risk||0)*100)+'%'),(a.action||'').replace(/_/g,' ')])),
+  replay_policy:o=>kpis([['Dollar impact',money(o.total_dollar_impact_usd)],['Txns affected',o.transactions_affected||0]])+bars(Object.entries(o.by_rule||{}).map(([k,v])=>[k.replace(/_/g,' '),v.amount_usd])),
+  company_aggregates:o=>kpis([['Total spend',money(o.total_spend_usd)],['Cash',money(o.cash_balance_usd)],['Burn / mo',money(o.monthly_burn_usd)],['Runway',o.runway_months==null?'∞':Math.round(o.runway_months)+' mo'],['Compliance',Math.round((o.compliance_rate||0)*100)+'%']])+bars(Object.entries(o.by_category||{})),
+  find_duplicate_spend:o=>kpis([['Duplicates',o.count||0],['Recoverable',money(o.recoverable_usd)]])+ftable(['txn','merchant','amount'],(o.items||[]).slice(0,8).map(d=>[d.txn_id,d.merchant,money(d.amount_usd)])),
+  subscription_audit:o=>kpis([['Subscriptions',o.count||0],['Redundant savings',money(o.redundant_savings_usd)]])+ftable(['vendor','cadence','monthly','subs'],(o.subscriptions||[]).slice(0,8).map(s=>[s.merchant,s.cadence,money(s.monthly_cost_usd),(s.subscribers||0)+(s.redundant?' ⚠':'')])),
+  vendor_price_changes:o=>ftable(['vendor','old avg','new avg','change'],(o.vendors||[]).slice(0,10).map(v=>[v.merchant,money(v.old_avg_usd),money(v.new_avg_usd),'+'+v.change_pct+'%'])),
+  underwrite:o=>kpis([['Loss prob.',Math.round((o.pd||0)*100)+'%'],['Band',o.risk_band||'-'],['Rec. limit',money(o.recommended_limit_usd)],['AUC',o.model_auc||'-']]),
+  query_transactions:o=>ftable(['txn','merchant','amount','category','flags'],(o.transactions||[]).slice(0,12).map(t=>[t.txn_id,t.merchant,money(t.amount_usd),(t.category||'').replace(/_/g,' '),(t.violations||[]).join(', ')||(t.fraud?rb('high','fraud'):'')])),
+  transaction_detail:o=>kpis([['Amount',money(o.amount_usd)],['Fraud',Math.round((o.fraud_score||0)*100)+'%'],['Band',o.fraud_band||'-']])+((o.fraud_drivers||[]).length?'<div style="font-size:13px;margin-top:4px">'+o.fraud_drivers.map(d=>'• '+esc(d)).join('<br>')+'</div>':''),
+  get_my_status:o=>kpis([['Card limit',money(o.per_txn_limit_usd)],['Spent',money(o.spend_this_period_usd)],['Flags',o.flagged_transactions||0],['Card',o.card_status||'-']]),
+  tieout_check:o=>`<div style="font-size:13px">${o.metric}: claimed ${o.claimed!=null?money(o.claimed):'—'} vs computed <b>${money(o.computed)}</b> — <span class="${o.verified?'verified':'notver'}">${o.verified?'✓ verified':(o.verified===false?'✗ mismatch':'unverified')}</span></div>`,
+  explain_policy:o=>kpis([['Per-txn limit',money(o.per_txn_limit_usd)],['Receipt over',money(o.receipt_required_over_usd)],['Approval over',money(o.approval_required_over_usd)]]),
+  cash_runway_baseline:o=>kpis([['Runway',o.runway_months==null?'∞':o.runway_months+' mo'],['Cash',money(o.cash_now_usd)],['Burn / mo',money(o.monthly_burn_usd)]])+cashChart(o.months||[],[{name:'cash (Rung 1)',color:'#1b1e25',data:o.cash}],null),
+  runway_intervention:o=>kpis([['Baseline',o.baseline_runway_months==null?'∞':o.baseline_runway_months+' mo'],['After do(X)',o.intervened_runway_months==null?'∞':o.intervened_runway_months+' mo'],['Δ',o.delta_months==null?'—':(o.delta_months>0?'+':'')+o.delta_months+' mo'],['Scenario',o.scenario||'-']])+cashChart(o.months||[],[{name:'baseline',color:'#1b1e25',data:o.baseline_cash},{name:'do('+(o.scenario||'X')+')',color:'#3b82f6',dashed:true,data:o.intervened_cash}],{p10:o.p10_cash,p90:o.p90_cash}),
+  confounded_driver_check:o=>`<div class="proof"><div class="p"><div class="pl">naive</div><div class="pv">${money(o.naive_correlational_revenue_effect_usd)}/mo</div></div><div class="p"><div class="pl">interventional</div><div class="pv">${money(o.interventional_revenue_effect_usd)}/mo</div></div></div><div style="font-size:13px;margin-top:6px">${esc(o.explanation||'')}</div>`,
+  list_invoices:o=>kpis([['Invoices',o.count||0],['Open total',money(o.open_total_usd)]])+ftable(['invoice','vendor','amount','status'],(o.invoices||[]).slice(0,12).map(i=>[i.id,i.vendor,money(i.amount_usd),i.status])),
+  three_way_match:o=>o.error?'<div>'+o.error+'</div>':kpis([['PO',money(o.po_amount_usd)],['Invoice',money(o.invoice_amount_usd)],['Variance',money(o.variance_usd)],['Match',o.matched?'✓ ok':(o.over_po?'over PO':'no PO')]]),
+  detect_duplicate_invoices:o=>kpis([['Duplicates',o.count||0]])+ftable(['invoice','duplicate of','vendor','amount'],(o.duplicates||[]).map(d=>[d.invoice,d.duplicate_of,d.vendor,money(d.amount_usd)])),
+  vendor_bank_change_check:o=>kpis([['Bank-change flags',o.count||0]])+ftable(['invoice','vendor','invoice bank','known bank'],(o.flagged||[]).map(f=>[f.invoice,f.vendor,rb('high',f.invoice_bank),f.known_bank])),
+  pay_invoice:o=>o.refused?`<div class="notver">✗ refused — ${esc(o.reason||'')}</div>`:`<div class="verified">✓ paid ${o.paid} · ${money(o.amount_usd)}</div>`,
+  hold_invoice:o=>`<div>held ${o.held}</div>`,
+  reconcile_close:o=>kpis([['Card spend',money(o.card_spend_usd)],['Cash',money(o.cash_balance_usd)],['Policy exc.',o.policy_exceptions||0],['Fraud',o.fraud_exceptions||0],['Accruals',money(o.proposed_accruals_usd)]])+(o.ties_out?'<div class="verified" style="margin-top:4px">✓ ties out</div>':''),
+  treasury_ladder:o=>kpis([['Checking',money(o.checking_buffer_usd)],['Treasury yield',money(o.treasury_mmf_usd)],['FDIC reserve',money(o.vault_fdic_usd)],['Yield / yr',money(o.incremental_annual_yield_usd)]]),
+  propose_card:o=>kpis([['Limit',money(o.limit_usd)],['Expiry',(o.expiry_days||0)+'d'],['Categories',(o.categories||[]).join(', ')||'—']]),
+  issue_card:o=>`<div class="verified">✓ issued ${o.card_id} · ${money(o.limit_usd)}</div>`,
+};
+
+// ---------- AI assistant drawer ----------
+function openAI(tab){ STATE.aiTab=tab; el('aiCtx').textContent='· '+(PAGES[STATE.page]?.title||''); el('ai').classList.add('open');
+  el('aiBody').innerHTML=`<div class="starter"><textarea id="aiq" placeholder="ask the ${tab.replace(/_/g,' ')} agent…"></textarea><button class="ai" id="aigo">Run</button></div><div id="aiconv"></div>`;
+  el('aigo').onclick=aiStart; el('aiq').addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();aiStart();}}); el('aiq').focus(); }
+function closeAI(){ el('ai').classList.remove('open'); }
+function aiAdd(h){ el('aiconv').insertAdjacentHTML('beforeend',h); el('aiBody').scrollTop=el('aiBody').scrollHeight; }
+function aiSpin(on){ if(on)aiAdd('<div class="spin" id="aispin">agent is thinking…</div>'); else el('aispin')?.remove(); }
+async function aiStart(){
+  const q=el('aiq').value.trim(); el('aigo').disabled=true; el('aiq').disabled=true; aiSpin(true);
+  const res=await jpost('/api/session/start',{persona:STATE.role,tab:STATE.aiTab,query:q||null,employee_id:STATE.role==='employee'?STATE.employee:null,model:STATE.model});
+  aiSpin(false); aiHandle(res);
+}
+function aiHandle(res){
+  if(res.cost_usd!=null){STATE.cost=res.cost_usd; el('cost').textContent='$'+res.cost_usd.toFixed(4);}
+  STATE.sessionId=res.session_id||STATE.sessionId;
+  if(res.status==='error'){aiAdd(`<div class="answer notver">${esc(res.message)}</div>`);return;}
+  if(res.status==='need_selection'){aiAsk(res);return;}
+  if(res.status==='complete'){aiAnswer(res);}
+}
+function aiAsk(res){
+  STATE.multi=[]; const id='ask'+Math.floor(performance.now());
+  aiAdd(`<div class="ask" id="${id}"><div class="q">${esc(res.prompt)}</div><div class="opts">${res.options.map((o,i)=>`<div class="opt" data-i="${i}">${esc(o)}</div>`).join('')}</div>${res.allow_multiple?'<button class="ai sm" style="margin-top:9px" id="cont">Continue →</button>':''}</div>`);
+  const box=el(id);
+  box.querySelectorAll('.opt').forEach(o=>o.onclick=()=>{const v=res.options[o.dataset.i];
+    if(res.allow_multiple){o.classList.toggle('sel');const k=STATE.multi.indexOf(v);k>=0?STATE.multi.splice(k,1):STATE.multi.push(v);}
+    else{box.querySelectorAll('.opt').forEach(x=>x.classList.remove('sel'));o.classList.add('sel');aiSend([v],box);}});
+  if(res.allow_multiple)el('cont').onclick=()=>aiSend(STATE.multi.length?STATE.multi:[res.options[0]],box);
+}
+async function aiSend(sel,box){
+  box.querySelectorAll('.opt,button').forEach(x=>x.style.pointerEvents='none');
+  aiAdd(`<div class="picked">chose: <b>${sel.join(', ')}</b></div>`); aiSpin(true);
+  const res=await jpost('/api/session/step',{session_id:STATE.sessionId,selection:sel.length===1?sel[0]:sel});
+  aiSpin(false); aiHandle(res);
+}
+function aiAnswer(res){
+  const work=(res.trace||[]).filter(s=>s.tool!=='request_user_selection');
+  const findings=work.map(s=>{const f=FIND[s.tool];const b=f?f(s.output||{}):'';return b?`<div class="fcard"><div class="ft"><span class="aidiamond">◆</span> ${s.tool.replace(/_/g,' ')}</div>${b}</div>`:'';}).join('');
+  const steps=work.map(s=>`<div class="step"><b>${s.tool}</b></div>`).join('')||'<div class="step">no tools</div>';
+  aiAdd(`<div class="answer">${findings}<div class="narr">${md(res.answer||'')}</div><div class="trace"><div class="hh" onclick="this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none'">▸ ${work.length} tool calls · $${(res.cost_usd||0).toFixed(4)}</div><div style="display:none">${steps}</div></div></div>`);
+}
+function md(t){const lines=String(t).split('\n');let out='',i=0;const inl=s=>esc(s).replace(/\*\*(.+?)\*\*/g,'<b>$1</b>').replace(/`(.+?)`/g,'<code>$1</code>');
+  while(i<lines.length){let l=lines[i];
+    if(/^\s*\|.*\|/.test(l)){const rows=[];while(i<lines.length&&/^\s*\|.*\|/.test(lines[i])){rows.push(lines[i]);i++;}
+      const cells=r=>r.trim().replace(/^\||\|$/g,'').split('|').map(c=>c.trim());let body='';
+      rows.forEach((r,ri)=>{if(/^[\s|:-]+$/.test(r))return;const tag=ri===0?'th':'td';body+='<tr>'+cells(r).map(c=>`<${tag}>${inl(c)}</${tag}>`).join('')+'</tr>';});
+      out+=`<table class="ftable">${body}</table>`;continue;}
+    if(/^###?\s/.test(l))out+='<h3>'+inl(l.replace(/^#+\s/,''))+'</h3>';
+    else if(/^#\s/.test(l))out+='<h2>'+inl(l.replace(/^#\s/,''))+'</h2>';
+    else if(/^\s*[-*]\s/.test(l))out+='<div>• '+inl(l.replace(/^\s*[-*]\s/,''))+'</div>';
+    else if(l.trim()==='')out+='<div style="height:5px"></div>';else out+='<div>'+inl(l)+'</div>';i++;}
+  return out;
+}
+// ---------- modal ----------
+function showModal(html){ el('modalHost').innerHTML=`<div class="modal" onclick="if(event.target===this)closeModal()"><div class="box">${html}</div></div>`; }
+function closeModal(){ el('modalHost').innerHTML=''; }
+boot();
+</script>
+</body>
+</html>

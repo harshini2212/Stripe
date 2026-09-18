@@ -1,0 +1,908 @@
+﻿txn_id,date,merchant,employee,department,category,amount_usd,channel,has_receipt,flags,is_fraud,fraud_score
+txn_004957,2025-10-02,Cooley LLP,Sam Silva,Executive,professional_services,6200.95,card_present,true,over_transaction_limit,false,0.166
+txn_002573,2025-10-02,Chevron,Yusuf Cohen,Finance,fuel,196.69,card_not_present,true,blocked_category,false,0.154
+txn_001780,2025-10-02,WeWork,Theo Park,Operations,rent_facilities,7029.44,card_not_present,true,over_transaction_limit,false,0.065
+txn_001731,2025-10-02,Snowflake,Nadia Okafor,Engineering,software_saas,677.62,recurring,false,missing_receipt,false,0.08
+txn_001225,2025-10-02,PwC,Omar Kim,Executive,professional_services,5339.08,card_not_present,true,over_transaction_limit,false,0.139
+txn_004521,2025-10-02,GitHub,Theo Park,Sales,software_saas,46.16,recurring,true,duplicate_spend,false,0.077
+txn_001105,2025-10-03,Blue Bottle,Lena Lopez,Sales,meals_entertainment,31.89,card_not_present,true,duplicate_spend,false,0.14
+txn_004208,2025-10-03,Hudson Pacific,Kenji Reed,Operations,rent_facilities,14303.48,card_not_present,true,over_transaction_limit,false,0.116
+txn_004867,2025-10-03,Best Buy Biz,Rosa Ahmed,Engineering,hardware_equipment,7413.89,card_present,false,missing_receipt over_transaction_limit,false,0.08
+txn_003209,2025-10-03,PwC,Priya Singh,Executive,professional_services,10177.56,card_present,true,over_transaction_limit,false,0.095
+txn_002613,2025-10-03,Deloitte,Yusuf Cohen,Finance,professional_services,8891.47,card_present,true,over_transaction_limit,false,0.086
+txn_002816,2025-10-03,Shippo,Liam Haas,Operations,shipping_logistics,280.11,card_not_present,false,missing_receipt,false,0.121
+txn_005068,2025-10-03,Gunderson Dettmer,Sam Silva,Executive,professional_services,5156.37,card_not_present,true,over_transaction_limit,false,0.1
+txn_005026,2025-10-03,PwC,Sam Silva,Executive,professional_services,9352.88,card_not_present,true,over_transaction_limit,false,0.134
+txn_001774,2025-10-03,WeWork,Theo Park,Operations,rent_facilities,8970.04,card_not_present,true,over_transaction_limit,false,0.033
+txn_000855,2025-10-03,Gunderson Dettmer,Sora Garcia,Executive,professional_services,507.52,card_present,false,missing_receipt,false,0.09
+txn_005240,2025-10-03,WeWork,Yusuf Cohen,Operations,rent_facilities,12599.07,card_present,true,over_transaction_limit,false,0.069
+txn_000150,2025-10-03,Delta,Liam Haas,Sales,travel,10537.66,card_present,true,over_transaction_limit,false,0.095
+txn_002679,2025-10-03,Industrious,Ava Chen,Operations,rent_facilities,19615.66,card_present,true,over_transaction_limit,false,0.182
+txn_004248,2025-10-03,Industrious,Kenji Reed,Operations,rent_facilities,10298.07,card_present,true,over_transaction_limit,false,0.133
+txn_001853,2025-10-03,Industrious,Theo Park,Operations,rent_facilities,5605.44,card_not_present,true,over_transaction_limit,false,0.087
+txn_004128,2025-10-03,WeWork,Zoe Diaz,Operations,rent_facilities,8417.4,card_not_present,true,over_transaction_limit,false,0.124
+txn_004702,2025-10-04,Chevron,Wei Novak,Executive,fuel,548.89,card_present,true,blocked_category,false,0.146
+txn_001264,2025-10-05,Tartine,Omar Kim,Executive,meals_entertainment,5154.23,card_present,true,over_transaction_limit weekend_personal_spend,false,0.153
+txn_002331,2025-10-05,Tartine,Sam Silva,Marketing,meals_entertainment,55.17,card_present,true,weekend_personal_spend,false,0.113
+txn_001662,2025-10-05,Tartine,Nadia Okafor,Engineering,meals_entertainment,215.74,card_not_present,false,missing_receipt weekend_personal_spend,false,0.214
+txn_004874,2025-10-05,Tartine,Rosa Ahmed,Engineering,meals_entertainment,87.48,card_present,true,weekend_personal_spend,false,0.105
+txn_003369,2025-10-05,Cooley LLP,Diego Khan,Executive,professional_services,7216.22,card_not_present,true,over_transaction_limit,false,0.155
+txn_002401,2025-10-05,Tartine,Sam Silva,Marketing,meals_entertainment,55.8,card_present,true,weekend_personal_spend,false,0.095
+txn_003877,2025-10-06,Delta,Omar Kim,Executive,travel,1073.34,card_present,false,missing_receipt,false,0.138
+txn_002116,2025-10-06,Industrious,Wei Novak,Operations,rent_facilities,5838.94,card_present,true,over_transaction_limit,false,0.119
+txn_001847,2025-10-06,WeWork,Theo Park,Operations,rent_facilities,20731.83,card_present,true,over_transaction_limit,false,0.092
+txn_004536,2025-10-06,Philz Coffee,Theo Park,Sales,meals_entertainment,5099.45,card_present,true,over_transaction_limit,false,0.078
+txn_002665,2025-10-06,Industrious,Ava Chen,Operations,rent_facilities,7573.33,card_present,true,over_transaction_limit,false,0.089
+txn_004505,2025-10-06,Linear,Theo Park,Sales,software_saas,5049.1,card_not_present,true,over_transaction_limit,false,0.092
+txn_004945,2025-10-06,Chevron,Sam Silva,Executive,fuel,951.56,card_present,true,blocked_category,false,0.143
+txn_003295,2025-10-06,Delta,Priya Singh,Executive,travel,269.69,card_not_present,true,duplicate_spend,false,0.029
+txn_002847,2025-10-06,PG&E,Liam Haas,Operations,utilities,96.54,card_present,false,missing_receipt,false,0.045
+txn_004817,2025-10-06,Best Buy Biz,Rosa Ahmed,Engineering,hardware_equipment,3181.01,card_not_present,false,missing_receipt,false,0.038
+txn_002096,2025-10-06,Hudson Pacific,Wei Novak,Operations,rent_facilities,5041.22,card_not_present,true,over_transaction_limit,false,0.118
+txn_002988,2025-10-07,TikTok Biz,Maya Nguyen,Marketing,advertising,7373.57,card_present,true,over_transaction_limit,false,0.069
+txn_000624,2025-10-07,Industrious,Priya Singh,Operations,rent_facilities,19448.72,card_not_present,true,over_transaction_limit,false,0.161
+txn_003281,2025-10-07,PwC,Priya Singh,Executive,professional_services,10785.16,card_not_present,true,over_transaction_limit,false,0.097
+txn_001618,2025-10-07,Sweetgreen,Nadia Okafor,Engineering,meals_entertainment,5155.74,card_present,true,over_transaction_limit,false,0.125
+txn_003155,2025-10-07,Chevron,Noah Patel,Marketing,fuel,83.04,recurring,true,blocked_category,false,0.125
+txn_004733,2025-10-08,Cooley LLP,Wei Novak,Executive,professional_services,8431.78,card_present,true,over_transaction_limit,false,0.081
+txn_002487,2025-10-08,Datadog,Tara Rossi,Finance,software_saas,5650.95,card_not_present,true,over_transaction_limit,false,0.061
+txn_002717,2025-10-08,Industrious,Ava Chen,Operations,rent_facilities,5568.1,card_not_present,true,over_transaction_limit,false,0.116
+txn_001819,2025-10-08,Shippo,Theo Park,Operations,shipping_logistics,123.62,card_present,true,duplicate_spend,false,0.02
+txn_000503,2025-10-08,PwC,Noah Patel,Finance,professional_services,11578.86,card_present,true,over_transaction_limit,false,0.096
+txn_002663,2025-10-08,WeWork,Ava Chen,Operations,rent_facilities,18881.17,card_present,true,over_transaction_limit,false,0.126
+txn_004980,2025-10-08,Philz Coffee,Sam Silva,Executive,meals_entertainment,112.64,card_not_present,false,missing_receipt,false,0.084
+txn_000374,2025-10-08,Google Ads,Maya Nguyen,Marketing,advertising,2597.34,card_not_present,false,missing_receipt,false,0.018
+txn_003219,2025-10-08,Gunderson Dettmer,Priya Singh,Executive,professional_services,1024.88,card_not_present,true,duplicate_spend,false,0.033
+txn_004570,2025-10-08,Meta Ads,Imani Ito,Marketing,advertising,7378.97,card_not_present,true,over_transaction_limit,false,0.033
+txn_001305,2025-10-08,Blue Bottle,Omar Kim,Executive,meals_entertainment,209.2,card_present,false,missing_receipt,false,0.099
+txn_002030,2025-10-08,Industrious,Wei Novak,Operations,rent_facilities,7922.42,card_present,true,over_transaction_limit,false,0.166
+txn_002359,2025-10-09,Philz Coffee,Sam Silva,Marketing,meals_entertainment,86.27,card_not_present,false,missing_receipt,false,0.112
+txn_004155,2025-10-09,Amazon Business,Kenji Reed,Operations,office_supplies,5043.9,card_not_present,false,missing_receipt over_transaction_limit,false,0.101
+txn_004966,2025-10-09,Gunderson Dettmer,Sam Silva,Executive,professional_services,8534.75,card_present,true,over_transaction_limit,false,0.07
+txn_003964,2025-10-09,Chevron,Omar Kim,Executive,fuel,1120.99,card_present,true,blocked_category,false,0.135
+txn_000704,2025-10-09,Gunderson Dettmer,Diego Khan,Executive,professional_services,623.78,card_not_present,false,missing_receipt,false,0.046
+txn_001787,2025-10-09,Industrious,Theo Park,Operations,rent_facilities,19402.1,card_present,true,over_transaction_limit,false,0.043
+txn_003297,2025-10-09,Uber,Priya Singh,Executive,travel,206.22,card_not_present,false,missing_receipt,false,0.048
+txn_005457,2025-10-09,LinkedIn Mktg,Ava Chen,Marketing,advertising,6901.05,card_present,true,over_transaction_limit,false,0.111
+txn_000641,2025-10-09,WeWork,Priya Singh,Operations,rent_facilities,14896.69,card_not_present,true,over_transaction_limit,false,0.083
+txn_000003,2025-10-09,Dell Technologies,Ava Chen,Engineering,hardware_equipment,191.11,card_present,false,missing_receipt,false,0.047
+txn_003093,2025-10-09,Meta Ads,Noah Patel,Marketing,advertising,5243.31,card_present,true,over_transaction_limit,false,0.026
+txn_005054,2025-10-09,Cooley LLP,Sam Silva,Executive,professional_services,3376.52,card_present,false,missing_receipt,false,0.073
+txn_004669,2025-10-09,TikTok Biz,Imani Ito,Marketing,advertising,6256.72,card_not_present,true,over_transaction_limit,false,0.061
+txn_002635,2025-10-09,Amazon Business,Yusuf Cohen,Finance,office_supplies,221.17,card_not_present,false,missing_receipt,false,0.062
+txn_003419,2025-10-09,Uber,Diego Khan,Executive,travel,5716.93,card_not_present,true,over_transaction_limit,false,0.067
+txn_000618,2025-10-09,WeWork,Priya Singh,Operations,rent_facilities,5553.57,card_present,false,missing_receipt,false,0.061
+txn_002817,2025-10-09,PG&E,Liam Haas,Operations,utilities,81.99,card_not_present,false,missing_receipt,false,0.057
+txn_002291,2025-10-09,Chevron,Sam Silva,Marketing,fuel,401.02,card_present,true,blocked_category,false,0.097
+txn_004194,2025-10-09,Industrious,Kenji Reed,Operations,rent_facilities,5171.41,card_present,true,over_transaction_limit,false,0.087
+txn_000319,2025-10-10,Sweetgreen,Maya Nguyen,Marketing,meals_entertainment,10019.46,card_not_present,true,over_transaction_limit,false,0.068
+txn_002045,2025-10-10,Industrious,Wei Novak,Operations,rent_facilities,8365.9,card_present,true,over_transaction_limit,false,0.092
+txn_001851,2025-10-10,PG&E,Theo Park,Operations,utilities,135.37,card_not_present,false,missing_receipt,false,0.043
+txn_002732,2025-10-10,Industrious,Ava Chen,Operations,rent_facilities,11528.21,card_present,true,over_transaction_limit,false,0.143
+txn_004498,2025-10-10,Sweetgreen,Theo Park,Sales,meals_entertainment,124.36,card_not_present,false,missing_receipt,false,0.032
+txn_002900,2025-10-10,Industrious,Liam Haas,Operations,rent_facilities,10840.61,card_present,true,over_transaction_limit,false,0.087
+txn_001923,2025-10-10,Meta Ads,Imani Ito,Marketing,advertising,8844.48,card_present,true,over_transaction_limit,false,0.046
+txn_002903,2025-10-10,Industrious,Liam Haas,Operations,rent_facilities,7224.01,card_not_present,true,over_transaction_limit,false,0.17
+txn_004443,2025-10-10,GitHub,Theo Park,Sales,software_saas,112.3,card_not_present,true,duplicate_spend,false,0.044
+txn_003704,2025-10-10,Blue Bottle,Ivan Mori,Marketing,meals_entertainment,20.59,card_present,true,duplicate_spend,false,0.084
+txn_005359,2025-10-10,LinkedIn Mktg,Ava Chen,Marketing,advertising,1303.27,card_present,false,missing_receipt,false,0.011
+txn_005165,2025-10-10,Chevron,Tara Rossi,Executive,fuel,52.64,card_not_present,true,blocked_category,false,0.098
+txn_004110,2025-10-10,Hudson Pacific,Zoe Diaz,Operations,rent_facilities,20163.66,card_present,true,over_transaction_limit,false,0.056
+txn_000675,2025-10-10,Hudson Pacific,Priya Singh,Operations,rent_facilities,18887.26,card_not_present,true,over_transaction_limit,false,0.112
+txn_002060,2025-10-10,Industrious,Wei Novak,Operations,rent_facilities,8854.15,card_not_present,true,over_transaction_limit,false,0.161
+txn_001008,2025-10-10,Dell Technologies,Ivan Mori,Engineering,hardware_equipment,743.49,card_not_present,false,missing_receipt,false,0.027
+txn_000745,2025-10-10,Gunderson Dettmer,Diego Khan,Executive,professional_services,11943.68,card_present,true,over_transaction_limit,false,0.116
+txn_002288,2025-10-10,Linear,Sam Silva,Marketing,software_saas,319.76,card_not_present,false,missing_receipt,false,0.022
+txn_002864,2025-10-10,Industrious,Liam Haas,Operations,rent_facilities,17883.25,card_present,true,over_transaction_limit,false,0.113
+txn_002677,2025-10-10,Industrious,Ava Chen,Operations,rent_facilities,11219.35,card_not_present,true,over_transaction_limit,false,0.096
+txn_004223,2025-10-10,Industrious,Kenji Reed,Operations,rent_facilities,10810.36,card_not_present,true,over_transaction_limit,false,0.094
+txn_002513,2025-10-11,Chevron,Tara Rossi,Finance,fuel,204.42,card_not_present,true,blocked_category,false,0.144
+txn_004133,2025-10-11,PG&E,Zoe Diaz,Operations,utilities,689.97,card_not_present,false,missing_receipt,false,0.252
+txn_000152,2025-10-11,Tartine,Liam Haas,Sales,meals_entertainment,229.57,card_present,true,weekend_personal_spend,false,0.1
+txn_003663,2025-10-11,Tartine,Ivan Mori,Marketing,meals_entertainment,31.57,card_not_present,true,weekend_personal_spend,false,0.125
+txn_003214,2025-10-11,Blue Bottle,Priya Singh,Executive,meals_entertainment,24.22,card_not_present,true,weekend_personal_spend,false,0.165
+txn_005849,2025-10-12,Tartine,Tara Rossi,Executive,other,16.23,card_not_present,false,,true,0.805
+txn_001975,2025-10-12,DoorDash,Imani Ito,Marketing,meals_entertainment,61.71,card_not_present,true,weekend_personal_spend,false,0.113
+txn_001406,2025-10-12,Tartine,Zoe Diaz,Marketing,meals_entertainment,30.34,card_not_present,true,weekend_personal_spend,false,0.143
+txn_005850,2025-10-12,Linear,Ava Chen,Engineering,other,476.95,card_not_present,false,,true,0.782
+txn_001575,2025-10-12,Best Buy Biz,Kenji Reed,Engineering,hardware_equipment,143.54,card_present,true,duplicate_spend,false,0.099
+txn_004054,2025-10-12,WeWork,Zoe Diaz,Operations,rent_facilities,14556.81,card_present,true,over_transaction_limit,false,0.123
+txn_003361,2025-10-13,Delta,Diego Khan,Executive,travel,343.23,card_present,false,missing_receipt,false,0.104
+txn_000033,2025-10-13,Apple Store,Ava Chen,Engineering,hardware_equipment,912.65,card_not_present,false,missing_receipt,false,0.062
+txn_002920,2025-10-13,Google Ads,Maya Nguyen,Marketing,advertising,5823.26,card_not_present,true,over_transaction_limit,false,0.038
+txn_005420,2025-10-13,LinkedIn Mktg,Ava Chen,Marketing,advertising,1187.81,card_present,false,missing_receipt,false,0.015
+txn_005421,2025-10-13,LinkedIn Mktg,Ava Chen,Marketing,advertising,1187.81,card_present,false,duplicate_spend missing_receipt,false,0.039
+txn_005848,2025-10-13,Peer2Peer Cash US,Tara Rossi,Executive,other,742.0,card_not_present,false,,true,0.744
+txn_005258,2025-10-13,Industrious,Yusuf Cohen,Operations,rent_facilities,4547.34,card_present,true,duplicate_spend,false,0.064
+txn_000059,2025-10-14,Chevron,Ava Chen,Engineering,fuel,17.81,card_not_present,true,blocked_category,false,0.099
+txn_000740,2025-10-14,Gunderson Dettmer,Diego Khan,Executive,professional_services,4045.46,card_present,false,missing_receipt,false,0.018
+txn_002564,2025-10-14,Cooley LLP,Yusuf Cohen,Finance,professional_services,5110.44,card_present,true,over_transaction_limit,false,0.07
+txn_004039,2025-10-15,Industrious,Zoe Diaz,Operations,rent_facilities,11032.13,card_present,true,over_transaction_limit,false,0.049
+txn_000390,2025-10-15,Tartine,Maya Nguyen,Marketing,meals_entertainment,218.1,card_not_present,false,missing_receipt,false,0.016
+txn_000866,2025-10-15,PwC,Sora Garcia,Executive,professional_services,8448.41,card_not_present,true,over_transaction_limit,false,0.107
+txn_005347,2025-10-15,WB Mason,Yusuf Cohen,Operations,office_supplies,232.73,card_not_present,false,missing_receipt,false,0.042
+txn_000615,2025-10-15,Hudson Pacific,Priya Singh,Operations,rent_facilities,15322.92,card_not_present,true,over_transaction_limit,false,0.058
+txn_003814,2025-10-16,Best Buy Biz,Lena Lopez,Engineering,hardware_equipment,2433.4,card_not_present,true,duplicate_spend,false,0.1
+txn_001944,2025-10-16,LinkedIn Mktg,Imani Ito,Marketing,advertising,5368.43,card_not_present,true,over_transaction_limit,false,0.094
+txn_004027,2025-10-16,WB Mason,Zoe Diaz,Operations,office_supplies,169.65,card_not_present,false,missing_receipt,false,0.095
+txn_003303,2025-10-16,Cooley LLP,Priya Singh,Executive,professional_services,2816.43,card_not_present,false,missing_receipt,false,0.036
+txn_004858,2025-10-16,Apple Store,Rosa Ahmed,Engineering,hardware_equipment,1466.66,card_not_present,false,missing_receipt,false,0.065
+txn_003750,2025-10-16,Tartine,Lena Lopez,Engineering,meals_entertainment,82.48,card_not_present,false,missing_receipt,false,0.044
+txn_004968,2025-10-16,PwC,Sam Silva,Executive,professional_services,9830.13,card_present,true,over_transaction_limit,false,0.089
+txn_004958,2025-10-16,Deloitte,Sam Silva,Executive,professional_services,9977.88,card_present,true,over_transaction_limit,false,0.123
+txn_001594,2025-10-16,Chevron,Kenji Reed,Engineering,fuel,128.02,card_not_present,true,blocked_category,false,0.093
+txn_000694,2025-10-16,Lyft,Diego Khan,Executive,travel,10606.69,card_present,true,over_transaction_limit,false,0.167
+txn_001897,2025-10-16,Snowflake,Imani Ito,Marketing,software_saas,5222.48,recurring,true,over_transaction_limit,false,0.077
+txn_002349,2025-10-16,Google Ads,Sam Silva,Marketing,advertising,1044.24,card_not_present,false,missing_receipt,false,0.013
+txn_000845,2025-10-16,Airbnb Biz,Sora Garcia,Executive,travel,1121.02,card_not_present,false,missing_receipt,false,0.313
+txn_002892,2025-10-16,Chevron,Liam Haas,Operations,fuel,8492.78,card_not_present,true,blocked_category over_transaction_limit,false,0.112
+txn_004111,2025-10-16,Hudson Pacific,Zoe Diaz,Operations,rent_facilities,10210.65,card_not_present,true,over_transaction_limit,false,0.053
+txn_002130,2025-10-16,Industrious,Wei Novak,Operations,rent_facilities,17619.08,card_not_present,true,over_transaction_limit,false,0.122
+txn_001281,2025-10-16,Deloitte,Omar Kim,Executive,professional_services,9763.07,card_not_present,true,over_transaction_limit,false,0.07
+txn_002469,2025-10-16,Gunderson Dettmer,Tara Rossi,Finance,professional_services,611.23,card_present,false,missing_receipt,false,0.014
+txn_005091,2025-10-17,Gunderson Dettmer,Tara Rossi,Executive,professional_services,11939.4,card_present,true,over_transaction_limit,false,0.117
+txn_000093,2025-10-17,Blue Bottle,Ava Chen,Engineering,meals_entertainment,30.19,card_present,true,duplicate_spend,false,0.144
+txn_004014,2025-10-17,Industrious,Zoe Diaz,Operations,rent_facilities,9841.85,card_not_present,true,over_transaction_limit,false,0.064
+txn_002769,2025-10-17,WeWork,Ava Chen,Operations,rent_facilities,7028.14,card_present,true,over_transaction_limit,false,0.114
+txn_005085,2025-10-17,Gunderson Dettmer,Sam Silva,Executive,professional_services,5487.29,card_not_present,true,over_transaction_limit,false,0.068
+txn_002752,2025-10-17,Industrious,Ava Chen,Operations,rent_facilities,21237.7,card_present,true,over_transaction_limit,false,0.118
+txn_005275,2025-10-17,Industrious,Yusuf Cohen,Operations,rent_facilities,5640.38,card_present,true,over_transaction_limit,false,0.068
+txn_001124,2025-10-17,Lyft,Lena Lopez,Sales,travel,6260.69,card_not_present,true,over_transaction_limit,false,0.035
+txn_005579,2025-10-17,PwC,Liam Haas,Finance,professional_services,1587.17,card_present,false,missing_receipt,false,0.05
+txn_003033,2025-10-17,LinkedIn Mktg,Maya Nguyen,Marketing,advertising,5031.81,card_present,true,over_transaction_limit,false,0.07
+txn_003478,2025-10-17,Apple Store,Sora Garcia,Engineering,hardware_equipment,1052.65,card_not_present,true,duplicate_spend,false,0.072
+txn_002194,2025-10-17,PwC,Rosa Ahmed,Executive,professional_services,10878.09,card_not_present,true,over_transaction_limit,false,0.092
+txn_002122,2025-10-17,WeWork,Wei Novak,Operations,rent_facilities,17569.1,card_not_present,true,over_transaction_limit,false,0.13
+txn_000029,2025-10-17,GitHub,Ava Chen,Engineering,software_saas,1072.09,card_not_present,false,missing_receipt,false,0.046
+txn_002681,2025-10-17,WeWork,Ava Chen,Operations,rent_facilities,10621.23,card_not_present,true,over_transaction_limit,false,0.101
+txn_002860,2025-10-17,WeWork,Liam Haas,Operations,rent_facilities,19118.13,card_present,true,over_transaction_limit,false,0.095
+txn_005254,2025-10-17,Industrious,Yusuf Cohen,Operations,rent_facilities,20644.29,card_not_present,true,over_transaction_limit,false,0.087
+txn_001420,2025-10-17,Google Ads,Zoe Diaz,Marketing,advertising,7078.51,card_not_present,true,over_transaction_limit,false,0.11
+txn_005070,2025-10-18,Gunderson Dettmer,Sam Silva,Executive,professional_services,6422.44,card_not_present,true,over_transaction_limit,false,0.132
+txn_005071,2025-10-18,Gunderson Dettmer,Sam Silva,Executive,professional_services,6422.44,card_not_present,true,duplicate_spend over_transaction_limit,false,0.16
+txn_000482,2025-10-18,Amazon Business,Noah Patel,Finance,office_supplies,86.43,card_not_present,true,duplicate_spend,false,0.121
+txn_001325,2025-10-18,Philz Coffee,Omar Kim,Executive,meals_entertainment,99.77,card_not_present,true,weekend_personal_spend,false,0.093
+txn_005127,2025-10-19,Tartine,Tara Rossi,Executive,meals_entertainment,42.62,card_present,true,weekend_personal_spend,false,0.112
+txn_005076,2025-10-20,Gunderson Dettmer,Sam Silva,Executive,professional_services,5293.91,card_not_present,false,missing_receipt over_transaction_limit,false,0.056
+txn_000935,2025-10-20,Cooley LLP,Sora Garcia,Executive,professional_services,5449.3,card_not_present,true,over_transaction_limit,false,0.12
+txn_004665,2025-10-20,DoorDash,Imani Ito,Marketing,meals_entertainment,5028.12,card_present,true,over_transaction_limit,false,0.026
+txn_000835,2025-10-20,PwC,Sora Garcia,Executive,professional_services,6677.88,card_not_present,true,over_transaction_limit,false,0.119
+txn_004437,2025-10-20,Airbnb Biz,Theo Park,Sales,travel,907.61,card_not_present,true,duplicate_spend,false,0.044
+txn_002637,2025-10-21,WB Mason,Yusuf Cohen,Finance,office_supplies,152.97,card_present,false,missing_receipt,false,0.069
+txn_002276,2025-10-21,Tartine,Sam Silva,Marketing,meals_entertainment,46.38,card_not_present,true,duplicate_spend,false,0.055
+txn_005311,2025-10-21,Industrious,Yusuf Cohen,Operations,rent_facilities,11235.78,card_not_present,true,over_transaction_limit,false,0.031
+txn_001680,2025-10-21,Datadog,Nadia Okafor,Engineering,software_saas,6026.74,recurring,true,over_transaction_limit,false,0.086
+txn_004088,2025-10-21,Industrious,Zoe Diaz,Operations,rent_facilities,12736.08,card_present,true,over_transaction_limit,false,0.075
+txn_002145,2025-10-21,PG&E,Wei Novak,Operations,utilities,146.89,card_not_present,false,missing_receipt,false,0.067
+txn_003134,2025-10-22,Linear,Noah Patel,Marketing,software_saas,249.13,recurring,false,missing_receipt,false,0.054
+txn_002203,2025-10-22,Gunderson Dettmer,Rosa Ahmed,Executive,professional_services,8686.58,card_not_present,true,over_transaction_limit,false,0.033
+txn_000655,2025-10-22,Industrious,Priya Singh,Operations,rent_facilities,13560.31,card_present,true,over_transaction_limit,false,0.057
+txn_004117,2025-10-22,WeWork,Zoe Diaz,Operations,rent_facilities,18345.72,card_not_present,true,over_transaction_limit,false,0.042
+txn_004292,2025-10-22,TikTok Biz,Nadia Okafor,Marketing,advertising,7976.52,card_present,true,over_transaction_limit,false,0.05
+txn_002083,2025-10-23,WeWork,Wei Novak,Operations,rent_facilities,6868.89,card_not_present,true,over_transaction_limit,false,0.115
+txn_002454,2025-10-23,Amazon Business,Tara Rossi,Finance,office_supplies,12.49,card_present,true,duplicate_spend,false,0.071
+txn_005335,2025-10-23,Industrious,Yusuf Cohen,Operations,rent_facilities,16806.83,card_not_present,true,over_transaction_limit,false,0.04
+txn_005047,2025-10-23,Gunderson Dettmer,Sam Silva,Executive,professional_services,7966.56,card_present,true,over_transaction_limit,false,0.066
+txn_000490,2025-10-23,Datadog,Noah Patel,Finance,software_saas,10654.61,card_not_present,false,missing_receipt over_transaction_limit,false,0.063
+txn_000491,2025-10-23,Datadog,Noah Patel,Finance,software_saas,10654.61,card_not_present,false,duplicate_spend missing_receipt over_transaction_limit,false,0.133
+txn_001301,2025-10-23,Gunderson Dettmer,Omar Kim,Executive,professional_services,8926.87,card_not_present,true,over_transaction_limit,false,0.031
+txn_004138,2025-10-23,PG&E,Kenji Reed,Operations,utilities,467.29,card_present,false,missing_receipt,false,0.058
+txn_004191,2025-10-23,Industrious,Kenji Reed,Operations,rent_facilities,6070.73,card_present,true,over_transaction_limit,false,0.142
+txn_004192,2025-10-23,Industrious,Kenji Reed,Operations,rent_facilities,6070.73,card_present,true,duplicate_spend over_transaction_limit,false,0.108
+txn_002172,2025-10-23,Philz Coffee,Rosa Ahmed,Executive,meals_entertainment,5180.49,card_present,true,over_transaction_limit,false,0.016
+txn_003599,2025-10-23,TikTok Biz,Ivan Mori,Marketing,advertising,5166.89,card_present,true,over_transaction_limit,false,0.06
+txn_003658,2025-10-23,LinkedIn Mktg,Ivan Mori,Marketing,advertising,6860.93,card_not_present,true,over_transaction_limit,false,0.087
+txn_004142,2025-10-23,Industrious,Kenji Reed,Operations,rent_facilities,15903.07,card_present,true,over_transaction_limit,false,0.159
+txn_000911,2025-10-23,Gunderson Dettmer,Sora Garcia,Executive,professional_services,6014.04,card_present,true,over_transaction_limit,false,0.142
+txn_000168,2025-10-23,Delta,Liam Haas,Sales,travel,11293.59,card_present,true,over_transaction_limit,false,0.082
+txn_001417,2025-10-23,Meta Ads,Zoe Diaz,Marketing,advertising,7620.52,card_not_present,true,over_transaction_limit,false,0.109
+txn_002252,2025-10-23,PwC,Rosa Ahmed,Executive,professional_services,10063.47,card_present,true,over_transaction_limit,false,0.036
+txn_004603,2025-10-23,LinkedIn Mktg,Imani Ito,Marketing,advertising,5642.86,card_not_present,true,over_transaction_limit,false,0.036
+txn_000571,2025-10-23,WeWork,Priya Singh,Operations,rent_facilities,13943.64,card_present,true,over_transaction_limit,false,0.05
+txn_003388,2025-10-23,Gunderson Dettmer,Diego Khan,Executive,professional_services,5727.04,card_not_present,true,over_transaction_limit,false,0.084
+txn_002418,2025-10-23,Cooley LLP,Tara Rossi,Finance,professional_services,8945.75,card_not_present,true,over_transaction_limit,false,0.082
+txn_003158,2025-10-24,Google Ads,Noah Patel,Marketing,advertising,1177.73,card_present,false,missing_receipt,false,0.059
+txn_001879,2025-10-24,Hudson Pacific,Theo Park,Operations,rent_facilities,10920.08,card_present,true,over_transaction_limit,false,0.123
+txn_004034,2025-10-24,Hudson Pacific,Zoe Diaz,Operations,rent_facilities,8257.38,card_present,true,over_transaction_limit,false,0.079
+txn_003863,2025-10-24,Chevron,Omar Kim,Executive,fuel,420.53,card_present,true,blocked_category,false,0.104
+txn_000313,2025-10-24,Meta Ads,Maya Nguyen,Marketing,advertising,4706.43,card_present,false,missing_receipt,false,0.039
+txn_005371,2025-10-24,Linear,Ava Chen,Marketing,software_saas,5518.68,card_present,true,over_transaction_limit,false,0.039
+txn_003667,2025-10-24,TikTok Biz,Ivan Mori,Marketing,advertising,6357.93,card_present,true,over_transaction_limit,false,0.033
+txn_001757,2025-10-24,Industrious,Theo Park,Operations,rent_facilities,18258.61,card_present,true,over_transaction_limit,false,0.111
+txn_001338,2025-10-24,PwC,Omar Kim,Executive,professional_services,9490.47,card_present,true,over_transaction_limit,false,0.029
+txn_001789,2025-10-24,Hudson Pacific,Theo Park,Operations,rent_facilities,5648.33,card_not_present,true,over_transaction_limit,false,0.028
+txn_004227,2025-10-24,WeWork,Kenji Reed,Operations,rent_facilities,19375.28,card_not_present,true,over_transaction_limit,false,0.117
+txn_002780,2025-10-24,Industrious,Ava Chen,Operations,rent_facilities,6905.06,card_present,true,over_transaction_limit,false,0.098
+txn_002309,2025-10-24,Tartine,Sam Silva,Marketing,meals_entertainment,175.51,card_present,false,missing_receipt,false,0.037
+txn_003176,2025-10-24,TikTok Biz,Noah Patel,Marketing,advertising,521.62,card_present,true,duplicate_spend,false,0.048
+txn_000660,2025-10-24,WeWork,Priya Singh,Operations,rent_facilities,15095.83,card_not_present,true,over_transaction_limit,false,0.047
+txn_002181,2025-10-24,United Airlines,Rosa Ahmed,Executive,travel,1180.12,card_not_present,false,missing_receipt,false,0.014
+txn_005528,2025-10-24,WB Mason,Liam Haas,Finance,office_supplies,221.87,card_not_present,true,duplicate_spend,false,0.071
+txn_001424,2025-10-24,LinkedIn Mktg,Zoe Diaz,Marketing,advertising,7625.43,card_not_present,true,over_transaction_limit,false,0.157
+txn_004687,2025-10-25,Delta,Wei Novak,Executive,travel,6309.03,card_not_present,true,over_transaction_limit,false,0.138
+txn_003225,2025-10-25,Cooley LLP,Priya Singh,Executive,professional_services,6991.95,card_not_present,true,over_transaction_limit,false,0.122
+txn_003674,2025-10-26,Tartine,Ivan Mori,Marketing,meals_entertainment,140.53,card_present,true,weekend_personal_spend,false,0.086
+txn_003752,2025-10-27,Apple Store,Lena Lopez,Engineering,hardware_equipment,168.3,card_not_present,false,missing_receipt,false,0.006
+txn_001835,2025-10-27,Amazon Business,Theo Park,Operations,office_supplies,5130.94,card_present,true,over_transaction_limit,false,0.025
+txn_005244,2025-10-27,Industrious,Yusuf Cohen,Operations,rent_facilities,17474.95,card_not_present,true,over_transaction_limit,false,0.079
+txn_001901,2025-10-27,TikTok Biz,Imani Ito,Marketing,advertising,11437.6,card_present,true,over_transaction_limit,false,0.094
+txn_001277,2025-10-27,PwC,Omar Kim,Executive,professional_services,3697.9,card_present,false,missing_receipt,false,0.021
+txn_002967,2025-10-27,Meta Ads,Maya Nguyen,Marketing,advertising,5604.58,card_not_present,true,over_transaction_limit,false,0.037
+txn_003553,2025-10-27,Snowflake,Sora Garcia,Engineering,software_saas,90.35,recurring,true,duplicate_spend,false,0.063
+txn_000990,2025-10-27,Apple Store,Ivan Mori,Engineering,hardware_equipment,2629.67,card_not_present,true,duplicate_spend,false,0.033
+txn_003260,2025-10-27,Delta,Priya Singh,Executive,travel,752.08,card_present,false,missing_receipt,false,0.023
+txn_004490,2025-10-27,Delta,Theo Park,Sales,travel,5901.43,card_not_present,true,over_transaction_limit,false,0.064
+txn_003217,2025-10-27,Lyft,Priya Singh,Executive,travel,543.22,card_not_present,false,missing_receipt,false,0.102
+txn_005356,2025-10-28,WeWork,Yusuf Cohen,Operations,rent_facilities,9418.4,card_not_present,true,over_transaction_limit,false,0.039
+txn_001378,2025-10-28,Meta Ads,Zoe Diaz,Marketing,advertising,5429.78,card_not_present,true,over_transaction_limit,false,0.097
+txn_002647,2025-10-28,Deloitte,Yusuf Cohen,Finance,professional_services,11232.3,card_not_present,true,over_transaction_limit,false,0.034
+txn_005857,2025-10-28,PrepaidHub US,Liam Haas,Sales,other,1101.0,card_not_present,false,,true,0.803
+txn_001443,2025-10-28,Datadog,Zoe Diaz,Marketing,software_saas,106.98,card_not_present,false,missing_receipt,false,0.1
+txn_001324,2025-10-28,Gunderson Dettmer,Omar Kim,Executive,professional_services,11679.84,card_not_present,true,over_transaction_limit,false,0.03
+txn_004174,2025-10-28,Industrious,Kenji Reed,Operations,rent_facilities,5035.93,card_not_present,true,over_transaction_limit,false,0.068
+txn_000405,2025-10-28,Cooley LLP,Noah Patel,Finance,professional_services,10667.03,card_present,true,over_transaction_limit,false,0.054
+txn_005318,2025-10-28,Chevron,Yusuf Cohen,Operations,fuel,13.11,card_not_present,true,blocked_category,false,0.123
+txn_000537,2025-10-28,Cooley LLP,Noah Patel,Finance,professional_services,10778.4,card_present,true,over_transaction_limit,false,0.058
+txn_005299,2025-10-29,Industrious,Yusuf Cohen,Operations,rent_facilities,9124.37,card_present,true,over_transaction_limit,false,0.092
+txn_001645,2025-10-29,Philz Coffee,Nadia Okafor,Engineering,meals_entertainment,185.4,card_not_present,false,missing_receipt,false,0.007
+txn_004425,2025-10-29,Tartine,Theo Park,Sales,meals_entertainment,132.25,card_present,true,duplicate_spend,false,0.032
+txn_004410,2025-10-29,Sweetgreen,Theo Park,Sales,meals_entertainment,157.05,card_present,false,missing_receipt,false,0.13
+txn_005856,2025-10-29,QuickResale US,Liam Haas,Sales,other,444.0,card_not_present,false,,true,0.859
+txn_002129,2025-10-29,Industrious,Wei Novak,Operations,rent_facilities,6175.3,card_present,true,over_transaction_limit,false,0.082
+txn_002092,2025-10-29,Industrious,Wei Novak,Operations,rent_facilities,8609.11,card_not_present,false,missing_receipt over_transaction_limit,false,0.086
+txn_000936,2025-10-29,PwC,Sora Garcia,Executive,professional_services,6699.77,card_present,true,over_transaction_limit,false,0.115
+txn_002432,2025-10-29,Deloitte,Tara Rossi,Finance,professional_services,11696.04,card_not_present,true,over_transaction_limit,false,0.046
+txn_004977,2025-10-29,Delta,Sam Silva,Executive,travel,434.51,card_not_present,false,missing_receipt,false,0.058
+txn_004715,2025-10-30,Gunderson Dettmer,Wei Novak,Executive,professional_services,9481.76,card_not_present,true,over_transaction_limit,false,0.035
+txn_000677,2025-10-30,WeWork,Priya Singh,Operations,rent_facilities,16825.02,card_not_present,true,over_transaction_limit,false,0.035
+txn_000917,2025-10-30,Deloitte,Sora Garcia,Executive,professional_services,10255.89,card_present,true,over_transaction_limit,false,0.173
+txn_002803,2025-10-30,Hudson Pacific,Liam Haas,Operations,rent_facilities,5299.25,card_not_present,true,over_transaction_limit,false,0.014
+txn_002185,2025-10-30,Lyft,Rosa Ahmed,Executive,travel,915.63,card_not_present,false,missing_receipt,false,0.01
+txn_001502,2025-10-30,Blue Bottle,Kenji Reed,Engineering,meals_entertainment,91.64,card_not_present,false,missing_receipt,false,0.047
+txn_003304,2025-10-30,Gunderson Dettmer,Priya Singh,Executive,professional_services,5120.28,card_present,true,over_transaction_limit,false,0.027
+txn_004226,2025-10-30,Industrious,Kenji Reed,Operations,rent_facilities,12807.33,card_present,true,over_transaction_limit,false,0.085
+txn_001795,2025-10-30,Industrious,Theo Park,Operations,rent_facilities,7052.56,card_present,true,over_transaction_limit,false,0.071
+txn_002543,2025-10-30,Gunderson Dettmer,Yusuf Cohen,Finance,professional_services,11156.47,card_present,true,over_transaction_limit,false,0.084
+txn_001141,2025-10-30,United Airlines,Lena Lopez,Sales,travel,5294.58,card_present,true,over_transaction_limit,false,0.045
+txn_003924,2025-10-30,Gunderson Dettmer,Omar Kim,Executive,professional_services,5372.9,card_not_present,true,over_transaction_limit,false,0.184
+txn_002560,2025-10-30,Cooley LLP,Yusuf Cohen,Finance,professional_services,7968.08,card_not_present,true,over_transaction_limit,false,0.051
+txn_000086,2025-10-30,GitHub,Ava Chen,Engineering,software_saas,265.61,recurring,false,missing_receipt,false,0.052
+txn_002669,2025-10-31,Industrious,Ava Chen,Operations,rent_facilities,7960.11,card_not_present,true,over_transaction_limit,false,0.115
+txn_002198,2025-10-31,Chevron,Rosa Ahmed,Executive,fuel,210.92,card_present,true,blocked_category,false,0.101
+txn_003513,2025-10-31,Best Buy Biz,Sora Garcia,Engineering,hardware_equipment,5331.13,card_not_present,true,over_transaction_limit,false,0.043
+txn_002848,2025-10-31,Industrious,Liam Haas,Operations,rent_facilities,6662.12,card_not_present,true,over_transaction_limit,false,0.045
+txn_003589,2025-10-31,Meta Ads,Ivan Mori,Marketing,advertising,7091.82,card_not_present,true,over_transaction_limit,false,0.027
+txn_002602,2025-10-31,Cooley LLP,Yusuf Cohen,Finance,professional_services,3777.0,card_present,false,missing_receipt,false,0.028
+txn_004150,2025-10-31,WeWork,Kenji Reed,Operations,rent_facilities,5056.56,card_present,true,over_transaction_limit,false,0.053
+txn_000600,2025-10-31,WeWork,Priya Singh,Operations,rent_facilities,16495.43,card_not_present,true,over_transaction_limit,false,0.038
+txn_002755,2025-10-31,Industrious,Ava Chen,Operations,rent_facilities,13970.01,card_not_present,false,missing_receipt over_transaction_limit,false,0.1
+txn_001415,2025-10-31,Chevron,Zoe Diaz,Marketing,fuel,37.8,card_present,true,blocked_category,false,0.142
+txn_005331,2025-10-31,Industrious,Yusuf Cohen,Operations,rent_facilities,20315.95,card_present,true,over_transaction_limit,false,0.039
+txn_004173,2025-10-31,Amazon Business,Kenji Reed,Operations,office_supplies,80.3,card_not_present,false,missing_receipt,false,0.077
+txn_004210,2025-10-31,Industrious,Kenji Reed,Operations,rent_facilities,11463.99,card_not_present,true,over_transaction_limit,false,0.079
+txn_005238,2025-10-31,FedEx,Yusuf Cohen,Operations,shipping_logistics,285.49,card_not_present,false,missing_receipt,false,0.046
+txn_002899,2025-10-31,WeWork,Liam Haas,Operations,rent_facilities,13371.11,card_not_present,true,over_transaction_limit,false,0.088
+txn_002475,2025-10-31,Costco Biz,Tara Rossi,Finance,office_supplies,178.45,card_not_present,false,missing_receipt,false,0.049
+txn_003423,2025-11-01,Philz Coffee,Diego Khan,Executive,meals_entertainment,108.72,card_not_present,true,weekend_personal_spend,false,0.11
+txn_003474,2025-11-01,Sweetgreen,Sora Garcia,Engineering,meals_entertainment,30.79,card_not_present,true,weekend_personal_spend,false,0.118
+txn_004789,2025-11-01,Gunderson Dettmer,Wei Novak,Executive,professional_services,10622.05,card_not_present,true,over_transaction_limit,false,0.108
+txn_002943,2025-11-01,Tartine,Maya Nguyen,Marketing,meals_entertainment,142.37,card_present,true,weekend_personal_spend,false,0.09
+txn_003201,2025-11-01,Gunderson Dettmer,Priya Singh,Executive,professional_services,5185.42,card_present,true,over_transaction_limit,false,0.104
+txn_000089,2025-11-02,Tartine,Ava Chen,Engineering,meals_entertainment,142.64,card_present,true,weekend_personal_spend,false,0.086
+txn_001356,2025-11-02,Blue Bottle,Omar Kim,Executive,meals_entertainment,156.73,card_not_present,true,weekend_personal_spend,false,0.123
+txn_004791,2025-11-02,DoorDash,Wei Novak,Executive,meals_entertainment,35.32,card_not_present,true,weekend_personal_spend,false,0.157
+txn_001880,2025-11-02,Industrious,Theo Park,Operations,rent_facilities,7778.2,card_not_present,true,over_transaction_limit,false,0.104
+txn_000519,2025-11-02,PwC,Noah Patel,Finance,professional_services,11888.85,card_not_present,true,over_transaction_limit,false,0.117
+txn_005846,2025-11-03,LuxeResell,Noah Patel,Finance,other,750.0,card_not_present,false,,true,0.921
+txn_002417,2025-11-03,Gunderson Dettmer,Tara Rossi,Finance,professional_services,6213.34,card_present,true,over_transaction_limit,false,0.044
+txn_004107,2025-11-03,WeWork,Zoe Diaz,Operations,rent_facilities,21103.57,card_not_present,false,missing_receipt over_transaction_limit,false,0.06
+txn_001736,2025-11-03,Hudson Pacific,Theo Park,Operations,rent_facilities,7915.75,card_not_present,true,over_transaction_limit,false,0.019
+txn_000425,2025-11-03,Datadog,Noah Patel,Finance,software_saas,114.4,recurring,false,missing_receipt,false,0.128
+txn_004199,2025-11-03,Chevron,Kenji Reed,Operations,fuel,5025.75,card_present,true,blocked_category over_transaction_limit,false,0.144
+txn_004121,2025-11-03,Industrious,Zoe Diaz,Operations,rent_facilities,9809.65,card_not_present,true,over_transaction_limit,false,0.06
+txn_005291,2025-11-03,Industrious,Yusuf Cohen,Operations,rent_facilities,13140.13,card_present,true,over_transaction_limit,false,0.064
+txn_004502,2025-11-03,Chevron,Theo Park,Sales,fuel,801.12,card_not_present,true,blocked_category,false,0.112
+txn_004963,2025-11-03,PwC,Sam Silva,Executive,professional_services,11159.24,card_not_present,true,over_transaction_limit,false,0.154
+txn_005847,2025-11-04,QuickPrepaid,Noah Patel,Finance,other,2000.0,card_not_present,false,,true,0.892
+txn_002108,2025-11-04,PG&E,Wei Novak,Operations,utilities,116.89,card_present,false,missing_receipt,false,0.062
+txn_000839,2025-11-04,Chevron,Sora Garcia,Executive,fuel,462.49,card_present,true,blocked_category,false,0.148
+txn_002369,2025-11-04,Datadog,Sam Silva,Marketing,software_saas,5331.92,card_not_present,true,over_transaction_limit,false,0.035
+txn_001906,2025-11-04,Blue Bottle,Imani Ito,Marketing,meals_entertainment,79.47,card_not_present,true,duplicate_spend,false,0.067
+txn_000644,2025-11-04,USPS Biz,Priya Singh,Operations,shipping_logistics,293.54,card_not_present,false,missing_receipt,false,0.06
+txn_005353,2025-11-04,FedEx,Yusuf Cohen,Operations,shipping_logistics,85.58,card_present,true,duplicate_spend,false,0.034
+txn_005367,2025-11-04,Datadog,Ava Chen,Marketing,software_saas,176.1,card_not_present,true,duplicate_spend,false,0.035
+txn_003984,2025-11-04,Deloitte,Omar Kim,Executive,professional_services,5130.18,card_present,true,over_transaction_limit,false,0.064
+txn_001882,2025-11-05,Industrious,Theo Park,Operations,rent_facilities,10767.65,card_not_present,true,over_transaction_limit,false,0.03
+txn_005502,2025-11-05,Chevron,Liam Haas,Finance,fuel,7443.97,card_not_present,true,blocked_category over_transaction_limit,false,0.144
+txn_000651,2025-11-05,Industrious,Priya Singh,Operations,rent_facilities,19326.72,card_present,true,over_transaction_limit,false,0.049
+txn_001070,2025-11-05,Apple Store,Ivan Mori,Engineering,hardware_equipment,1240.43,card_present,false,missing_receipt,false,0.017
+txn_001785,2025-11-05,AT&T Business,Theo Park,Operations,utilities,783.75,card_not_present,false,missing_receipt,false,0.015
+txn_002148,2025-11-05,Industrious,Wei Novak,Operations,rent_facilities,8053.61,card_present,true,over_transaction_limit,false,0.09
+txn_004788,2025-11-05,Gunderson Dettmer,Wei Novak,Executive,professional_services,7618.78,card_not_present,true,over_transaction_limit,false,0.031
+txn_004119,2025-11-05,Amazon Business,Zoe Diaz,Operations,office_supplies,5034.28,card_present,true,over_transaction_limit,false,0.029
+txn_003358,2025-11-05,PwC,Diego Khan,Executive,professional_services,8132.2,card_not_present,true,over_transaction_limit,false,0.04
+txn_001738,2025-11-05,Chevron,Theo Park,Operations,fuel,279.19,card_present,true,blocked_category,false,0.137
+txn_004232,2025-11-06,Hudson Pacific,Kenji Reed,Operations,rent_facilities,7198.05,card_present,true,over_transaction_limit,false,0.054
+txn_004769,2025-11-06,Chevron,Wei Novak,Executive,fuel,5835.15,card_present,true,blocked_category over_transaction_limit,false,0.079
+txn_002025,2025-11-06,WeWork,Wei Novak,Operations,rent_facilities,6145.72,card_not_present,true,over_transaction_limit,false,0.107
+txn_004864,2025-11-06,Apple Store,Rosa Ahmed,Engineering,hardware_equipment,307.65,card_not_present,true,duplicate_spend,false,0.02
+txn_001287,2025-11-06,PwC,Omar Kim,Executive,professional_services,4219.26,card_present,false,missing_receipt,false,0.103
+txn_002139,2025-11-06,Amazon Business,Wei Novak,Operations,office_supplies,167.63,card_not_present,true,duplicate_spend,false,0.108
+txn_005256,2025-11-06,Industrious,Yusuf Cohen,Operations,rent_facilities,18668.13,card_not_present,true,over_transaction_limit,false,0.048
+txn_001777,2025-11-06,Industrious,Theo Park,Operations,rent_facilities,6996.73,card_not_present,true,over_transaction_limit,false,0.069
+txn_001592,2025-11-06,Snowflake,Kenji Reed,Engineering,software_saas,457.52,recurring,false,missing_receipt,false,0.06
+txn_000552,2025-11-06,WeWork,Priya Singh,Operations,rent_facilities,11321.25,card_present,true,over_transaction_limit,false,0.045
+txn_004982,2025-11-06,Chevron,Sam Silva,Executive,fuel,19.12,card_not_present,true,blocked_category,false,0.121
+txn_002350,2025-11-06,Meta Ads,Sam Silva,Marketing,advertising,6641.77,card_not_present,true,over_transaction_limit,false,0.045
+txn_002937,2025-11-07,Datadog,Maya Nguyen,Marketing,software_saas,5032.49,card_present,true,over_transaction_limit,false,0.026
+txn_002655,2025-11-07,WB Mason,Ava Chen,Operations,office_supplies,125.25,card_present,true,duplicate_spend,false,0.129
+txn_000696,2025-11-07,Delta,Diego Khan,Executive,travel,269.04,card_present,false,missing_receipt,false,0.021
+txn_005174,2025-11-07,PwC,Tara Rossi,Executive,professional_services,6799.34,card_present,true,over_transaction_limit,false,0.108
+txn_004967,2025-11-07,PwC,Sam Silva,Executive,professional_services,4763.84,card_not_present,false,missing_receipt,false,0.063
+txn_004792,2025-11-07,Deloitte,Wei Novak,Executive,professional_services,6816.24,card_not_present,true,over_transaction_limit,false,0.022
+txn_004172,2025-11-07,Hudson Pacific,Kenji Reed,Operations,rent_facilities,8026.32,card_not_present,true,over_transaction_limit,false,0.054
+txn_000636,2025-11-07,PG&E,Priya Singh,Operations,utilities,147.01,card_present,false,missing_receipt,false,0.001
+txn_000008,2025-11-07,Best Buy Biz,Ava Chen,Engineering,hardware_equipment,521.58,card_not_present,false,missing_receipt,false,0.062
+txn_003313,2025-11-07,Gunderson Dettmer,Priya Singh,Executive,professional_services,8930.65,card_not_present,true,over_transaction_limit,false,0.026
+txn_003236,2025-11-07,Gunderson Dettmer,Priya Singh,Executive,professional_services,4215.2,card_not_present,false,missing_receipt,false,0.066
+txn_003336,2025-11-07,PwC,Diego Khan,Executive,professional_services,7117.53,card_not_present,true,over_transaction_limit,false,0.038
+txn_001386,2025-11-07,Meta Ads,Zoe Diaz,Marketing,advertising,7094.0,card_not_present,true,over_transaction_limit,false,0.13
+txn_004725,2025-11-07,Uber,Wei Novak,Executive,travel,510.55,card_not_present,false,missing_receipt,false,0.008
+txn_004518,2025-11-07,United Airlines,Theo Park,Sales,travel,363.6,card_present,false,missing_receipt,false,0.141
+txn_001816,2025-11-07,Industrious,Theo Park,Operations,rent_facilities,16988.74,card_not_present,true,over_transaction_limit,false,0.042
+txn_002407,2025-11-07,Meta Ads,Sam Silva,Marketing,advertising,6216.95,card_not_present,true,over_transaction_limit,false,0.026
+txn_002072,2025-11-07,Industrious,Wei Novak,Operations,rent_facilities,6439.06,card_present,true,over_transaction_limit,false,0.074
+txn_001127,2025-11-07,Delta,Lena Lopez,Sales,travel,184.31,card_not_present,false,missing_receipt,false,0.007
+txn_004165,2025-11-07,Industrious,Kenji Reed,Operations,rent_facilities,4768.02,card_not_present,false,missing_receipt,false,0.055
+txn_000840,2025-11-07,Delta,Sora Garcia,Executive,travel,1258.41,card_not_present,false,missing_receipt,false,0.069
+txn_002748,2025-11-07,Industrious,Ava Chen,Operations,rent_facilities,16669.19,card_present,true,over_transaction_limit,false,0.109
+txn_005037,2025-11-07,Gunderson Dettmer,Sam Silva,Executive,professional_services,849.57,card_present,false,missing_receipt,false,0.066
+txn_002574,2025-11-07,Cooley LLP,Yusuf Cohen,Finance,professional_services,5125.06,card_not_present,true,over_transaction_limit,false,0.061
+txn_005399,2025-11-07,Linear,Ava Chen,Marketing,software_saas,5242.56,recurring,true,over_transaction_limit,false,0.072
+txn_005185,2025-11-07,Lyft,Tara Rossi,Executive,travel,537.11,card_not_present,true,duplicate_spend,false,0.044
+txn_001689,2025-11-08,DoorDash,Nadia Okafor,Engineering,meals_entertainment,33.56,card_present,true,weekend_personal_spend,false,0.08
+txn_000762,2025-11-08,Tartine,Diego Khan,Executive,meals_entertainment,93.16,card_not_present,true,weekend_personal_spend,false,0.112
+txn_001221,2025-11-09,Tartine,Lena Lopez,Sales,meals_entertainment,190.74,card_present,true,weekend_personal_spend,false,0.094
+txn_001943,2025-11-09,Meta Ads,Imani Ito,Marketing,advertising,7075.49,card_not_present,true,over_transaction_limit,false,0.119
+txn_001470,2025-11-09,Blue Bottle,Zoe Diaz,Marketing,meals_entertainment,167.59,card_present,true,weekend_personal_spend,false,0.154
+txn_004548,2025-11-09,LinkedIn Mktg,Imani Ito,Marketing,advertising,5728.1,card_not_present,true,over_transaction_limit,false,0.115
+txn_001716,2025-11-09,Tartine,Nadia Okafor,Engineering,meals_entertainment,78.81,card_not_present,false,missing_receipt weekend_personal_spend,false,0.093
+txn_002481,2025-11-10,Cooley LLP,Tara Rossi,Finance,professional_services,1359.64,card_not_present,false,missing_receipt,false,0.029
+txn_004772,2025-11-10,Gunderson Dettmer,Wei Novak,Executive,professional_services,7002.0,card_present,true,over_transaction_limit,false,0.043
+txn_000945,2025-11-10,PwC,Sora Garcia,Executive,professional_services,10074.38,card_not_present,true,over_transaction_limit,false,0.193
+txn_002362,2025-11-10,LinkedIn Mktg,Sam Silva,Marketing,advertising,7494.52,card_not_present,true,over_transaction_limit,false,0.041
+txn_004986,2025-11-10,Tartine,Sam Silva,Executive,meals_entertainment,5168.05,card_present,true,over_transaction_limit,false,0.102
+txn_003120,2025-11-10,Datadog,Noah Patel,Marketing,software_saas,81.78,recurring,false,missing_receipt,false,0.065
+txn_002206,2025-11-11,Gunderson Dettmer,Rosa Ahmed,Executive,professional_services,6363.65,card_not_present,true,over_transaction_limit,false,0.086
+txn_001837,2025-11-11,Chevron,Theo Park,Operations,fuel,167.99,card_present,true,blocked_category,false,0.063
+txn_002849,2025-11-11,Amazon Business,Liam Haas,Operations,office_supplies,5030.71,card_not_present,true,over_transaction_limit,false,0.02
+txn_004598,2025-11-11,Meta Ads,Imani Ito,Marketing,advertising,806.02,card_present,false,missing_receipt,false,0.011
+txn_001813,2025-11-11,Industrious,Theo Park,Operations,rent_facilities,20344.37,card_not_present,true,over_transaction_limit,false,0.039
+txn_001998,2025-11-11,Meta Ads,Imani Ito,Marketing,advertising,331.0,card_not_present,false,missing_receipt,false,0.009
+txn_005160,2025-11-11,Deloitte,Tara Rossi,Executive,professional_services,5510.49,card_not_present,true,over_transaction_limit,false,0.036
+txn_002798,2025-11-11,Industrious,Liam Haas,Operations,rent_facilities,6315.84,card_present,true,over_transaction_limit,false,0.027
+txn_002799,2025-11-11,Industrious,Liam Haas,Operations,rent_facilities,6315.84,card_present,true,duplicate_spend over_transaction_limit,false,0.048
+txn_003232,2025-11-11,Philz Coffee,Priya Singh,Executive,meals_entertainment,5014.2,card_not_present,true,over_transaction_limit,false,0.087
+txn_000322,2025-11-12,GitHub,Maya Nguyen,Marketing,software_saas,75.03,card_not_present,false,missing_receipt,false,0.007
+txn_003254,2025-11-12,PwC,Priya Singh,Executive,professional_services,5305.08,card_present,true,over_transaction_limit,false,0.02
+txn_002179,2025-11-12,PwC,Rosa Ahmed,Executive,professional_services,8677.73,card_not_present,true,over_transaction_limit,false,0.043
+txn_002178,2025-11-13,Cooley LLP,Rosa Ahmed,Executive,professional_services,8565.53,card_present,true,over_transaction_limit,false,0.051
+txn_003239,2025-11-13,PwC,Priya Singh,Executive,professional_services,5147.3,card_not_present,true,over_transaction_limit,false,0.029
+txn_003309,2025-11-13,PwC,Priya Singh,Executive,professional_services,4075.92,card_present,false,missing_receipt,false,0.154
+txn_000623,2025-11-13,PG&E,Priya Singh,Operations,utilities,757.88,card_not_present,false,missing_receipt,false,0.008
+txn_001778,2025-11-13,WeWork,Theo Park,Operations,rent_facilities,18234.31,card_not_present,true,over_transaction_limit,false,0.047
+txn_002491,2025-11-13,Cooley LLP,Tara Rossi,Finance,professional_services,3037.23,card_not_present,false,missing_receipt,false,0.031
+txn_001285,2025-11-13,Deloitte,Omar Kim,Executive,professional_services,6446.92,card_present,true,over_transaction_limit,false,0.023
+txn_000509,2025-11-13,Deloitte,Noah Patel,Finance,professional_services,7510.95,card_present,false,missing_receipt,false,0.052
+txn_001508,2025-11-13,Snowflake,Kenji Reed,Engineering,software_saas,5996.14,card_not_present,true,over_transaction_limit,false,0.031
+txn_003034,2025-11-13,Tartine,Maya Nguyen,Marketing,meals_entertainment,5092.62,card_present,true,over_transaction_limit,false,0.037
+txn_004031,2025-11-13,Hudson Pacific,Zoe Diaz,Operations,rent_facilities,11462.67,card_not_present,true,over_transaction_limit,false,0.024
+txn_002183,2025-11-13,Delta,Rosa Ahmed,Executive,travel,980.74,card_present,false,missing_receipt,false,0.004
+txn_002734,2025-11-13,Chevron,Ava Chen,Operations,fuel,14778.11,card_not_present,true,blocked_category over_transaction_limit,false,0.169
+txn_002053,2025-11-13,WeWork,Wei Novak,Operations,rent_facilities,6949.45,card_not_present,false,missing_receipt over_transaction_limit,false,0.086
+txn_002069,2025-11-13,WeWork,Wei Novak,Operations,rent_facilities,9044.15,card_present,true,over_transaction_limit,false,0.11
+txn_001842,2025-11-13,WeWork,Theo Park,Operations,rent_facilities,20030.11,card_not_present,true,over_transaction_limit,false,0.058
+txn_001462,2025-11-13,Chevron,Zoe Diaz,Marketing,fuel,1257.04,card_not_present,true,blocked_category,false,0.131
+txn_003258,2025-11-13,Deloitte,Priya Singh,Executive,professional_services,7509.64,card_present,true,over_transaction_limit,false,0.097
+txn_004254,2025-11-13,Hudson Pacific,Kenji Reed,Operations,rent_facilities,12974.91,card_present,true,over_transaction_limit,false,0.083
+txn_001748,2025-11-14,Industrious,Theo Park,Operations,rent_facilities,14920.49,card_not_present,true,over_transaction_limit,false,0.115
+txn_003698,2025-11-14,DoorDash,Ivan Mori,Marketing,meals_entertainment,27.67,card_not_present,true,duplicate_spend,false,0.042
+txn_002885,2025-11-14,Industrious,Liam Haas,Operations,rent_facilities,14964.22,card_present,true,over_transaction_limit,false,0.037
+txn_000129,2025-11-14,Dell Technologies,Ava Chen,Engineering,hardware_equipment,1169.43,card_not_present,false,missing_receipt,false,0.023
+txn_004776,2025-11-14,PwC,Wei Novak,Executive,professional_services,3465.47,card_not_present,false,missing_receipt,false,0.061
+txn_002202,2025-11-14,Gunderson Dettmer,Rosa Ahmed,Executive,professional_services,5323.64,card_present,true,over_transaction_limit,false,0.027
+txn_004028,2025-11-14,WeWork,Zoe Diaz,Operations,rent_facilities,7186.28,card_not_present,true,over_transaction_limit,false,0.024
+txn_003619,2025-11-14,Datadog,Ivan Mori,Marketing,software_saas,5037.84,card_present,true,over_transaction_limit,false,0.062
+txn_002231,2025-11-14,Deloitte,Rosa Ahmed,Executive,professional_services,10923.27,card_not_present,true,over_transaction_limit,false,0.144
+txn_004008,2025-11-14,WeWork,Zoe Diaz,Operations,rent_facilities,5117.79,card_not_present,false,missing_receipt over_transaction_limit,false,0.075
+txn_005448,2025-11-14,DoorDash,Ava Chen,Marketing,meals_entertainment,5074.89,card_not_present,true,over_transaction_limit,false,0.04
+txn_004200,2025-11-14,Hudson Pacific,Kenji Reed,Operations,rent_facilities,17320.42,card_present,true,over_transaction_limit,false,0.092
+txn_002536,2025-11-14,Cooley LLP,Yusuf Cohen,Finance,professional_services,9063.31,card_present,true,over_transaction_limit,false,0.054
+txn_005414,2025-11-14,Blue Bottle,Ava Chen,Marketing,meals_entertainment,65.61,card_not_present,true,duplicate_spend,false,0.104
+txn_003625,2025-11-14,Meta Ads,Ivan Mori,Marketing,advertising,7768.25,card_present,true,over_transaction_limit,false,0.068
+txn_004962,2025-11-14,PwC,Sam Silva,Executive,professional_services,11148.33,card_not_present,true,over_transaction_limit,false,0.074
+txn_004937,2025-11-14,Blue Bottle,Rosa Ahmed,Engineering,meals_entertainment,141.13,card_not_present,true,duplicate_spend,false,0.092
+txn_003618,2025-11-14,Meta Ads,Ivan Mori,Marketing,advertising,6067.3,card_not_present,true,over_transaction_limit,false,0.076
+txn_002731,2025-11-14,Industrious,Ava Chen,Operations,rent_facilities,7288.57,card_not_present,true,over_transaction_limit,false,0.134
+txn_004991,2025-11-14,PwC,Sam Silva,Executive,professional_services,7897.29,card_present,true,over_transaction_limit,false,0.093
+txn_001279,2025-11-14,Lyft,Omar Kim,Executive,travel,5969.96,card_not_present,true,over_transaction_limit,false,0.028
+txn_000883,2025-11-14,PwC,Sora Garcia,Executive,professional_services,9993.34,card_not_present,true,over_transaction_limit,false,0.119
+txn_003321,2025-11-14,Cooley LLP,Diego Khan,Executive,professional_services,8215.61,card_not_present,true,over_transaction_limit,false,0.041
+txn_005288,2025-11-14,Industrious,Yusuf Cohen,Operations,rent_facilities,5785.42,card_not_present,true,over_transaction_limit,false,0.037
+txn_002494,2025-11-14,Deloitte,Tara Rossi,Finance,professional_services,8350.06,card_not_present,true,over_transaction_limit,false,0.025
+txn_001299,2025-11-14,PwC,Omar Kim,Executive,professional_services,9488.29,card_not_present,true,over_transaction_limit,false,0.039
+txn_005203,2025-11-14,United Airlines,Tara Rossi,Executive,travel,5324.9,card_present,true,over_transaction_limit,false,0.051
+txn_002697,2025-11-14,Industrious,Ava Chen,Operations,rent_facilities,6625.8,card_present,true,over_transaction_limit,false,0.131
+txn_003828,2025-11-14,Dell Technologies,Lena Lopez,Engineering,hardware_equipment,3101.49,card_present,false,missing_receipt,false,0.038
+txn_004619,2025-11-14,Tartine,Imani Ito,Marketing,meals_entertainment,5050.27,card_not_present,true,over_transaction_limit,false,0.078
+txn_005814,2025-11-15,QuickPrepaid,Ava Chen,Operations,other,250.0,card_not_present,false,,true,1.0
+txn_005813,2025-11-15,GiftCardVault,Ava Chen,Operations,other,1500.0,card_not_present,false,,true,0.979
+txn_005817,2025-11-15,QuickPrepaid,Zoe Diaz,Marketing,other,1500.0,card_not_present,false,,true,0.985
+txn_005828,2025-11-15,EverGadget Outlet,Sora Garcia,Executive,other,750.0,card_not_present,false,,true,0.995
+txn_005815,2025-11-15,QuickPrepaid,Zoe Diaz,Marketing,other,500.0,card_not_present,false,,true,0.965
+txn_005823,2025-11-15,QuickPrepaid,Wei Novak,Operations,other,1500.0,card_not_present,false,,true,0.988
+txn_005810,2025-11-15,GiftCardVault,Ava Chen,Operations,other,250.0,card_not_present,false,,true,0.965
+txn_005830,2025-11-15,EverGadget Outlet,Sora Garcia,Executive,other,2000.0,card_not_present,false,,true,0.964
+txn_003500,2025-11-15,Philz Coffee,Sora Garcia,Engineering,meals_entertainment,68.67,card_present,true,weekend_personal_spend,false,0.081
+txn_005860,2025-11-15,Best Buy Biz,Nadia Okafor,Engineering,other,1754.42,card_not_present,false,,true,0.781
+txn_004915,2025-11-15,Philz Coffee,Rosa Ahmed,Engineering,meals_entertainment,28.77,card_not_present,true,weekend_personal_spend,false,0.102
+txn_005859,2025-11-15,Peer2Peer Cash US,Nadia Okafor,Engineering,other,894.0,card_not_present,false,,true,0.815
+txn_005861,2025-11-15,Philz Coffee,Nadia Okafor,Engineering,other,27.11,card_not_present,false,,true,0.78
+txn_005824,2025-11-15,QuickPrepaid,Wei Novak,Operations,other,250.0,card_not_present,false,,true,0.954
+txn_005811,2025-11-16,GiftCardVault,Ava Chen,Operations,other,750.0,card_not_present,false,,true,0.965
+txn_005812,2025-11-16,EverGadget Outlet,Ava Chen,Operations,other,1500.0,card_not_present,false,,true,0.969
+txn_005829,2025-11-16,EverGadget Outlet,Sora Garcia,Executive,other,500.0,card_not_present,false,,true,0.96
+txn_005827,2025-11-16,GiftCardVault,Sora Garcia,Executive,other,1000.0,card_not_present,false,,true,0.973
+txn_005818,2025-11-16,GiftCardVault,Zoe Diaz,Marketing,other,750.0,card_not_present,false,,true,0.963
+txn_005822,2025-11-16,GiftCardVault,Wei Novak,Operations,other,750.0,card_not_present,false,,true,0.962
+txn_005820,2025-11-16,QuickPrepaid,Wei Novak,Operations,other,1000.0,card_not_present,false,,true,0.971
+txn_005826,2025-11-16,QuickPrepaid,Sora Garcia,Executive,other,250.0,card_not_present,false,,true,0.965
+txn_005816,2025-11-16,LuxeResell,Zoe Diaz,Marketing,other,2000.0,card_not_present,false,,true,0.961
+txn_001106,2025-11-16,Uber,Lena Lopez,Sales,travel,259.13,card_not_present,false,missing_receipt,false,0.11
+txn_003922,2025-11-16,Chevron,Omar Kim,Executive,fuel,750.04,card_present,true,blocked_category,false,0.15
+txn_003451,2025-11-16,DoorDash,Sora Garcia,Engineering,meals_entertainment,152.08,card_not_present,true,weekend_personal_spend,false,0.078
+txn_005821,2025-11-16,EverGadget Outlet,Wei Novak,Operations,other,500.0,card_not_present,false,,true,0.963
+txn_005819,2025-11-16,CryptoTopUp Pro,Wei Novak,Operations,other,750.0,card_not_present,false,,true,0.974
+txn_005825,2025-11-16,LuxeResell,Wei Novak,Operations,other,2000.0,card_not_present,false,,true,0.982
+txn_002023,2025-11-17,Industrious,Wei Novak,Operations,rent_facilities,9022.31,card_not_present,true,over_transaction_limit,false,0.211
+txn_004217,2025-11-17,Industrious,Kenji Reed,Operations,rent_facilities,15991.77,card_present,true,over_transaction_limit,false,0.084
+txn_000616,2025-11-17,FedEx,Priya Singh,Operations,shipping_logistics,10021.76,card_present,true,over_transaction_limit,false,0.037
+txn_004716,2025-11-17,Deloitte,Wei Novak,Executive,professional_services,7832.93,card_present,true,over_transaction_limit,false,0.034
+txn_002807,2025-11-17,Chevron,Liam Haas,Operations,fuel,120.05,card_present,false,blocked_category missing_receipt,false,0.073
+txn_001887,2025-11-17,TikTok Biz,Imani Ito,Marketing,advertising,5491.96,card_present,true,over_transaction_limit,false,0.032
+txn_000671,2025-11-17,PG&E,Priya Singh,Operations,utilities,131.77,card_present,true,duplicate_spend,false,0.026
+txn_000916,2025-11-17,United Airlines,Sora Garcia,Executive,travel,728.24,card_present,true,duplicate_spend,false,0.082
+txn_000062,2025-11-18,DoorDash,Ava Chen,Engineering,meals_entertainment,188.84,card_not_present,false,missing_receipt,false,0.077
+txn_004046,2025-11-18,WeWork,Zoe Diaz,Operations,rent_facilities,15574.61,card_present,true,over_transaction_limit,false,0.042
+txn_005252,2025-11-18,PG&E,Yusuf Cohen,Operations,utilities,589.99,card_present,false,missing_receipt,false,0.009
+txn_003371,2025-11-18,Airbnb Biz,Diego Khan,Executive,travel,598.68,card_not_present,false,missing_receipt,false,0.013
+txn_005306,2025-11-18,Industrious,Yusuf Cohen,Operations,rent_facilities,14076.2,card_present,true,over_transaction_limit,false,0.063
+txn_004167,2025-11-18,Hudson Pacific,Kenji Reed,Operations,rent_facilities,14877.87,card_not_present,true,over_transaction_limit,false,0.066
+txn_000585,2025-11-18,PG&E,Priya Singh,Operations,utilities,10090.16,card_not_present,true,over_transaction_limit,false,0.041
+txn_000586,2025-11-18,PG&E,Priya Singh,Operations,utilities,10090.16,card_not_present,true,duplicate_spend over_transaction_limit,false,0.06
+txn_001934,2025-11-19,LinkedIn Mktg,Imani Ito,Marketing,advertising,8451.52,card_present,true,over_transaction_limit,false,0.095
+txn_004143,2025-11-19,WeWork,Kenji Reed,Operations,rent_facilities,6008.57,card_not_present,true,over_transaction_limit,false,0.056
+txn_001781,2025-11-19,Industrious,Theo Park,Operations,rent_facilities,12797.02,card_present,true,over_transaction_limit,false,0.032
+txn_002806,2025-11-19,WB Mason,Liam Haas,Operations,office_supplies,338.57,card_present,true,duplicate_spend,false,0.019
+txn_005583,2025-11-19,Linear,Liam Haas,Finance,software_saas,794.38,card_not_present,false,missing_receipt,false,0.045
+txn_004734,2025-11-19,Gunderson Dettmer,Wei Novak,Executive,professional_services,8881.8,card_present,true,over_transaction_limit,false,0.037
+txn_001809,2025-11-19,PG&E,Theo Park,Operations,utilities,229.1,card_present,true,duplicate_spend,false,0.049
+txn_005539,2025-11-19,PwC,Liam Haas,Finance,professional_services,7709.88,card_not_present,true,over_transaction_limit,false,0.068
+txn_005298,2025-11-19,Industrious,Yusuf Cohen,Operations,rent_facilities,6961.67,card_not_present,true,over_transaction_limit,false,0.049
+txn_003137,2025-11-19,LinkedIn Mktg,Noah Patel,Marketing,advertising,8864.57,card_not_present,false,missing_receipt over_transaction_limit,false,0.039
+txn_000250,2025-11-19,GitHub,Liam Haas,Sales,software_saas,132.05,recurring,false,missing_receipt,false,0.057
+txn_002392,2025-11-19,Meta Ads,Sam Silva,Marketing,advertising,6331.36,card_not_present,true,over_transaction_limit,false,0.029
+txn_004544,2025-11-19,TikTok Biz,Imani Ito,Marketing,advertising,5106.23,card_not_present,true,over_transaction_limit,false,0.023
+txn_001310,2025-11-19,Uber,Omar Kim,Executive,travel,596.45,card_not_present,true,duplicate_spend,false,0.026
+txn_000713,2025-11-19,PwC,Diego Khan,Executive,professional_services,1146.01,card_not_present,false,missing_receipt,false,0.03
+txn_000085,2025-11-20,Datadog,Ava Chen,Engineering,software_saas,321.16,card_not_present,false,missing_receipt,false,0.025
+txn_003193,2025-11-20,PwC,Priya Singh,Executive,professional_services,640.79,card_present,true,duplicate_spend,false,0.027
+txn_005492,2025-11-20,PwC,Liam Haas,Finance,professional_services,1486.19,card_not_present,false,missing_receipt,false,0.057
+txn_002315,2025-11-20,DoorDash,Sam Silva,Marketing,meals_entertainment,5120.18,card_not_present,true,over_transaction_limit,false,0.022
+txn_002787,2025-11-20,WeWork,Ava Chen,Operations,rent_facilities,12025.49,card_not_present,true,over_transaction_limit,false,0.111
+txn_001806,2025-11-20,Industrious,Theo Park,Operations,rent_facilities,10759.24,card_present,true,over_transaction_limit,false,0.035
+txn_003734,2025-11-20,Apple Store,Lena Lopez,Engineering,hardware_equipment,2202.38,card_present,false,missing_receipt,false,0.02
+txn_005121,2025-11-20,Chevron,Tara Rossi,Executive,fuel,7134.71,card_not_present,true,blocked_category over_transaction_limit,false,0.092
+txn_002289,2025-11-20,Chevron,Sam Silva,Marketing,fuel,7816.12,card_not_present,true,blocked_category over_transaction_limit,false,0.073
+txn_002290,2025-11-20,Chevron,Sam Silva,Marketing,fuel,7816.12,card_not_present,true,blocked_category duplicate_spend over_transaction_limit,false,0.096
+txn_001331,2025-11-20,Chevron,Omar Kim,Executive,fuel,4661.26,card_present,true,blocked_category,false,0.131
+txn_003498,2025-11-20,Apple Store,Sora Garcia,Engineering,hardware_equipment,324.5,card_not_present,false,missing_receipt,false,0.013
+txn_001790,2025-11-20,WeWork,Theo Park,Operations,rent_facilities,5882.51,card_present,true,over_transaction_limit,false,0.028
+txn_000667,2025-11-20,Industrious,Priya Singh,Operations,rent_facilities,26275.09,card_not_present,true,over_transaction_limit,false,0.038
+txn_002103,2025-11-20,WeWork,Wei Novak,Operations,rent_facilities,17460.32,card_not_present,false,missing_receipt over_transaction_limit,false,0.172
+txn_002121,2025-11-21,Industrious,Wei Novak,Operations,rent_facilities,19080.79,card_present,true,over_transaction_limit,false,0.103
+txn_002496,2025-11-21,Gunderson Dettmer,Tara Rossi,Finance,professional_services,5283.74,card_not_present,true,over_transaction_limit,false,0.025
+txn_005220,2025-11-21,Lyft,Tara Rossi,Executive,travel,224.37,card_present,false,missing_receipt,false,0.001
+txn_001988,2025-11-21,Blue Bottle,Imani Ito,Marketing,meals_entertainment,72.64,card_not_present,true,duplicate_spend,false,0.067
+txn_000308,2025-11-21,Tartine,Maya Nguyen,Marketing,meals_entertainment,152.83,card_present,false,missing_receipt,false,0.012
+txn_002336,2025-11-21,Datadog,Sam Silva,Marketing,software_saas,995.84,card_not_present,false,missing_receipt,false,0.008
+txn_000806,2025-11-21,Lyft,Diego Khan,Executive,travel,11343.58,card_not_present,true,over_transaction_limit,false,0.055
+txn_001347,2025-11-21,Delta,Omar Kim,Executive,travel,410.12,card_present,false,missing_receipt,false,0.005
+txn_001623,2025-11-21,Blue Bottle,Nadia Okafor,Engineering,meals_entertainment,78.92,card_not_present,true,duplicate_spend,false,0.082
+txn_004179,2025-11-21,WB Mason,Kenji Reed,Operations,office_supplies,13.47,card_present,true,duplicate_spend,false,0.13
+txn_005067,2025-11-21,PwC,Sam Silva,Executive,professional_services,9532.7,card_present,true,over_transaction_limit,false,0.089
+txn_004274,2025-11-22,Tartine,Nadia Okafor,Marketing,meals_entertainment,27.69,card_not_present,true,weekend_personal_spend,false,0.143
+txn_003505,2025-11-22,Sweetgreen,Sora Garcia,Engineering,meals_entertainment,59.03,card_not_present,true,weekend_personal_spend,false,0.101
+txn_004648,2025-11-23,Philz Coffee,Imani Ito,Marketing,meals_entertainment,44.9,card_present,true,weekend_personal_spend,false,0.081
+txn_004824,2025-11-23,DoorDash,Rosa Ahmed,Engineering,meals_entertainment,131.19,card_present,true,weekend_personal_spend,false,0.066
+txn_001768,2025-11-24,Hudson Pacific,Theo Park,Operations,rent_facilities,8922.42,card_not_present,true,over_transaction_limit,false,0.088
+txn_003880,2025-11-24,Tartine,Omar Kim,Executive,meals_entertainment,129.69,card_not_present,false,missing_receipt,false,0.115
+txn_004035,2025-11-24,Industrious,Zoe Diaz,Operations,rent_facilities,5272.14,card_present,true,over_transaction_limit,false,0.021
+txn_005087,2025-11-24,Chevron,Sam Silva,Executive,fuel,1640.27,card_present,true,blocked_category,false,0.107
+txn_004881,2025-11-24,Apple Store,Rosa Ahmed,Engineering,hardware_equipment,1947.46,card_not_present,false,missing_receipt,false,0.033
+txn_004591,2025-11-24,Sweetgreen,Imani Ito,Marketing,meals_entertainment,5016.05,card_not_present,true,over_transaction_limit,false,0.043
+txn_005048,2025-11-24,Deloitte,Sam Silva,Executive,professional_services,9647.77,card_not_present,true,over_transaction_limit,false,0.061
+txn_002561,2025-11-24,PwC,Yusuf Cohen,Finance,professional_services,6507.29,card_present,true,over_transaction_limit,false,0.034
+txn_004652,2025-11-24,Chevron,Imani Ito,Marketing,fuel,183.36,card_present,true,blocked_category,false,0.101
+txn_003173,2025-11-25,TikTok Biz,Noah Patel,Marketing,advertising,792.17,card_present,true,duplicate_spend,false,0.03
+txn_004003,2025-11-25,Industrious,Zoe Diaz,Operations,rent_facilities,14439.96,card_present,true,over_transaction_limit,false,0.033
+txn_004561,2025-11-25,DoorDash,Imani Ito,Marketing,meals_entertainment,224.22,card_not_present,false,missing_receipt,false,0.002
+txn_002538,2025-11-25,Gunderson Dettmer,Yusuf Cohen,Finance,professional_services,5545.12,card_present,true,over_transaction_limit,false,0.024
+txn_004122,2025-11-25,WeWork,Zoe Diaz,Operations,rent_facilities,5090.45,card_not_present,true,over_transaction_limit,false,0.016
+txn_003876,2025-11-25,Chevron,Omar Kim,Executive,fuel,5337.97,card_present,true,blocked_category over_transaction_limit,false,0.116
+txn_002577,2025-11-25,GitHub,Yusuf Cohen,Finance,software_saas,5066.09,recurring,true,over_transaction_limit,false,0.058
+txn_005357,2025-11-25,Industrious,Yusuf Cohen,Operations,rent_facilities,14460.9,card_present,true,over_transaction_limit,false,0.043
+txn_004295,2025-11-25,Meta Ads,Nadia Okafor,Marketing,advertising,8621.27,card_not_present,true,over_transaction_limit,false,0.055
+txn_002791,2025-11-25,Chevron,Liam Haas,Operations,fuel,71.62,card_not_present,true,blocked_category,false,0.073
+txn_001952,2025-11-26,Linear,Imani Ito,Marketing,software_saas,739.07,recurring,false,missing_receipt,false,0.043
+txn_004682,2025-11-26,Delta,Wei Novak,Executive,travel,216.31,card_not_present,true,duplicate_spend,false,0.019
+txn_005265,2025-11-26,Industrious,Yusuf Cohen,Operations,rent_facilities,10774.25,card_present,false,missing_receipt over_transaction_limit,false,0.029
+txn_004240,2025-11-26,Chevron,Kenji Reed,Operations,fuel,293.04,card_not_present,true,blocked_category,false,0.103
+txn_002720,2025-11-26,WeWork,Ava Chen,Operations,rent_facilities,9619.67,card_present,true,over_transaction_limit,false,0.089
+txn_003196,2025-11-27,PwC,Priya Singh,Executive,professional_services,10688.81,card_present,true,over_transaction_limit,false,0.089
+txn_003488,2025-11-27,Snowflake,Sora Garcia,Engineering,software_saas,534.92,card_present,true,duplicate_spend,false,0.024
+txn_005218,2025-11-27,Cooley LLP,Tara Rossi,Executive,professional_services,7999.62,card_not_present,true,over_transaction_limit,false,0.047
+txn_002868,2025-11-27,WeWork,Liam Haas,Operations,rent_facilities,5632.02,card_not_present,true,over_transaction_limit,false,0.023
+txn_005284,2025-11-27,WeWork,Yusuf Cohen,Operations,rent_facilities,9292.85,card_not_present,true,over_transaction_limit,false,0.041
+txn_003277,2025-11-27,Deloitte,Priya Singh,Executive,professional_services,7715.76,card_present,true,over_transaction_limit,false,0.025
+txn_005287,2025-11-27,WeWork,Yusuf Cohen,Operations,rent_facilities,20755.99,card_not_present,false,missing_receipt over_transaction_limit,false,0.067
+txn_004118,2025-11-27,Industrious,Zoe Diaz,Operations,rent_facilities,9108.58,card_present,true,over_transaction_limit,false,0.031
+txn_004672,2025-11-27,Tartine,Imani Ito,Marketing,meals_entertainment,5079.72,card_present,true,over_transaction_limit,false,0.028
+txn_004565,2025-11-27,Chevron,Imani Ito,Marketing,fuel,606.36,card_present,true,blocked_category,false,0.073
+txn_004554,2025-11-27,Meta Ads,Imani Ito,Marketing,advertising,5166.1,card_present,false,missing_receipt over_transaction_limit,false,0.023
+txn_004202,2025-11-27,Industrious,Kenji Reed,Operations,rent_facilities,21357.27,card_not_present,true,over_transaction_limit,false,0.081
+txn_002856,2025-11-27,Industrious,Liam Haas,Operations,rent_facilities,11193.13,card_not_present,true,over_transaction_limit,false,0.056
+txn_001845,2025-11-27,WeWork,Theo Park,Operations,rent_facilities,8709.41,card_not_present,true,over_transaction_limit,false,0.035
+txn_002180,2025-11-27,Tartine,Rosa Ahmed,Executive,meals_entertainment,150.85,card_present,false,missing_receipt,false,0.028
+txn_003732,2025-11-27,Dell Technologies,Lena Lopez,Engineering,hardware_equipment,982.36,card_not_present,false,missing_receipt,false,0.026
+txn_005125,2025-11-27,Chevron,Tara Rossi,Executive,fuel,3145.93,card_not_present,true,blocked_category,false,0.149
+txn_002104,2025-11-28,WeWork,Wei Novak,Operations,rent_facilities,7717.58,card_present,true,over_transaction_limit,false,0.132
+txn_001227,2025-11-28,Delta,Omar Kim,Executive,travel,246.47,card_not_present,true,duplicate_spend,false,0.019
+txn_001825,2025-11-28,Hudson Pacific,Theo Park,Operations,rent_facilities,7783.96,card_not_present,true,over_transaction_limit,false,0.024
+txn_001540,2025-11-28,DoorDash,Kenji Reed,Engineering,meals_entertainment,101.99,card_present,false,missing_receipt,false,0.058
+txn_002854,2025-11-28,WeWork,Liam Haas,Operations,rent_facilities,6790.7,card_present,true,over_transaction_limit,false,0.025
+txn_005545,2025-11-28,Gunderson Dettmer,Liam Haas,Finance,professional_services,8277.22,card_present,true,over_transaction_limit,false,0.063
+txn_002768,2025-11-28,Industrious,Ava Chen,Operations,rent_facilities,8308.86,card_not_present,true,over_transaction_limit,false,0.114
+txn_000828,2025-11-28,Cooley LLP,Sora Garcia,Executive,professional_services,8957.63,card_present,true,over_transaction_limit,false,0.202
+txn_003971,2025-11-28,Gunderson Dettmer,Omar Kim,Executive,professional_services,8363.23,card_present,true,over_transaction_limit,false,0.094
+txn_002212,2025-11-28,Cooley LLP,Rosa Ahmed,Executive,professional_services,5605.35,card_not_present,true,over_transaction_limit,false,0.051
+txn_004790,2025-11-28,Airbnb Biz,Wei Novak,Executive,travel,1006.82,card_present,false,missing_receipt,false,0.02
+txn_003725,2025-11-28,Chevron,Lena Lopez,Engineering,fuel,530.65,recurring,true,blocked_category,false,0.141
+txn_000309,2025-11-28,Chevron,Maya Nguyen,Marketing,fuel,168.24,card_present,true,blocked_category,false,0.113
+txn_001799,2025-11-28,Industrious,Theo Park,Operations,rent_facilities,19479.85,card_present,true,over_transaction_limit,false,0.083
+txn_001187,2025-11-28,Airbnb Biz,Lena Lopez,Sales,travel,612.01,card_present,false,missing_receipt,false,0.03
+txn_003183,2025-11-28,Gunderson Dettmer,Priya Singh,Executive,professional_services,9133.07,card_not_present,true,over_transaction_limit,false,0.124
+txn_002177,2025-11-28,Gunderson Dettmer,Rosa Ahmed,Executive,professional_services,1602.43,card_not_present,false,missing_receipt,false,0.118
+txn_003493,2025-11-29,Sweetgreen,Sora Garcia,Engineering,meals_entertainment,26.75,card_not_present,true,weekend_personal_spend,false,0.218
+txn_003078,2025-11-29,Tartine,Noah Patel,Marketing,meals_entertainment,212.32,card_present,true,weekend_personal_spend,false,0.093
+txn_003639,2025-11-30,Blue Bottle,Ivan Mori,Marketing,meals_entertainment,83.2,card_present,true,weekend_personal_spend,false,0.112
+txn_005852,2025-11-30,Peer2Peer Cash US,Diego Khan,Executive,other,1310.0,card_not_present,false,,true,0.862
+txn_005017,2025-11-30,Uber,Sam Silva,Executive,travel,664.56,card_not_present,false,missing_receipt,false,0.145
+txn_005853,2025-11-30,MarketplaceX US,Diego Khan,Executive,other,520.0,card_not_present,false,,true,0.788
+txn_000377,2025-11-30,Philz Coffee,Maya Nguyen,Marketing,meals_entertainment,43.57,card_not_present,true,weekend_personal_spend,false,0.096
+txn_002688,2025-12-01,WeWork,Ava Chen,Operations,rent_facilities,9718.71,card_present,true,over_transaction_limit,false,0.098
+txn_003163,2025-12-01,TikTok Biz,Noah Patel,Marketing,advertising,3424.0,card_not_present,false,missing_receipt,false,0.036
+txn_000301,2025-12-01,Google Ads,Maya Nguyen,Marketing,advertising,3066.32,card_present,false,missing_receipt,false,0.015
+txn_002258,2025-12-01,Deloitte,Rosa Ahmed,Executive,professional_services,10763.16,card_not_present,true,over_transaction_limit,false,0.036
+txn_004068,2025-12-01,Industrious,Zoe Diaz,Operations,rent_facilities,6566.39,card_not_present,true,over_transaction_limit,false,0.025
+txn_004641,2025-12-01,TikTok Biz,Imani Ito,Marketing,advertising,7057.26,card_present,true,over_transaction_limit,false,0.042
+txn_005854,2025-12-01,QuickResale US,Diego Khan,Executive,other,732.0,card_not_present,false,,true,0.738
+txn_002841,2025-12-01,Industrious,Liam Haas,Operations,rent_facilities,20291.14,card_not_present,true,over_transaction_limit,false,0.071
+txn_000944,2025-12-01,PwC,Sora Garcia,Executive,professional_services,5094.3,card_not_present,true,over_transaction_limit,false,0.096
+txn_000191,2025-12-01,Chevron,Liam Haas,Sales,fuel,220.55,card_not_present,true,blocked_category,false,0.094
+txn_001501,2025-12-01,Tartine,Kenji Reed,Engineering,meals_entertainment,5164.84,card_not_present,true,over_transaction_limit,false,0.06
+txn_002156,2025-12-01,PwC,Rosa Ahmed,Executive,professional_services,6537.21,card_not_present,true,over_transaction_limit,false,0.063
+txn_004083,2025-12-02,WeWork,Zoe Diaz,Operations,rent_facilities,9097.54,card_not_present,true,over_transaction_limit,false,0.096
+txn_002915,2025-12-02,Industrious,Liam Haas,Operations,rent_facilities,18112.08,card_present,true,over_transaction_limit,false,0.064
+txn_000931,2025-12-02,PwC,Sora Garcia,Executive,professional_services,6473.46,card_present,true,over_transaction_limit,false,0.085
+txn_005862,2025-12-02,Delta,Rosa Ahmed,Executive,other,1010.79,card_not_present,false,,true,0.719
+txn_000457,2025-12-02,Gunderson Dettmer,Noah Patel,Finance,professional_services,2224.01,card_not_present,true,duplicate_spend,false,0.018
+txn_000912,2025-12-02,PwC,Sora Garcia,Executive,professional_services,5079.29,card_not_present,true,over_transaction_limit,false,0.102
+txn_001896,2025-12-02,Chevron,Imani Ito,Marketing,fuel,18.55,card_not_present,true,blocked_category,false,0.099
+txn_000203,2025-12-02,Tartine,Liam Haas,Sales,meals_entertainment,124.81,card_not_present,true,duplicate_spend,false,0.068
+txn_002593,2025-12-02,Costco Biz,Yusuf Cohen,Finance,office_supplies,295.56,card_not_present,false,missing_receipt,false,0.008
+txn_002667,2025-12-02,Industrious,Ava Chen,Operations,rent_facilities,6936.25,card_not_present,true,over_transaction_limit,false,0.104
+txn_001212,2025-12-02,Delta,Lena Lopez,Sales,travel,623.55,card_present,true,duplicate_spend,false,0.031
+txn_000920,2025-12-02,Uber,Sora Garcia,Executive,travel,5927.27,card_not_present,true,over_transaction_limit,false,0.133
+txn_000528,2025-12-02,Amazon Business,Noah Patel,Finance,office_supplies,168.61,card_present,false,missing_receipt,false,0.007
+txn_002966,2025-12-02,DoorDash,Maya Nguyen,Marketing,meals_entertainment,5207.49,card_present,true,over_transaction_limit,false,0.047
+txn_005858,2025-12-03,QuickPrepaid,Noah Patel,Marketing,other,250.0,card_not_present,false,,true,0.919
+txn_003742,2025-12-03,Apple Store,Lena Lopez,Engineering,hardware_equipment,171.03,card_not_present,false,missing_receipt,false,0.068
+txn_003743,2025-12-03,Apple Store,Lena Lopez,Engineering,hardware_equipment,171.03,card_not_present,false,duplicate_spend missing_receipt,false,0.082
+txn_003930,2025-12-03,Chevron,Omar Kim,Executive,fuel,870.22,card_present,true,blocked_category,false,0.104
+txn_003894,2025-12-03,Cooley LLP,Omar Kim,Executive,professional_services,3275.89,card_present,false,missing_receipt,false,0.094
+txn_004620,2025-12-03,Sweetgreen,Imani Ito,Marketing,meals_entertainment,116.25,card_present,false,missing_receipt,false,0.02
+txn_002592,2025-12-03,PwC,Yusuf Cohen,Finance,professional_services,8088.37,card_not_present,true,over_transaction_limit,false,0.025
+txn_003400,2025-12-03,Gunderson Dettmer,Diego Khan,Executive,professional_services,8157.59,card_present,true,over_transaction_limit,false,0.036
+txn_002774,2025-12-03,Costco Biz,Ava Chen,Operations,office_supplies,326.86,card_present,false,missing_receipt,false,0.062
+txn_000784,2025-12-03,Tartine,Diego Khan,Executive,meals_entertainment,190.47,card_not_present,false,missing_receipt,false,0.024
+txn_005022,2025-12-04,Deloitte,Sam Silva,Executive,professional_services,7341.37,card_present,true,over_transaction_limit,false,0.103
+txn_000602,2025-12-04,Chevron,Priya Singh,Operations,fuel,4655.02,card_not_present,true,blocked_category,false,0.1
+txn_004981,2025-12-04,PwC,Sam Silva,Executive,professional_services,6907.99,card_not_present,true,over_transaction_limit,false,0.083
+txn_003360,2025-12-04,Deloitte,Diego Khan,Executive,professional_services,6733.03,card_not_present,true,over_transaction_limit,false,0.027
+txn_002571,2025-12-04,Gunderson Dettmer,Yusuf Cohen,Finance,professional_services,723.68,card_not_present,false,missing_receipt,false,0.016
+txn_000891,2025-12-04,Deloitte,Sora Garcia,Executive,professional_services,7097.11,card_present,true,over_transaction_limit,false,0.089
+txn_000888,2025-12-04,Tartine,Sora Garcia,Executive,meals_entertainment,18.98,card_present,true,duplicate_spend,false,0.134
+txn_005250,2025-12-04,Industrious,Yusuf Cohen,Operations,rent_facilities,13428.33,card_present,true,over_transaction_limit,false,0.035
+txn_004744,2025-12-04,Tartine,Wei Novak,Executive,meals_entertainment,5062.67,card_present,true,over_transaction_limit,false,0.044
+txn_002611,2025-12-04,Gunderson Dettmer,Yusuf Cohen,Finance,professional_services,7255.02,card_not_present,true,over_transaction_limit,false,0.023
+txn_004047,2025-12-04,Industrious,Zoe Diaz,Operations,rent_facilities,7103.8,card_not_present,true,over_transaction_limit,false,0.054
+txn_001754,2025-12-04,Industrious,Theo Park,Operations,rent_facilities,8887.42,card_not_present,true,over_transaction_limit,false,0.034
+txn_002539,2025-12-04,Gunderson Dettmer,Yusuf Cohen,Finance,professional_services,9316.15,card_present,true,over_transaction_limit,false,0.063
+txn_005286,2025-12-04,Industrious,Yusuf Cohen,Operations,rent_facilities,5074.66,card_not_present,false,missing_receipt over_transaction_limit,false,0.044
+txn_001826,2025-12-05,Industrious,Theo Park,Operations,rent_facilities,8895.0,card_present,false,missing_receipt over_transaction_limit,false,0.027
+txn_000454,2025-12-05,Amazon Business,Noah Patel,Finance,office_supplies,10046.51,card_not_present,true,over_transaction_limit,false,0.04
+txn_003521,2025-12-05,Dell Technologies,Sora Garcia,Engineering,hardware_equipment,5169.84,card_not_present,true,over_transaction_limit,false,0.053
+txn_003522,2025-12-05,Dell Technologies,Sora Garcia,Engineering,hardware_equipment,5169.84,card_not_present,true,duplicate_spend over_transaction_limit,false,0.086
+txn_002157,2025-12-05,Deloitte,Rosa Ahmed,Executive,professional_services,1233.5,card_not_present,false,missing_receipt,false,0.008
+txn_001097,2025-12-05,DoorDash,Lena Lopez,Sales,meals_entertainment,177.6,card_present,false,missing_receipt,false,0.027
+txn_005211,2025-12-05,Cooley LLP,Tara Rossi,Executive,professional_services,6179.45,card_present,true,over_transaction_limit,false,0.049
+txn_005385,2025-12-05,DoorDash,Ava Chen,Marketing,meals_entertainment,101.39,card_not_present,false,missing_receipt,false,0.002
+txn_001915,2025-12-05,LinkedIn Mktg,Imani Ito,Marketing,advertising,8071.27,card_not_present,true,over_transaction_limit,false,0.037
+txn_002902,2025-12-05,WeWork,Liam Haas,Operations,rent_facilities,5295.14,card_not_present,true,over_transaction_limit,false,0.015
+txn_002711,2025-12-05,WB Mason,Ava Chen,Operations,office_supplies,95.94,card_not_present,true,duplicate_spend,false,0.11
+txn_004235,2025-12-05,Industrious,Kenji Reed,Operations,rent_facilities,7691.84,card_not_present,true,over_transaction_limit,false,0.086
+txn_001257,2025-12-05,Sweetgreen,Omar Kim,Executive,meals_entertainment,5017.59,card_present,true,over_transaction_limit,false,0.037
+txn_002763,2025-12-05,Industrious,Ava Chen,Operations,rent_facilities,6681.22,card_not_present,true,over_transaction_limit,false,0.117
+txn_002650,2025-12-05,Cooley LLP,Yusuf Cohen,Finance,professional_services,6798.46,card_not_present,true,over_transaction_limit,false,0.079
+txn_004777,2025-12-05,PwC,Wei Novak,Executive,professional_services,8140.75,card_not_present,true,over_transaction_limit,false,0.046
+txn_002607,2025-12-05,PwC,Yusuf Cohen,Finance,professional_services,8791.45,card_not_present,true,over_transaction_limit,false,0.119
+txn_003942,2025-12-06,Tartine,Omar Kim,Executive,meals_entertainment,31.41,card_present,true,weekend_personal_spend,false,0.139
+txn_003421,2025-12-06,Philz Coffee,Diego Khan,Executive,meals_entertainment,19.95,card_present,true,weekend_personal_spend,false,0.127
+txn_005842,2025-12-06,PwC,Omar Kim,Executive,other,1070.44,card_not_present,false,,true,0.787
+txn_004756,2025-12-06,Sweetgreen,Wei Novak,Executive,meals_entertainment,57.99,card_not_present,true,weekend_personal_spend,false,0.114
+txn_004797,2025-12-06,Tartine,Rosa Ahmed,Engineering,meals_entertainment,60.58,card_not_present,true,weekend_personal_spend,false,0.095
+txn_000156,2025-12-06,Tartine,Liam Haas,Sales,meals_entertainment,179.03,card_not_present,true,weekend_personal_spend,false,0.091
+txn_003562,2025-12-07,Philz Coffee,Sora Garcia,Engineering,meals_entertainment,119.73,card_present,true,weekend_personal_spend,false,0.074
+txn_005010,2025-12-07,Blue Bottle,Sam Silva,Executive,meals_entertainment,16.09,card_not_present,true,weekend_personal_spend,false,0.181
+txn_002248,2025-12-08,Sweetgreen,Rosa Ahmed,Executive,meals_entertainment,95.76,card_present,false,missing_receipt,false,0.151
+txn_003896,2025-12-08,Chevron,Omar Kim,Executive,fuel,862.7,card_not_present,true,blocked_category,false,0.115
+txn_001858,2025-12-08,AT&T Business,Theo Park,Operations,utilities,207.96,card_present,false,missing_receipt,false,0.001
+txn_005604,2025-12-08,PwC,Liam Haas,Finance,professional_services,14873.3,card_not_present,true,over_transaction_limit,false,0.073
+txn_005075,2025-12-08,Deloitte,Sam Silva,Executive,professional_services,11123.94,card_not_present,true,over_transaction_limit,false,0.08
+txn_004998,2025-12-08,Philz Coffee,Sam Silva,Executive,meals_entertainment,39.33,card_not_present,true,duplicate_spend,false,0.103
+txn_000438,2025-12-08,Cooley LLP,Noah Patel,Finance,professional_services,10712.32,card_present,false,missing_receipt over_transaction_limit,false,0.056
+txn_002109,2025-12-08,WeWork,Wei Novak,Operations,rent_facilities,5501.83,card_present,true,over_transaction_limit,false,0.092
+txn_004186,2025-12-09,WeWork,Kenji Reed,Operations,rent_facilities,19677.01,card_not_present,true,over_transaction_limit,false,0.08
+txn_004197,2025-12-09,Industrious,Kenji Reed,Operations,rent_facilities,8368.74,card_not_present,false,missing_receipt over_transaction_limit,false,0.083
+txn_000817,2025-12-09,Gunderson Dettmer,Sora Garcia,Executive,professional_services,4984.0,card_not_present,false,missing_receipt,false,0.071
+txn_004159,2025-12-09,Costco Biz,Kenji Reed,Operations,office_supplies,365.4,card_not_present,false,missing_receipt,false,0.088
+txn_001337,2025-12-09,Gunderson Dettmer,Omar Kim,Executive,professional_services,7714.36,card_present,true,over_transaction_limit,false,0.029
+txn_004263,2025-12-09,Chevron,Kenji Reed,Operations,fuel,245.87,card_not_present,true,blocked_category,false,0.112
+txn_002548,2025-12-09,PwC,Yusuf Cohen,Finance,professional_services,6925.45,card_present,true,over_transaction_limit,false,0.025
+txn_004291,2025-12-09,Meta Ads,Nadia Okafor,Marketing,advertising,5884.93,card_present,true,over_transaction_limit,false,0.045
+txn_001843,2025-12-10,WeWork,Theo Park,Operations,rent_facilities,12028.66,card_not_present,true,over_transaction_limit,false,0.102
+txn_004219,2025-12-10,Industrious,Kenji Reed,Operations,rent_facilities,19431.41,card_not_present,true,over_transaction_limit,false,0.154
+txn_001793,2025-12-10,FedEx,Theo Park,Operations,shipping_logistics,291.28,card_present,true,duplicate_spend,false,0.026
+txn_004706,2025-12-10,Delta,Wei Novak,Executive,travel,917.25,card_not_present,false,missing_receipt,false,0.005
+txn_000921,2025-12-10,Cooley LLP,Sora Garcia,Executive,professional_services,7560.52,card_not_present,true,over_transaction_limit,false,0.131
+txn_003906,2025-12-10,PwC,Omar Kim,Executive,professional_services,6861.44,card_not_present,true,over_transaction_limit,false,0.066
+txn_005249,2025-12-10,Industrious,Yusuf Cohen,Operations,rent_facilities,10886.92,card_not_present,true,over_transaction_limit,false,0.034
+txn_004109,2025-12-11,Industrious,Zoe Diaz,Operations,rent_facilities,7321.03,card_present,true,over_transaction_limit,false,0.075
+txn_002838,2025-12-11,WeWork,Liam Haas,Operations,rent_facilities,14707.19,card_not_present,true,over_transaction_limit,false,0.033
+txn_002190,2025-12-11,PwC,Rosa Ahmed,Executive,professional_services,3946.71,card_not_present,false,missing_receipt,false,0.022
+txn_002472,2025-12-11,Deloitte,Tara Rossi,Finance,professional_services,7197.8,card_present,true,over_transaction_limit,false,0.028
+txn_000328,2025-12-11,GitHub,Maya Nguyen,Marketing,software_saas,90.5,recurring,false,missing_receipt,false,0.06
+txn_003342,2025-12-11,PwC,Diego Khan,Executive,professional_services,5265.09,card_present,true,over_transaction_limit,false,0.021
+txn_004403,2025-12-11,Datadog,Theo Park,Sales,software_saas,105.66,card_present,true,duplicate_spend,false,0.032
+txn_002884,2025-12-11,Chevron,Liam Haas,Operations,fuel,15.42,card_not_present,true,blocked_category,false,0.089
+txn_003515,2025-12-11,Tartine,Sora Garcia,Engineering,meals_entertainment,77.87,card_not_present,false,missing_receipt,false,0.021
+txn_002878,2025-12-11,WeWork,Liam Haas,Operations,rent_facilities,16385.59,card_present,true,over_transaction_limit,false,0.089
+txn_002497,2025-12-11,PwC,Tara Rossi,Finance,professional_services,11402.85,card_present,true,over_transaction_limit,false,0.041
+txn_004409,2025-12-11,Delta,Theo Park,Sales,travel,218.84,card_not_present,false,missing_receipt,false,0.052
+txn_000783,2025-12-11,Chevron,Diego Khan,Executive,fuel,4325.81,card_present,true,blocked_category,false,0.143
+txn_002519,2025-12-12,Deloitte,Tara Rossi,Finance,professional_services,5788.26,card_present,true,over_transaction_limit,false,0.021
+txn_002531,2025-12-12,WB Mason,Yusuf Cohen,Finance,office_supplies,5088.13,card_present,true,over_transaction_limit,false,0.024
+txn_004351,2025-12-12,Meta Ads,Nadia Okafor,Marketing,advertising,5883.85,card_not_present,true,over_transaction_limit,false,0.069
+txn_005073,2025-12-12,Cooley LLP,Sam Silva,Executive,professional_services,8762.42,card_present,true,over_transaction_limit,false,0.085
+txn_002020,2025-12-12,FedEx,Wei Novak,Operations,shipping_logistics,166.18,card_present,false,missing_receipt,false,0.062
+txn_002821,2025-12-12,Industrious,Liam Haas,Operations,rent_facilities,20239.97,card_present,true,over_transaction_limit,false,0.04
+txn_003595,2025-12-12,Meta Ads,Ivan Mori,Marketing,advertising,8491.86,card_not_present,false,missing_receipt over_transaction_limit,false,0.038
+txn_002223,2025-12-12,Chevron,Rosa Ahmed,Executive,fuel,1391.57,card_present,true,blocked_category,false,0.068
+txn_002209,2025-12-12,PwC,Rosa Ahmed,Executive,professional_services,7883.55,card_not_present,true,over_transaction_limit,false,0.049
+txn_004115,2025-12-12,Industrious,Zoe Diaz,Operations,rent_facilities,7741.86,card_not_present,true,over_transaction_limit,false,0.047
+txn_003324,2025-12-12,Cooley LLP,Diego Khan,Executive,professional_services,1354.18,card_not_present,false,missing_receipt,false,0.036
+txn_003353,2025-12-12,Cooley LLP,Diego Khan,Executive,professional_services,10970.86,card_not_present,true,over_transaction_limit,false,0.078
+txn_001433,2025-12-12,Tartine,Zoe Diaz,Marketing,meals_entertainment,5096.86,card_present,true,over_transaction_limit,false,0.116
+txn_005426,2025-12-12,Chevron,Ava Chen,Marketing,fuel,68.98,card_not_present,true,blocked_category,false,0.131
+txn_005594,2025-12-12,PwC,Liam Haas,Finance,professional_services,3310.46,card_present,true,duplicate_spend,false,0.093
+txn_005851,2025-12-13,CryptoTopUp Pro,Diego Khan,Executive,other,750.0,card_not_present,false,,true,0.976
+txn_000878,2025-12-13,United Airlines,Sora Garcia,Executive,travel,888.63,card_not_present,false,missing_receipt,false,0.167
+txn_005845,2025-12-13,Peer2Peer Cash US,Ava Chen,Engineering,other,403.0,card_not_present,false,,true,0.857
+txn_003003,2025-12-14,Tartine,Maya Nguyen,Marketing,meals_entertainment,129.09,card_present,true,weekend_personal_spend,false,0.14
+txn_004795,2025-12-14,Blue Bottle,Wei Novak,Executive,meals_entertainment,72.01,card_not_present,true,weekend_personal_spend,false,0.127
+txn_001871,2025-12-14,Hudson Pacific,Theo Park,Operations,rent_facilities,17806.25,card_present,true,over_transaction_limit,false,0.11
+txn_005843,2025-12-14,PrepaidHub US,Ava Chen,Engineering,other,1094.0,card_not_present,false,,true,0.807
+txn_003787,2025-12-14,Sweetgreen,Lena Lopez,Engineering,meals_entertainment,97.54,card_not_present,true,weekend_personal_spend,false,0.093
+txn_005844,2025-12-14,Peer2Peer Cash US,Ava Chen,Engineering,other,995.0,card_not_present,false,,true,0.794
+txn_005575,2025-12-15,Cooley LLP,Liam Haas,Finance,professional_services,6897.25,card_not_present,true,over_transaction_limit,false,0.083
+txn_003995,2025-12-15,Cooley LLP,Omar Kim,Executive,professional_services,6982.41,card_present,true,over_transaction_limit,false,0.099
+txn_000678,2025-12-15,Blue Bottle,Diego Khan,Executive,meals_entertainment,216.75,card_present,false,missing_receipt,false,0.058
+txn_003851,2025-12-15,Datadog,Lena Lopez,Engineering,software_saas,140.45,recurring,false,missing_receipt,false,0.052
+txn_003406,2025-12-15,Tartine,Diego Khan,Executive,meals_entertainment,202.83,card_not_present,false,missing_receipt,false,0.022
+txn_004224,2025-12-15,Industrious,Kenji Reed,Operations,rent_facilities,5109.91,card_present,true,over_transaction_limit,false,0.065
+txn_002337,2025-12-15,Datadog,Sam Silva,Marketing,software_saas,217.67,card_present,false,missing_receipt,false,0.038
+txn_002819,2025-12-15,WeWork,Liam Haas,Operations,rent_facilities,6969.76,card_not_present,true,over_transaction_limit,false,0.085
+txn_004714,2025-12-15,Gunderson Dettmer,Wei Novak,Executive,professional_services,3698.52,card_not_present,true,duplicate_spend,false,0.047
+txn_002470,2025-12-16,Gunderson Dettmer,Tara Rossi,Finance,professional_services,7509.87,card_present,true,over_transaction_limit,false,0.084
+txn_004201,2025-12-16,Industrious,Kenji Reed,Operations,rent_facilities,21059.05,card_not_present,true,over_transaction_limit,false,0.122
+txn_003212,2025-12-16,DoorDash,Priya Singh,Executive,meals_entertainment,157.45,card_present,false,missing_receipt,false,0.015
+txn_002062,2025-12-16,Industrious,Wei Novak,Operations,rent_facilities,14268.77,card_not_present,true,over_transaction_limit,false,0.124
+txn_003613,2025-12-16,TikTok Biz,Ivan Mori,Marketing,advertising,5424.94,card_present,true,over_transaction_limit,false,0.02
+txn_002709,2025-12-16,Industrious,Ava Chen,Operations,rent_facilities,11662.27,card_present,true,over_transaction_limit,false,0.089
+txn_004148,2025-12-16,Industrious,Kenji Reed,Operations,rent_facilities,10287.76,card_present,true,over_transaction_limit,false,0.067
+txn_005581,2025-12-17,Gunderson Dettmer,Liam Haas,Finance,professional_services,948.61,card_not_present,false,missing_receipt,false,0.058
+txn_004996,2025-12-17,Cooley LLP,Sam Silva,Executive,professional_services,5517.39,card_present,true,over_transaction_limit,false,0.077
+txn_003373,2025-12-17,PwC,Diego Khan,Executive,professional_services,8607.56,card_present,true,over_transaction_limit,false,0.041
+txn_004684,2025-12-17,Gunderson Dettmer,Wei Novak,Executive,professional_services,5932.04,card_present,true,over_transaction_limit,false,0.024
+txn_005836,2025-12-17,PrepaidHub US,Kenji Reed,Operations,other,1177.0,card_not_present,false,,true,0.875
+txn_005833,2025-12-17,PrepaidHub US,Kenji Reed,Operations,other,1197.0,card_not_present,false,,true,0.804
+txn_000212,2025-12-17,Delta,Liam Haas,Sales,travel,396.73,card_not_present,false,missing_receipt,false,0.005
+txn_000972,2025-12-17,Snowflake,Ivan Mori,Engineering,software_saas,292.57,card_not_present,false,missing_receipt,false,0.01
+txn_000479,2025-12-17,Deloitte,Noah Patel,Finance,professional_services,11429.59,card_not_present,true,over_transaction_limit,false,0.033
+txn_005834,2025-12-17,QuickResale US,Kenji Reed,Operations,other,408.0,card_not_present,false,,true,0.834
+txn_005835,2025-12-17,QuickResale US,Kenji Reed,Operations,other,1190.0,card_not_present,false,,true,0.811
+txn_000939,2025-12-17,Gunderson Dettmer,Sora Garcia,Executive,professional_services,5741.42,card_present,true,over_transaction_limit,false,0.089
+txn_005840,2025-12-17,PrepaidHub US,Liam Haas,Finance,other,908.0,card_not_present,false,,true,0.869
+txn_002128,2025-12-17,WeWork,Wei Novak,Operations,rent_facilities,6857.03,card_not_present,true,over_transaction_limit,false,0.086
+txn_004310,2025-12-17,Snowflake,Nadia Okafor,Marketing,software_saas,5050.51,card_not_present,true,over_transaction_limit,false,0.038
+txn_004021,2025-12-18,Hudson Pacific,Zoe Diaz,Operations,rent_facilities,5860.13,card_not_present,false,missing_receipt over_transaction_limit,false,0.08
+txn_001807,2025-12-18,Industrious,Theo Park,Operations,rent_facilities,15465.4,card_not_present,true,over_transaction_limit,false,0.053
+txn_005181,2025-12-18,PwC,Tara Rossi,Executive,professional_services,10233.7,card_present,true,over_transaction_limit,false,0.051
+txn_000760,2025-12-18,Delta,Diego Khan,Executive,travel,1252.58,card_not_present,false,missing_receipt,false,0.052
+txn_002749,2025-12-18,Industrious,Ava Chen,Operations,rent_facilities,5849.71,card_present,true,over_transaction_limit,false,0.077
+txn_005325,2025-12-18,Industrious,Yusuf Cohen,Operations,rent_facilities,5458.87,card_not_present,true,over_transaction_limit,false,0.041
+txn_005837,2025-12-18,MarketplaceX US,Kenji Reed,Operations,other,1343.0,card_not_present,false,,true,0.832
+txn_002740,2025-12-18,Industrious,Ava Chen,Operations,rent_facilities,18704.93,card_not_present,true,over_transaction_limit,false,0.129
+txn_002161,2025-12-18,Gunderson Dettmer,Rosa Ahmed,Executive,professional_services,6326.47,card_not_present,true,over_transaction_limit,false,0.028
+txn_005251,2025-12-18,WeWork,Yusuf Cohen,Operations,rent_facilities,19101.02,card_not_present,true,over_transaction_limit,false,0.052
+txn_005839,2025-12-18,MarketplaceX US,Liam Haas,Finance,other,676.0,card_not_present,false,,true,0.854
+txn_000770,2025-12-18,Airbnb Biz,Diego Khan,Executive,travel,1023.66,card_present,false,missing_receipt,false,0.019
+txn_001997,2025-12-18,LinkedIn Mktg,Imani Ito,Marketing,advertising,7775.63,card_present,true,over_transaction_limit,false,0.036
+txn_005831,2025-12-18,QuickResale US,Kenji Reed,Operations,other,309.0,card_not_present,false,,true,0.806
+txn_004679,2025-12-18,PwC,Wei Novak,Executive,professional_services,8393.7,card_not_present,true,over_transaction_limit,false,0.044
+txn_000941,2025-12-18,PwC,Sora Garcia,Executive,professional_services,5713.79,card_not_present,true,over_transaction_limit,false,0.094
+txn_002897,2025-12-18,Industrious,Liam Haas,Operations,rent_facilities,7000.41,card_not_present,true,over_transaction_limit,false,0.057
+txn_005838,2025-12-18,Peer2Peer Cash US,Liam Haas,Finance,other,345.0,card_not_present,false,,true,0.857
+txn_005841,2025-12-18,PrepaidHub US,Liam Haas,Finance,other,808.0,card_not_present,false,,true,0.828
+txn_005117,2025-12-18,Chevron,Tara Rossi,Executive,fuel,614.11,card_present,false,blocked_category missing_receipt,false,0.096
+txn_005832,2025-12-18,Peer2Peer Cash US,Kenji Reed,Operations,other,822.0,card_not_present,false,,true,0.843
+txn_002182,2025-12-19,Deloitte,Rosa Ahmed,Executive,professional_services,7652.78,card_not_present,true,over_transaction_limit,false,0.091
+txn_000364,2025-12-19,TikTok Biz,Maya Nguyen,Marketing,advertising,10745.87,card_not_present,true,over_transaction_limit,false,0.115
+txn_000897,2025-12-19,PwC,Sora Garcia,Executive,professional_services,709.43,card_not_present,false,missing_receipt,false,0.111
+txn_000841,2025-12-19,Delta,Sora Garcia,Executive,travel,360.72,card_present,false,missing_receipt,false,0.205
+txn_005373,2025-12-19,Meta Ads,Ava Chen,Marketing,advertising,3359.74,card_not_present,false,missing_receipt,false,0.024
+txn_004343,2025-12-19,Chevron,Nadia Okafor,Marketing,fuel,73.24,card_present,true,blocked_category,false,0.096
+txn_001966,2025-12-19,Chevron,Imani Ito,Marketing,fuel,866.46,card_not_present,true,blocked_category,false,0.064
+txn_002827,2025-12-19,WeWork,Liam Haas,Operations,rent_facilities,5660.75,card_not_present,true,over_transaction_limit,false,0.021
+txn_004170,2025-12-19,WeWork,Kenji Reed,Operations,rent_facilities,7763.79,card_not_present,true,over_transaction_limit,false,0.066
+txn_005381,2025-12-19,Meta Ads,Ava Chen,Marketing,advertising,5237.45,card_present,true,over_transaction_limit,false,0.022
+txn_001755,2025-12-19,Industrious,Theo Park,Operations,rent_facilities,8685.71,card_present,true,over_transaction_limit,false,0.032
+txn_002594,2025-12-19,Amazon Business,Yusuf Cohen,Finance,office_supplies,365.67,card_present,false,missing_receipt,false,0.002
+txn_002105,2025-12-19,Industrious,Wei Novak,Operations,rent_facilities,5316.77,card_not_present,true,over_transaction_limit,false,0.103
+txn_001544,2025-12-19,Apple Store,Kenji Reed,Engineering,hardware_equipment,755.9,card_present,false,missing_receipt,false,0.057
+txn_004103,2025-12-19,Costco Biz,Zoe Diaz,Operations,office_supplies,25.76,card_not_present,true,duplicate_spend,false,0.044
+txn_000473,2025-12-19,GitHub,Noah Patel,Finance,software_saas,38.87,card_present,true,duplicate_spend,false,0.036
+txn_002278,2025-12-19,Meta Ads,Sam Silva,Marketing,advertising,5410.53,card_not_present,true,over_transaction_limit,false,0.027
+txn_003607,2025-12-19,Chevron,Ivan Mori,Marketing,fuel,827.74,card_not_present,true,blocked_category,false,0.105
+txn_002735,2025-12-19,Industrious,Ava Chen,Operations,rent_facilities,5587.14,card_present,true,over_transaction_limit,false,0.113
+txn_004617,2025-12-19,TikTok Biz,Imani Ito,Marketing,advertising,5858.93,card_present,true,over_transaction_limit,false,0.031
+txn_001084,2025-12-19,Best Buy Biz,Ivan Mori,Engineering,hardware_equipment,523.62,card_not_present,false,missing_receipt,false,0.041
+txn_005805,2025-12-20,CryptoTopUp Pro,Omar Kim,Executive,other,750.0,card_not_present,false,,true,0.992
+txn_005808,2025-12-20,EverGadget Outlet,Omar Kim,Executive,other,500.0,card_not_present,false,,true,0.966
+txn_005799,2025-12-20,LuxeResell,Sam Silva,Executive,other,750.0,card_not_present,false,,true,0.974
+txn_005798,2025-12-20,LuxeResell,Sam Silva,Executive,other,2000.0,card_not_present,false,,true,0.951
+txn_005803,2025-12-20,EverGadget Outlet,Sam Silva,Executive,other,750.0,card_not_present,false,,true,0.958
+txn_005804,2025-12-20,EverGadget Outlet,Omar Kim,Executive,other,500.0,card_not_present,false,,true,0.954
+txn_002253,2025-12-20,Sweetgreen,Rosa Ahmed,Executive,meals_entertainment,159.3,card_not_present,true,weekend_personal_spend,false,0.135
+txn_003610,2025-12-20,LinkedIn Mktg,Ivan Mori,Marketing,advertising,7066.73,card_not_present,true,over_transaction_limit,false,0.126
+txn_004729,2025-12-20,Sweetgreen,Wei Novak,Executive,meals_entertainment,191.58,card_not_present,true,weekend_personal_spend,false,0.126
+txn_005801,2025-12-20,EverGadget Outlet,Sam Silva,Executive,other,750.0,card_not_present,false,,true,0.935
+txn_005802,2025-12-20,GiftCardVault,Sam Silva,Executive,other,1500.0,card_not_present,false,,true,0.955
+txn_005800,2025-12-21,GiftCardVault,Sam Silva,Executive,other,1500.0,card_not_present,false,,true,0.95
+txn_005809,2025-12-21,QuickPrepaid,Omar Kim,Executive,other,1000.0,card_not_present,false,,true,0.951
+txn_005807,2025-12-21,LuxeResell,Omar Kim,Executive,other,1000.0,card_not_present,false,,true,0.958
+txn_005806,2025-12-21,CryptoTopUp Pro,Omar Kim,Executive,other,750.0,card_not_present,false,,true,0.948
+txn_001371,2025-12-21,Tartine,Zoe Diaz,Marketing,meals_entertainment,38.34,card_not_present,true,weekend_personal_spend,false,0.166
+txn_002869,2025-12-21,PG&E,Liam Haas,Operations,utilities,113.96,card_not_present,false,missing_receipt,false,0.077
+txn_003712,2025-12-21,Philz Coffee,Ivan Mori,Marketing,meals_entertainment,62.93,card_not_present,true,weekend_personal_spend,false,0.09
+txn_001473,2025-12-21,DoorDash,Zoe Diaz,Marketing,meals_entertainment,48.55,card_not_present,true,weekend_personal_spend,false,0.119
+txn_000741,2025-12-22,Uber,Diego Khan,Executive,travel,363.49,card_not_present,false,missing_receipt,false,0.027
+txn_001267,2025-12-22,Cooley LLP,Omar Kim,Executive,professional_services,7161.2,card_present,true,over_transaction_limit,false,0.047
+txn_004704,2025-12-22,Cooley LLP,Wei Novak,Executive,professional_services,6758.52,card_present,true,over_transaction_limit,false,0.057
+txn_004166,2025-12-22,Hudson Pacific,Kenji Reed,Operations,rent_facilities,6152.79,card_not_present,true,over_transaction_limit,false,0.061
+txn_002792,2025-12-22,WeWork,Liam Haas,Operations,rent_facilities,18978.52,card_present,true,over_transaction_limit,false,0.042
+txn_003234,2025-12-22,Gunderson Dettmer,Priya Singh,Executive,professional_services,939.16,card_not_present,false,missing_receipt,false,0.01
+txn_004184,2025-12-22,WeWork,Kenji Reed,Operations,rent_facilities,13121.1,card_not_present,true,over_transaction_limit,false,0.069
+txn_001500,2025-12-22,Datadog,Kenji Reed,Engineering,software_saas,5449.06,card_not_present,true,over_transaction_limit,false,0.035
+txn_002333,2025-12-22,Google Ads,Sam Silva,Marketing,advertising,5474.49,card_present,true,over_transaction_limit,false,0.026
+txn_004624,2025-12-22,Google Ads,Imani Ito,Marketing,advertising,5429.89,card_not_present,true,over_transaction_limit,false,0.022
+txn_002528,2025-12-23,PwC,Yusuf Cohen,Finance,professional_services,5392.16,card_not_present,true,over_transaction_limit,false,0.088
+txn_001846,2025-12-23,Industrious,Theo Park,Operations,rent_facilities,17845.44,card_not_present,false,missing_receipt over_transaction_limit,false,0.036
+txn_000876,2025-12-23,PwC,Sora Garcia,Executive,professional_services,9518.24,card_present,true,over_transaction_limit,false,0.099
+txn_005534,2025-12-23,Deloitte,Liam Haas,Finance,professional_services,5914.79,card_not_present,true,over_transaction_limit,false,0.062
+txn_004050,2025-12-23,WeWork,Zoe Diaz,Operations,rent_facilities,3718.99,card_present,false,missing_receipt,false,0.02
+txn_002058,2025-12-23,Hudson Pacific,Wei Novak,Operations,rent_facilities,18594.13,card_not_present,true,over_transaction_limit,false,0.11
+txn_005538,2025-12-24,Deloitte,Liam Haas,Finance,professional_services,11316.87,card_present,true,over_transaction_limit,false,0.074
+txn_001061,2025-12-24,Apple Store,Ivan Mori,Engineering,hardware_equipment,689.19,card_present,false,missing_receipt,false,0.018
+txn_003011,2025-12-24,DoorDash,Maya Nguyen,Marketing,meals_entertainment,5140.62,card_not_present,true,over_transaction_limit,false,0.019
+txn_001408,2025-12-24,Datadog,Zoe Diaz,Marketing,software_saas,232.95,card_present,true,duplicate_spend,false,0.078
+txn_002370,2025-12-24,Meta Ads,Sam Silva,Marketing,advertising,6856.67,card_present,true,over_transaction_limit,false,0.044
+txn_001388,2025-12-24,TikTok Biz,Zoe Diaz,Marketing,advertising,5212.61,card_not_present,true,over_transaction_limit,false,0.13
+txn_001684,2025-12-24,Apple Store,Nadia Okafor,Engineering,hardware_equipment,185.17,card_present,false,missing_receipt,false,0.001
+txn_001374,2025-12-24,Datadog,Zoe Diaz,Marketing,software_saas,5901.66,recurring,true,over_transaction_limit,false,0.122
+txn_002150,2025-12-24,Hudson Pacific,Wei Novak,Operations,rent_facilities,5824.2,card_not_present,true,over_transaction_limit,false,0.078
+txn_004820,2025-12-24,Dell Technologies,Rosa Ahmed,Engineering,hardware_equipment,181.84,card_not_present,false,missing_receipt,false,0.022
+txn_005283,2025-12-25,Hudson Pacific,Yusuf Cohen,Operations,rent_facilities,11593.86,card_present,true,over_transaction_limit,false,0.123
+txn_000512,2025-12-25,PwC,Noah Patel,Finance,professional_services,10904.62,card_present,true,over_transaction_limit,false,0.046
+txn_002033,2025-12-25,PG&E,Wei Novak,Operations,utilities,5140.46,card_not_present,true,over_transaction_limit,false,0.095
+txn_000957,2025-12-25,Apple Store,Ivan Mori,Engineering,hardware_equipment,442.14,card_not_present,false,missing_receipt,false,0.009
+txn_000934,2025-12-25,Deloitte,Sora Garcia,Executive,professional_services,5353.75,card_not_present,true,over_transaction_limit,false,0.083
+txn_000241,2025-12-25,Tartine,Liam Haas,Sales,meals_entertainment,139.65,card_not_present,false,missing_receipt,false,0.03
+txn_003290,2025-12-25,Cooley LLP,Priya Singh,Executive,professional_services,3952.28,card_present,true,duplicate_spend,false,0.059
+txn_001557,2025-12-25,Philz Coffee,Kenji Reed,Engineering,meals_entertainment,94.19,card_not_present,false,missing_receipt,false,0.011
+txn_002844,2025-12-25,Industrious,Liam Haas,Operations,rent_facilities,9480.12,card_not_present,true,over_transaction_limit,false,0.021
+txn_001735,2025-12-25,Hudson Pacific,Theo Park,Operations,rent_facilities,13016.07,card_present,true,over_transaction_limit,false,0.053
+txn_005315,2025-12-25,Industrious,Yusuf Cohen,Operations,rent_facilities,18670.2,card_not_present,false,missing_receipt over_transaction_limit,false,0.045
+txn_000657,2025-12-25,Hudson Pacific,Priya Singh,Operations,rent_facilities,18632.49,card_present,true,over_transaction_limit,false,0.06
+txn_001730,2025-12-25,Philz Coffee,Nadia Okafor,Engineering,meals_entertainment,76.01,card_present,true,duplicate_spend,false,0.024
+txn_000811,2025-12-25,Delta,Diego Khan,Executive,travel,859.62,card_not_present,false,missing_receipt,false,0.015
+txn_003411,2025-12-25,Gunderson Dettmer,Diego Khan,Executive,professional_services,5260.35,card_not_present,true,over_transaction_limit,false,0.036
+txn_004234,2025-12-25,Industrious,Kenji Reed,Operations,rent_facilities,12428.3,card_present,false,missing_receipt over_transaction_limit,false,0.08
+txn_004888,2025-12-25,Chevron,Rosa Ahmed,Engineering,fuel,49.89,card_not_present,true,blocked_category,false,0.092
+txn_004889,2025-12-25,Chevron,Rosa Ahmed,Engineering,fuel,49.89,card_not_present,true,blocked_category duplicate_spend,false,0.079
+txn_005855,2025-12-26,QuickPrepaid,Diego Khan,Executive,other,250.0,card_not_present,false,,true,0.963
+txn_005149,2025-12-26,United Airlines,Tara Rossi,Executive,travel,344.61,card_not_present,false,missing_receipt,false,0.075
+txn_005150,2025-12-26,United Airlines,Tara Rossi,Executive,travel,344.61,card_not_present,false,duplicate_spend missing_receipt,false,0.088
+txn_000331,2025-12-26,Blue Bottle,Maya Nguyen,Marketing,meals_entertainment,27.15,card_not_present,true,duplicate_spend,false,0.166
+txn_005577,2025-12-26,PwC,Liam Haas,Finance,professional_services,11698.39,card_present,true,over_transaction_limit,false,0.075
+txn_000886,2025-12-26,Sweetgreen,Sora Garcia,Executive,meals_entertainment,5023.68,card_not_present,true,over_transaction_limit,false,0.109
+txn_000627,2025-12-26,Industrious,Priya Singh,Operations,rent_facilities,19699.65,card_not_present,true,over_transaction_limit,false,0.04
+txn_005223,2025-12-26,Cooley LLP,Tara Rossi,Executive,professional_services,6357.54,card_present,true,over_transaction_limit,false,0.055
+txn_002093,2025-12-26,Costco Biz,Wei Novak,Operations,office_supplies,134.28,card_present,false,missing_receipt,false,0.063
+txn_000110,2025-12-26,Chevron,Ava Chen,Engineering,fuel,888.23,card_present,true,blocked_category,false,0.096
+txn_000647,2025-12-26,Costco Biz,Priya Singh,Operations,office_supplies,132.72,card_not_present,false,missing_receipt,false,0.011
+txn_004426,2025-12-26,Snowflake,Theo Park,Sales,software_saas,638.72,recurring,false,missing_receipt,false,0.048
+txn_005000,2025-12-26,Cooley LLP,Sam Silva,Executive,professional_services,9088.31,card_not_present,true,over_transaction_limit,false,0.102
+txn_004022,2025-12-26,Industrious,Zoe Diaz,Operations,rent_facilities,17806.42,card_present,true,over_transaction_limit,false,0.082
+txn_002861,2025-12-26,USPS Biz,Liam Haas,Operations,shipping_logistics,5166.55,card_present,true,over_transaction_limit,false,0.081
+txn_003403,2025-12-26,Tartine,Diego Khan,Executive,meals_entertainment,5024.77,card_not_present,true,over_transaction_limit,false,0.109
+txn_004130,2025-12-26,Industrious,Zoe Diaz,Operations,rent_facilities,10433.36,card_not_present,true,over_transaction_limit,false,0.115
+txn_004131,2025-12-26,Industrious,Zoe Diaz,Operations,rent_facilities,10433.36,card_not_present,true,duplicate_spend over_transaction_limit,false,0.13
+txn_005216,2025-12-27,Philz Coffee,Tara Rossi,Executive,meals_entertainment,5132.26,card_present,true,over_transaction_limit weekend_personal_spend,false,0.098
+txn_003885,2025-12-27,Cooley LLP,Omar Kim,Executive,professional_services,7092.07,card_present,true,over_transaction_limit,false,0.161
+txn_004264,2025-12-27,Industrious,Kenji Reed,Operations,rent_facilities,13375.03,card_present,true,over_transaction_limit,false,0.165
+txn_001914,2025-12-28,Philz Coffee,Imani Ito,Marketing,meals_entertainment,180.75,card_not_present,true,weekend_personal_spend,false,0.083
+txn_004098,2025-12-29,Industrious,Zoe Diaz,Operations,rent_facilities,8202.06,card_not_present,true,over_transaction_limit,false,0.038
+txn_004105,2025-12-29,WeWork,Zoe Diaz,Operations,rent_facilities,5960.95,card_not_present,true,over_transaction_limit,false,0.017
+txn_002064,2025-12-29,WeWork,Wei Novak,Operations,rent_facilities,8316.51,card_present,true,over_transaction_limit,false,0.101
+txn_000639,2025-12-29,Industrious,Priya Singh,Operations,rent_facilities,13073.81,card_not_present,true,over_transaction_limit,false,0.064
+txn_001131,2025-12-29,United Airlines,Lena Lopez,Sales,travel,489.32,card_not_present,false,missing_receipt,false,0.02
+txn_001109,2025-12-29,Airbnb Biz,Lena Lopez,Sales,travel,478.69,card_not_present,false,missing_receipt,false,0.035
+txn_003605,2025-12-29,GitHub,Ivan Mori,Marketing,software_saas,258.88,recurring,true,duplicate_spend,false,0.08
+txn_005309,2025-12-30,WeWork,Yusuf Cohen,Operations,rent_facilities,13701.11,card_present,true,over_transaction_limit,false,0.091
+txn_001929,2025-12-30,Linear,Imani Ito,Marketing,software_saas,98.48,recurring,false,missing_receipt,false,0.052
+txn_002913,2025-12-30,WeWork,Liam Haas,Operations,rent_facilities,6610.66,card_present,true,over_transaction_limit,false,0.034
+txn_004582,2025-12-30,Meta Ads,Imani Ito,Marketing,advertising,7880.09,card_not_present,true,over_transaction_limit,false,0.042
+txn_002722,2025-12-30,WeWork,Ava Chen,Operations,rent_facilities,14442.59,card_not_present,true,over_transaction_limit,false,0.098
+txn_005410,2025-12-30,Tartine,Ava Chen,Marketing,meals_entertainment,146.67,card_present,false,missing_receipt,false,0.018
+txn_002911,2025-12-30,Industrious,Liam Haas,Operations,rent_facilities,10770.57,card_not_present,true,over_transaction_limit,false,0.032
+txn_001814,2025-12-31,WeWork,Theo Park,Operations,rent_facilities,10969.72,card_not_present,true,over_transaction_limit,false,0.034
+txn_000132,2025-12-31,Chevron,Ava Chen,Engineering,fuel,654.84,recurring,true,blocked_category,false,0.108
+txn_002910,2025-12-31,Industrious,Liam Haas,Operations,rent_facilities,11041.64,card_not_present,true,over_transaction_limit,false,0.036
+txn_004689,2025-12-31,Delta,Wei Novak,Executive,travel,736.94,card_present,false,missing_receipt,false,0.096
+txn_004707,2025-12-31,Uber,Wei Novak,Executive,travel,5362.66,card_not_present,true,over_transaction_limit,false,0.143
+txn_000865,2025-12-31,PwC,Sora Garcia,Executive,professional_services,9910.8,card_present,true,over_transaction_limit,false,0.104
+txn_004556,2025-12-31,DoorDash,Imani Ito,Marketing,meals_entertainment,78.53,card_not_present,false,missing_receipt,false,0.004
+txn_003831,2025-12-31,Tartine,Lena Lopez,Engineering,meals_entertainment,153.12,card_present,false,missing_receipt,false,0.016
+txn_003299,2025-12-31,Cooley LLP,Priya Singh,Executive,professional_services,5878.44,card_not_present,true,over_transaction_limit,false,0.041

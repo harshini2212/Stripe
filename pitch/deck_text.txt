@@ -1,0 +1,114 @@
+
+=================== SLIDE 1 ===================
+  TEXT[Google Shape;47;p9]: Harshini Vijaya Kumar | NYU CSE Masters, Ex-Founder, Researcher,
+  TEXT[Google Shape;50;p9]: Try it live | hebbia.up.railway.app
+    GROUPTEXT[Google Shape;52;p9]: Check it out!
+   [GROUP] Google Shape;51;p9
+   [PICTURE] Google Shape;54;p9
+    GROUPTEXT[Google Shape;57;p9]: emailhv2201@nyu.eduphone+1 (848) 240-7937
+   [GROUP] Google Shape;55;p9
+   [PICTURE] Google Shape;58;p9
+
+=================== SLIDE 2 ===================
+  TEXT[Google Shape;64;p10]: Why Hebbia?
+  TEXT[Google Shape;66;p10]: The reason Hebbia caught my attention: a lot of my recent work is about
+  TEXT[Google Shape;67;p10]: making LLM output over financial data actually trustworthy.
+  TEXT[Google Shape;74;p10]: TECHNICAL CO-FOUNDER | Causal financial simulation engine for CFOs
+  TEXT[Google Shape;85;p10]: DESIGNED & BUILT | Agentic causal-graph engine for headcount & cash-runway
+    GROUPTEXT[Google Shape;88;p10]: Roles I'm interested in: | Backend Engineer, Agents (1c18a253-3c4d-4e5a-952d-cd35ba690ea7) | Forward Deployed Engineer (b35852eb-97ac-491a-b375-91fd13d0b7b3)
+   [GROUP] Google Shape;86;p10
+
+=================== SLIDE 3 ===================
+    GROUPTEXT[Google Shape;95;p11]: Case Study: Hebbify 
+   [GROUP] Google Shape;94;p11
+  TEXT[Google Shape;97;p11]: Solving the Reliability Problem | I built Hebbify, a financial answer-evaluation harness that verifies LLM-extracted SEC figures against rigid accounting identities so Hebbia can scale autonomous analysis without the risk of shipping a hallucinated number to a client. | Link:  hebbia.up.railway.app  
+    GROUPTEXT[Google Shape;100;p11]: By enforcing fundamental accounting laws at the extraction layer, this harness mitigates hallucinations and ensures the data integrity essential for complex financial reasoning.
+   [GROUP] Google Shape;98;p11
+   [PICTURE] Google Shape;101;p11
+   [GROUP] Google Shape;102;p11
+
+=================== SLIDE 4 ===================
+  TEXT[Google Shape;117;p12]: ERP + CRM: exactly how they help
+  TEXT[Google Shape;119;p12]: Matrix’s real job is unifying internal company data with external filings — checked by the same engine.
+  TEXT[Google Shape;121;p12]: 📄  External | SEC 10-K · XBRL
+  TEXT[Google Shape;123;p12]: 🗄  Internal | ERP + CRM ledger
+  TEXT[Google Shape;126;p12]: Hebbify engine | does the granular detail | reconcile to the filed total?
+  TEXT[Google Shape;129;p12]: ✓ Verified | diligence insight
+  TEXT[Google Shape;130;p12]: Synthetic ERP/CRM is calibrated to the company’s real XBRL — and tie-out proves it reconciles. “Calibrated demo data.”
+  TEXT[Google Shape;132;p12]: ERP (NetSuite) unlocks
+  TEXT[Google Shape;133;p12]: •  Customer concentration — top-5 % of revenue, never broken out in the 10-K. | •  Underlying growth — the real rate, ex the largest customer. | •  DSO drift — collections slowing, before the cash-flow statement.
+  TEXT[Google Shape;135;p12]: CRM (Salesforce) unlocks
+  TEXT[Google Shape;136;p12]: •  Net revenue retention — cohort expansion net of churn. | •  Pipeline coverage — does pipeline cover next year’s growth need? | •  Recurring vs one-time — how much of the top line actually repeats.
+  TEXT[Google Shape;138;p12]: The same engine that grades the filing proves the internal ledger ties out to it — the trust layer that lets Matrix act on internal data.
+
+=================== SLIDE 5 ===================
+  TEXT[Google Shape;145;p13]: Experience Time
+    GROUPTEXT[Google Shape;148;p13]: Machine Learning Intern | Capgemini | Feb 2026 – May 2026 | New York, USA | Deployed modular LSTM-Attention Autoencoder on edge devices to predict hardware degradation.
+   [GROUP] Google Shape;146;p13
+    GROUPTEXT[Google Shape;151;p13]: Graduate Research Assistant | NYU VIDA Lab | Mar 2025 – May 2026 | Brooklyn, USA | Architected HRNet-based pose estimation pipeline for pedestrian behavior research achieving 95% accuracy.
+   [GROUP] Google Shape;149;p13
+    GROUPTEXT[Google Shape;154;p13]: Software Engineer Intern | Sycamore | Jun 2025 – Aug 2025 | Massachusetts, USA | Designed Full-Stack engine using React.js UI and PostgreSQL for modular stateful trees and interactive monaco editor.
+   [GROUP] Google Shape;152;p13
+    GROUPTEXT[Google Shape;157;p13]: Skills: Python, Java, React.js, Node.js, SQL, TensorFlow, PyTorch, Kubernetes, Docker, AWS (EC2), ETL, Generative AI
+   [GROUP] Google Shape;155;p13
+    GROUPTEXT[Google Shape;160;p13]: 5-STAGE PIPELINE | windowing → LSTM auto-encoder → temporal attention → reconstruction-error scoring → alerting
+   [GROUP] Google Shape;158;p13
+    GROUPTEXT[Google Shape;163;p13]: PIPELINE | person detection → HRNet keypoint regression → multi-object tracking → behavior features
+   [GROUP] Google Shape;161;p13
+    GROUPTEXT[Google Shape;166;p13]: STACK & DESIGN | recursive React tree editor · typed Node REST APIs · normalized PostgreSQL for versioned tree state
+   [GROUP] Google Shape;164;p13
+
+=================== SLIDE 6 ===================
+  TEXT[Google Shape;173;p14]: Ex-Founder Story: Grapher Labs
+  TEXT[Google Shape;174;p14]: Causal financial simulation engine for CFOs. Completed customer discovery calls and evaluated product market fit. Selected and completed NYU Leslie Accelerator program | September 2025 — May 2026
+    GROUPTEXT[Google Shape;177;p14]: 151 | Customer Discovery Calls
+   [GROUP] Google Shape;175;p14
+    GROUPTEXT[Google Shape;180;p14]: 3 | Letters of Intent(LOIs) Signed
+   [GROUP] Google Shape;178;p14
+    GROUPTEXT[Google Shape;183;p14]: 2 |  Pilots Tested
+   [GROUP] Google Shape;181;p14
+    GROUPTEXT[Google Shape;186;p14]: 1 | Networking Event Hosted
+   [GROUP] Google Shape;184;p14
+  TEXT[Google Shape;187;p14]: Key Milestones & Learning | Built & shipped MVP: Architected the core simulation engine. | Talked to real buyers: Direct feedback from CFOs and VPs of Finance. | Learned to sell: From discovery to closing design partners. | Navigated the hard parts: Managing pilots and design iteration.
+    GROUPTEXT[Google Shape;190;p14]: Link: GrapherLabs.com
+   [GROUP] Google Shape;188;p14
+   [PICTURE] Google Shape;191;p14
+
+=================== SLIDE 7 ===================
+   [PICTURE] Google Shape;198;p15
+   [PICTURE] Google Shape;199;p15
+  TEXT[Google Shape;200;p15]: Hackathon Story:  | Mistral AI Worldwide Hackathon’26
+  TEXT[Google Shape;201;p15]: Winner (Best Use of Hugging Face) - Mistral AI Worldwide Hackathon '26 | Developed "Agentic World": Behavioral Digital Twins using Mistral Small 3.1 and Codestral to auto-generate DOM interaction scripts. | Stack: Mistral Small 3.1 · Nvidia Nemo · Nvidia 49b ·  Codestral · Hugging Face · Playwright · Python 
+
+=================== SLIDE 8 ===================
+   [PICTURE] Google Shape;208;p16
+   [PICTURE] Google Shape;209;p16
+    GROUPTEXT[Google Shape;212;p16]: Iterate X Columbia Hackathon
+   [GROUP] Google Shape;210;p16
+    GROUPTEXT[Google Shape;215;p16]: 3rd Place Overall & Best Use of Blaxel (YC’25) - Iterate X Columbia Hack'26 | Built an automated MCP adapter sandbox: parses any OpenAPI/Swagger spec and code-generates typed, agent-callable MCP tools on sandboxed serverless functions and REST APIs into LLM tools with zero glue code. | STACK: OpenAPI → MCP codegen · JSON-Schema tool defs · sandboxed serverless execution · tool-calling
+   [GROUP] Google Shape;213;p16
+    GROUPTEXT[Google Shape;218;p16]: Had to do impromptu talk on stage if selected as finalists!
+   [GROUP] Google Shape;216;p16
+
+=================== SLIDE 9 ===================
+   [PICTURE] Google Shape;225;p17
+    GROUPTEXT[Google Shape;228;p17]: Columbia Devfest Hackathon
+   [GROUP] Google Shape;226;p17
+    GROUPTEXT[Google Shape;231;p17]: Winner (Best Use of Dedalus Labs) - Columbia Devfest '26 | Built an end-to-end orchestration pipeline that scaffolds, containerizes, and deploys production-ready MCP servers — spec → Dockerized service → hosted endpoint, in one flow. | PIPELINE: scaffold → Docker build → CI/CD deploy → hosted endpoint + health checks 
+   [GROUP] Google Shape;229;p17
+    GROUPTEXT[Google Shape;234;p17]: Pulled an all nighter for this one at the Columbia Library
+   [GROUP] Google Shape;232;p17
+
+=================== SLIDE 10 ===================
+  TEXT[Google Shape;241;p18]: Github: Harshini2212
+   [PICTURE] Google Shape;242;p18
+   [PICTURE] Google Shape;243;p18
+
+=================== SLIDE 11 ===================
+  TEXT[Google Shape;250;p19]: WHY HEBBIA, WHY ME
+  TEXT[Google Shape;251;p19]: It's the problem I keep choosing to work on and exactly what Hebbia is building. I'd love to build it with you. | Harshini Vijaya Kumar | hv2201@nyu.edu    ·   +1 (848) 240-7937
+    GROUPTEXT[Google Shape;255;p19]: SCAN FOR MY CODE | harshinivijay.com
+   [GROUP] Google Shape;252;p19
+  TEXT[Google Shape;256;p19]: Let's build financial AI that's actually trustworthy.
+   [PICTURE] Google Shape;257;p19
+   [PICTURE] Google Shape;258;p19

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Receipt Autopilot — Comptroller</title>
+<style>
+  :root{--bg:#fbfbfc;--panel:#fff;--panel2:#f4f5f7;--line:#e6e8ec;--ink:#1b1e25;--muted:#6b7280;
+    --stripe:#635bff;--green:#15a34a;--amber:#b7791f;--red:#dc2626;--crit:#c81e1e;}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.5 -apple-system,Segoe UI,Roboto,Arial,sans-serif}
+  header{display:flex;align-items:center;gap:14px;padding:18px 26px;border-bottom:1px solid var(--line);position:sticky;top:0;background:rgba(255,255,255,.92);backdrop-filter:blur(6px);z-index:5}
+  .logo{font-weight:800;font-size:18px}.logo b{color:var(--stripe)}
+  .tag{color:var(--muted);font-size:13px}
+  .badge{margin-left:auto;font-size:12px;padding:5px 11px;border-radius:20px;border:1px solid var(--line);color:var(--muted)}
+  .badge .dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--amber);margin-right:6px}
+  .badge.live .dot{background:var(--green)}
+  a{color:var(--stripe);text-decoration:none}
+  main{max-width:1150px;margin:0 auto;padding:22px 26px;display:grid;grid-template-columns:380px 1fr;gap:22px}
+  @media(max-width:820px){main{grid-template-columns:1fr}}
+  h2{font-size:12px;text-transform:uppercase;letter-spacing:1px;color:var(--stripe);margin:0 0 10px;font-weight:700}
+  .samples{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px}
+  .samp{border:1px solid var(--line);border-radius:9px;overflow:hidden;cursor:pointer;background:var(--panel);text-align:center;padding-bottom:5px}
+  .samp.sel{border-color:var(--stripe);box-shadow:0 0 0 2px rgba(99,91,255,.18)}
+  .samp img{width:100%;height:78px;object-fit:cover;object-position:top;display:block;background:#fff}
+  .samp .lbl{font-size:10.5px;color:var(--muted);padding:3px 4px 0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .anom{font-size:9.5px;padding:1px 5px;border-radius:8px;display:inline-block}
+  .a-clean{background:#e8f6ee;color:var(--green)} .a-bad{background:#efeeff;color:var(--stripe)}
+  .drop{border:1.5px dashed var(--line);border-radius:11px;padding:18px;text-align:center;color:var(--muted);cursor:pointer;font-size:13px;background:var(--panel)}
+  .drop:hover{border-color:var(--stripe);color:var(--stripe)}
+  .preview{margin-top:14px}.preview img{width:100%;border:1px solid var(--line);border-radius:11px;background:#fff}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px;box-shadow:0 1px 2px rgba(16,24,40,.04)}
+  .empty{color:var(--muted);padding:40px;text-align:center}
+  .spin{color:var(--muted);font-style:italic;padding:20px;text-align:center}
+  .verdict{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+  .vbadge{font-size:15px;font-weight:800;padding:7px 16px;border-radius:10px}
+  .v-auto_approve{background:#e8f6ee;color:var(--green)} .v-needs_review{background:#fdf6e3;color:var(--amber)}
+  .v-reject{background:#fde8e8;color:var(--crit)}
+  table{width:100%;border-collapse:collapse;font-size:13px}
+  td,th{padding:6px 8px;border-bottom:1px solid #eef0f3;text-align:left}
+  td.num{text-align:right;font-variant-numeric:tabular-nums}
+  .kv{display:grid;grid-template-columns:130px 1fr;gap:4px 10px;font-size:13px;margin:4px 0}
+  .kv .k{color:var(--muted)}
+  .flag{display:flex;gap:9px;align-items:start;padding:8px 10px;border-radius:9px;margin:6px 0;font-size:13px}
+  .f-critical{background:#fde8e8}.f-high{background:#fdecec}.f-medium{background:#fdf6e3}.f-low{background:var(--panel2)}
+  .sev{font-size:10px;font-weight:700;padding:1px 7px;border-radius:7px;flex-shrink:0;text-transform:uppercase}
+  .s-critical,.s-high{background:#fbd5d5;color:var(--crit)}.s-medium{background:#f7e6bf;color:var(--amber)}.s-low{background:#e6e8ec;color:var(--muted)}
+  .ok{color:var(--green);font-weight:600}.bad{color:var(--red);font-weight:600}
+  .steps{font-size:12px;color:var(--muted);margin-top:12px}
+  .steps div{padding:2px 0}
+  .pill{font-size:11px;padding:2px 9px;border-radius:20px;background:var(--panel2);color:var(--muted)}
+  .personal{color:var(--red);font-weight:600}
+  h3{font-size:13px;margin:16px 0 6px;font-weight:700}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo"><b>Comptroller</b> · Receipt Autopilot</div>
+  <div class="tag">drop a receipt → Claude reads it → matches, checks &amp; codes it</div>
+  <div id="badge" class="badge"><span class="dot"></span><span id="badgeTxt">…</span></div>
+</header>
+<main>
+  <div>
+    <h2>Pick a sample receipt</h2>
+    <div class="samples" id="samples"></div>
+    <h2>…or upload your own</h2>
+    <div class="drop" id="drop">drag a receipt image/PDF here, or click to choose
+      <input type="file" id="file" accept="image/*,application/pdf" hidden></div>
+    <div class="preview" id="preview"></div>
+  </div>
+  <div>
+    <h2>Autopilot result</h2>
+    <div class="card" id="result"><div class="empty">Select a receipt above to run the autopilot.</div></div>
+  </div>
+</main>
+<script>
+const $=s=>document.querySelector(s), el=id=>document.getElementById(id);
+const money=n=>'$'+Number(n||0).toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2});
+let SEED=7, selected=null;
+
+async function boot(){
+  const d=await (await fetch('/workflows/receipt/samples?seed='+SEED)).json();
+  el('badge').className='badge'+(d.vision_available?' live':'');
+  el('badgeTxt').textContent=d.vision_available?'Claude vision live':'simulation (add API key for vision)';
+  el('samples').innerHTML=d.samples.map(s=>`<div class="samp" data-id="${s.receipt_id}">
+    <img src="/workflows/receipt/image/${s.receipt_id}?seed=${SEED}" loading="lazy"/>
+    <div class="lbl">${s.merchant}</div>
+    <span class="anom ${s.anomaly==='clean'?'a-clean':'a-bad'}">${s.anomaly}</span></div>`).join('');
+  el('samples').querySelectorAll('.samp').forEach(c=>c.onclick=()=>pickSample(c.dataset.id,c));
+}
+function pickSample(id,card){
+  el('samples').querySelectorAll('.samp').forEach(c=>c.classList.remove('sel'));
+  card.classList.add('sel'); selected=id;
+  el('preview').innerHTML=`<img src="/workflows/receipt/image/${id}?seed=${SEED}"/>`;
+  const fd=new FormData(); fd.append('receipt_id',id); fd.append('seed',SEED);
+  run(fd);
+}
+el('drop').onclick=()=>el('file').click();
+el('file').onchange=e=>{ if(e.target.files[0]) handleFile(e.target.files[0]); };
+el('drop').ondragover=e=>{e.preventDefault(); el('drop').style.borderColor='var(--stripe)';};
+el('drop').ondragleave=()=>el('drop').style.borderColor='';
+el('drop').ondrop=e=>{e.preventDefault(); el('drop').style.borderColor=''; if(e.dataTransfer.files[0]) handleFile(e.dataTransfer.files[0]);};
+function handleFile(f){
+  el('samples').querySelectorAll('.samp').forEach(c=>c.classList.remove('sel')); selected=null;
+  const r=new FileReader(); r.onload=()=>el('preview').innerHTML=`<img src="${r.result}"/>`; r.readAsDataURL(f);
+  const fd=new FormData(); fd.append('file',f); fd.append('seed',SEED);
+  run(fd);
+}
+async function run(fd){
+  el('result').innerHTML='<div class="spin">reading receipt → matching → checking…</div>';
+  try{
+    const res=await (await fetch('/workflows/receipt/process',{method:'POST',body:fd})).json();
+    render(res);
+  }catch(e){ el('result').innerHTML='<div class="empty">Error: '+e+'</div>'; }
+}
+function render(r){
+  if(!r.ok){ el('result').innerHTML=`<div class="empty">${r.message||'Could not process.'}</div>`; return; }
+  const ex=r.extracted||{}, m=r.match||{}, rec=r.reconciliation||{};
+  const items=(ex.line_items||[]).map(it=>{
+    const personal=/wine|cabernet|cocktail|beer|alcohol|bottle/i.test(it.description);
+    return `<tr><td class="${personal?'personal':''}">${it.description}${personal?' ⚠':''}</td><td class="num">${money(it.amount)}</td></tr>`;}).join('');
+  const flags=(r.flags||[]).map(f=>`<div class="flag f-${f.severity}"><span class="sev s-${f.severity}">${f.severity}</span><div><b>${f.type.replace(/_/g,' ')}</b> — ${f.detail}</div></div>`).join('')
+    || '<div class="flag f-low"><span class="sev s-low">ok</span><div>No issues found.</div></div>';
+  el('result').innerHTML=`
+    <div class="verdict"><span class="vbadge v-${r.verdict}">${r.verdict.replace(/_/g,' ').toUpperCase()}</span>
+      <span class="pill">parsed via ${r.source}</span>
+      ${r.usage&&r.usage.cost_usd?`<span class="pill">$${r.usage.cost_usd.toFixed(4)}</span>`:''}</div>
+    <h3>Extracted</h3>
+    <div class="kv"><span class="k">Merchant</span><span>${ex.merchant||'—'}</span>
+      <span class="k">Date</span><span>${ex.date||'—'}</span>
+      <span class="k">Total</span><span>${money(ex.total)}</span></div>
+    <table>${items}</table>
+    <h3>Matched transaction</h3>
+    ${m.status==='matched'?`<div class="kv">
+      <span class="k">Transaction</span><span>${m.txn_id} · ${m.merchant}</span>
+      <span class="k">Charged</span><span>${money(m.charged_amount)}</span>
+      <span class="k">Confidence</span><span>${Math.round(m.confidence*100)}%</span>
+      <span class="k">GL code</span><span>${(r.gl_code||'').replace(/_/g,' ')}</span></div>
+    <h3>Reconciliation</h3>
+    <div class="kv"><span class="k">Receipt total</span><span>${money(rec.receipt_total)}</span>
+      <span class="k">Card charged</span><span>${money(rec.charged_amount)}</span>
+      <span class="k">Result</span><span class="${rec.ties_out?'ok':'bad'}">${rec.ties_out?'✓ ties out':'✗ Δ '+money(Math.abs(rec.delta))}</span></div>`
+    :'<div class="empty">No matching transaction found.</div>'}
+    <h3>Checks &amp; flags</h3>${flags}
+    <h3>Memo</h3><div style="font-size:13px">${r.memo||''}</div>
+    <div class="steps">${(r.steps||[]).map(s=>'<div>· '+s+'</div>').join('')}</div>`;
+}
+boot();
+</script>
+</body>
+</html>

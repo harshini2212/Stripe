@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Comptroller — AI finance platform for Stripe</title>
+<style>
+  :root{
+    --bg:#fbfbfc; --panel:#ffffff; --panel2:#f4f5f7; --line:#e6e8ec; --line2:#eef0f3;
+    --ink:#1b1e25; --muted:#6b7280; --stripe:#635bff; --stripe2:#4f46e5; --stripebg:#efeeff;
+    --green:#15a34a; --yellow:#b7791f; --red:#dc2626; --crit:#c81e1e; --blue:#2563eb;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font:14px/1.5 -apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+  a{color:var(--stripe2);text-decoration:none}
+  .app{display:flex;min-height:100vh}
+  /* sidebar */
+  .sidebar{width:236px;flex-shrink:0;border-right:1px solid var(--line);
+    background:linear-gradient(180deg,var(--stripebg),#fff 180px);position:sticky;top:0;height:100vh;
+    padding:20px 14px;display:flex;flex-direction:column;gap:4px}
+  .brand{font-weight:800;font-size:20px;padding:6px 10px 14px}
+  .brand b{color:var(--stripe)}
+  .brand .sub{display:block;font-weight:500;font-size:11px;color:var(--muted);margin-top:2px}
+  .nav a{display:flex;align-items:center;gap:10px;padding:9px 11px;border-radius:9px;
+    color:var(--ink);font-weight:500;font-size:13.5px;cursor:pointer}
+  .nav a .ic{width:16px;text-align:center;opacity:.85}
+  .nav a:hover{background:var(--panel2)}
+  .nav a.active{background:var(--stripe);color:#fff;font-weight:700}
+  .nav a.active .ic{opacity:1}
+  .nav .group{font-size:10px;text-transform:uppercase;letter-spacing:1px;color:var(--muted);
+    padding:14px 11px 5px}
+  .badge{margin-top:auto;padding:8px 11px;border:1px solid var(--line);border-radius:9px;
+    font-size:11.5px;color:var(--muted)}
+  .badge .dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--yellow);
+    margin-right:7px}
+  .badge.live .dot{background:var(--green)}
+  /* main */
+  main{flex:1;min-width:0;padding:26px 30px;max-width:1200px}
+  .tab{display:none}
+  .tab.active{display:block;animation:fade .25s ease}
+  @keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+  h1{font-size:20px;margin:0 0 2px}
+  .lede{color:var(--muted);margin:0 0 20px}
+  h2{font-size:12px;text-transform:uppercase;letter-spacing:1.2px;color:var(--stripe);
+    margin:26px 0 12px;font-weight:700}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px;
+    box-shadow:0 1px 2px rgba(16,24,40,.04),0 1px 3px rgba(16,24,40,.05)}
+  .grid{display:grid;gap:14px}
+  .g4{grid-template-columns:repeat(auto-fit,minmax(190px,1fr))}
+  .g3{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+  .g2{grid-template-columns:repeat(auto-fit,minmax(320px,1fr))}
+  .kpi .k{color:var(--muted);font-size:11.5px;text-transform:uppercase;letter-spacing:.5px}
+  .kpi .v{font-size:25px;font-weight:800;margin-top:5px;letter-spacing:-.5px}
+  .kpi .s{color:var(--muted);font-size:12px;margin-top:3px}
+  .hero{background:linear-gradient(110deg,#fff,var(--stripebg));border-color:#d9d6ff}
+  .hero .v{font-size:34px;color:var(--stripe)}
+  table{width:100%;border-collapse:collapse;font-size:13px}
+  th,td{padding:9px 10px;text-align:left;border-bottom:1px solid var(--line2);white-space:nowrap}
+  th{color:var(--muted);font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:.5px}
+  td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
+  tbody tr:hover{background:var(--panel2)}
+  .pill{padding:2px 9px;border-radius:20px;font-size:11px;font-weight:700}
+  .b-critical{background:#fde8e8;color:var(--crit)} .b-high{background:#fdecec;color:var(--red)}
+  .b-medium{background:#fdf6e3;color:var(--yellow)} .b-low{background:#e8f6ee;color:var(--green)}
+  .b-healthy{background:#e8f6ee;color:var(--green)} .b-watch{background:#fdf6e3;color:var(--yellow)}
+  .tag{display:inline-block;padding:2px 8px;border-radius:6px;background:var(--panel2);
+    font-size:11px;color:var(--muted)}
+  .bar{height:9px;border-radius:6px;background:var(--stripe)}
+  .barrow{display:grid;grid-template-columns:150px 1fr 90px;gap:10px;align-items:center;
+    padding:5px 0;font-size:13px}
+  .barrow .lbl{color:var(--muted);overflow:hidden;text-overflow:ellipsis}
+  .barrow .amt{text-align:right;font-variant-numeric:tabular-nums}
+  .bartrack{background:var(--panel2);border-radius:6px;overflow:hidden}
+  button{font:inherit;cursor:pointer;border:1px solid var(--line);background:var(--panel);
+    color:var(--ink);padding:8px 14px;border-radius:9px;font-weight:600}
+  button.primary{background:var(--stripe);color:#fff;border-color:var(--stripe)}
+  button:hover{filter:brightness(.97)}
+  .tools{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:14px}
+  .muted{color:var(--muted)} .green{color:var(--green)} .red{color:var(--red)}
+  .spin{color:var(--muted);font-style:italic;padding:6px 2px}
+  pre{margin:0;white-space:pre-wrap;font:12.5px/1.55 ui-monospace,Consolas,monospace}
+  ul.acts{margin:6px 0 0;padding-left:18px} ul.acts li{margin:3px 0}
+  .best td{color:var(--stripe);font-weight:700}
+  .lead-best{box-shadow:inset 3px 0 0 var(--stripe)}
+  .note{font-size:12px;color:var(--muted);margin-top:8px}
+  .chart{width:100%;height:230px}
+  .legend{display:flex;gap:16px;font-size:12px;color:var(--muted);margin-top:6px}
+  .legend i{display:inline-block;width:18px;height:3px;border-radius:2px;vertical-align:middle;margin-right:5px}
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar">
+    <div class="brand"><b>Comptroller</b><span class="sub">AI finance platform · for Stripe</span></div>
+    <nav class="nav" id="nav">
+      <a data-tab="overview" class="active"><span class="ic">◧</span> Overview</a>
+      <div class="group">Risk &amp; spend</div>
+      <a data-tab="fraud"><span class="ic">⚠</span> Fraud &amp; Risk</a>
+      <a data-tab="spend"><span class="ic">▤</span> Spend &amp; Expense</a>
+      <a data-tab="treasury"><span class="ic">≈</span> Treasury · Cash</a>
+      <a data-tab="ap"><span class="ic">⇄</span> Bill Pay · AP</a>
+      <a data-tab="credit"><span class="ic">◈</span> Credit</a>
+      <div class="group">Intelligence</div>
+      <a data-tab="agents"><span class="ic">⚙</span> Agents</a>
+      <a data-tab="benchmark"><span class="ic">▥</span> Benchmark</a>
+      <a data-tab="models"><span class="ic">◍</span> Models</a>
+    </nav>
+    <div id="badge" class="badge"><span class="dot"></span><span id="modeTxt">connecting…</span></div>
+  </aside>
+  <main>
+    <div class="tab active" id="t-overview"><div class="spin">loading…</div></div>
+    <div class="tab" id="t-fraud"><div class="spin">loading…</div></div>
+    <div class="tab" id="t-spend"><div class="spin">loading…</div></div>
+    <div class="tab" id="t-treasury"><div class="spin">loading…</div></div>
+    <div class="tab" id="t-ap"><div class="spin">loading…</div></div>
+    <div class="tab" id="t-credit"><div class="spin">loading…</div></div>
+    <div class="tab" id="t-agents"></div>
+    <div class="tab" id="t-benchmark"></div>
+    <div class="tab" id="t-models"><div class="spin">loading…</div></div>
+  </main>
+</div>
+
+<script>
+const $ = s => document.querySelector(s);
+const el = id => document.getElementById(id);
+const money = n => (n<0?'-$':'$') + Math.round(Math.abs(n)).toLocaleString();
+const money1 = n => '$' + (Math.abs(n)>=1e6 ? (n/1e6).toFixed(2)+'M' : Math.round(n).toLocaleString());
+const pct = n => (n*100).toFixed(1)+'%';
+const band = b => `<span class="pill b-${b}">${String(b).toUpperCase()}</span>`;
+async function jget(u){ const r=await fetch(u); if(!r.ok) throw new Error(u+' '+r.status); return r.json(); }
+async function jpost(u,b){ const r=await fetch(u,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(b)}); return r.json(); }
+const kpi=(k,v,s,cls='')=>`<div class="card kpi ${cls}"><div class="k">${k}</div><div class="v">${v}</div>${s?`<div class="s">${s}</div>`:''}</div>`;
+function bars(obj, total, fmt=money){
+  const max = Math.max(...Object.values(obj),1);
+  return Object.entries(obj).slice(0,8).map(([k,v])=>`<div class="barrow">
+    <div class="lbl">${k}</div><div class="bartrack"><div class="bar" style="width:${Math.max(4,100*v/max)}%"></div></div>
+    <div class="amt">${fmt(v)}</div></div>`).join('');
+}
+
+// ---- nav ----
+const loaded = {};
+const loaders = {};
+el('nav').addEventListener('click', e=>{
+  const a = e.target.closest('a[data-tab]'); if(!a) return;
+  document.querySelectorAll('.nav a').forEach(x=>x.classList.remove('active'));
+  a.classList.add('active');
+  const tab = a.dataset.tab;
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  el('t-'+tab).classList.add('active');
+  if(loaders[tab] && !loaded[tab]){ loaded[tab]=true; loaders[tab](); }
+});
+
+// ---- boot / mode ----
+(async()=>{
+  try{ const r=await jget('/'); el('badge').className='badge'+(r.live_models?' live':'');
+    el('modeTxt').textContent = r.live_models?'LIVE Claude models':'offline + simulated models'; }catch(e){}
+  loaders.overview(); loaded.overview=true;
+})();
+
+// ================= OVERVIEW =================
+loaders.overview = async ()=>{
+  const o = await jget('/overview?seed=7');
+  const t=o.tenant;
+  el('t-overview').innerHTML = `
+    <h1>Financial operations overview</h1>
+    <p class="lede">${t.company} · ${t.employees} employees · ${money(t.total_card_spend_usd)} card spend · ${t.card_transactions.toLocaleString()} transactions</p>
+    <div class="grid g4">
+      ${kpi('Value identified', money1(o.value_identified_usd), 'fraud + savings + yield surfaced', 'hero')}
+      ${kpi('Cash runway', (o.treasury.runway_months??'∞')+' mo', 'status '+o.treasury.status)}
+      ${kpi('Credit risk (PD)', pct(o.credit.pd), o.credit.action.replace(/_/g,' '))}
+      ${kpi('Policy compliance', pct(o.spend.compliance_rate), o.spend.subscriptions+' subscriptions tracked')}
+    </div>
+    <h2>Across the platform</h2>
+    <div class="grid g3">
+      <div class="card"><h3 style="margin:0 0 8px">⚠ Fraud &amp; Risk</h3>
+        <div>${o.fraud.high_risk_alerts} high-risk alerts · ${o.fraud.rings} rings</div>
+        <div class="muted">${money(o.fraud.exposure_usd)} exposure · model AUC ${o.fraud.roc_auc.toFixed(2)}</div></div>
+      <div class="card"><h3 style="margin:0 0 8px">≈ Treasury</h3>
+        <div>${money(o.treasury.balance_usd)} balance · ${band(o.treasury.status)}</div>
+        <div class="muted">${money(o.treasury.yield_opportunity_usd)}/yr idle-cash yield opportunity</div></div>
+      <div class="card"><h3 style="margin:0 0 8px">◈ Credit</h3>
+        <div>${money(o.credit.current_limit_usd)} → <b>${money(o.credit.recommended_limit_usd)}</b></div>
+        <div class="muted">${band(o.credit.risk_band)} · PD model AUC ${o.credit.model_auc.toFixed(2)}</div></div>
+      <div class="card"><h3 style="margin:0 0 8px">▤ Spend</h3>
+        <div>${money(o.spend.redundant_saas_savings_usd)} redundant SaaS savings</div>
+        <div class="muted">${money(o.spend.duplicate_recoverable_usd)} duplicate spend recoverable</div></div>
+      <div class="card"><h3 style="margin:0 0 8px">⇄ Bill Pay · AP</h3>
+        <div>${money(o.ap.open_amount_usd)} open bills</div>
+        <div class="muted">${money(o.ap.duplicate_exposure_usd)} duplicate-invoice exposure · ${o.ap.concentration} concentration</div></div>
+      <div class="card"><h3 style="margin:0 0 8px">▥ Benchmark</h3>
+        <div>Agent financial-correctness eval</div>
+        <div class="muted">deterministic engine vs Claude Opus/Sonnet/Haiku →</div></div>
+    </div>
+    <p class="note">Comptroller extends Stripe's Agent Toolkit with the measurable correctness layer: every agent decision is graded against ground truth before it ships.</p>`;
+};
+
+// ================= FRAUD =================
+loaders.fraud = async ()=>{
+  const f = await jget('/fraud/alerts?seed=7&top=12');
+  const r = await jget('/fraud/rings?seed=7');
+  const m=f.metrics;
+  el('t-fraud').innerHTML = `
+    <h1>Fraud &amp; Risk</h1>
+    <p class="lede">Graph + behavioral ML with counterfactual explanations · ${m.n.toLocaleString()} held-out txns</p>
+    <div class="grid g4">
+      ${kpi('ROC-AUC', m.roc_auc.toFixed(3), 'held-out')}
+      ${kpi('Precision / Recall', m.precision.toFixed(2)+' / '+m.recall.toFixed(2), 'PR-AUC '+m.pr_auc.toFixed(2))}
+      ${kpi('Rings detected', r.rings.length, 'shared-device clusters')}
+      ${kpi('Top alert', pct(f.alerts[0].risk_score), f.alerts[0].merchant)}
+    </div>
+    <h2>Top alerts — explained &amp; actioned</h2>
+    <div class="card" style="padding:4px 4px 0"><table><thead><tr>
+      <th>txn</th><th>merchant</th><th class="num">amount</th><th class="num">risk</th>
+      <th>band</th><th>action</th><th>ring</th><th>actual</th></tr></thead><tbody>
+      ${f.alerts.map(a=>`<tr><td>${a.txn_id}</td><td>${a.merchant}</td>
+        <td class="num">${money(a.amount_usd)}</td><td class="num">${Math.round(a.risk_score*100)}%</td>
+        <td>${band(a.risk_band)}</td><td>${a.recommended_action.replace(/_/g,' ')}</td>
+        <td>${a.ring_id||'—'}</td><td class="${a.actual_fraud?'red':'green'}">${a.actual_fraud?'FRAUD':'legit'}</td></tr>`).join('')}
+      </tbody></table></div>
+    <h2>Detected rings</h2>
+    <div class="card" style="padding:4px 4px 0"><table><thead><tr><th>ring</th><th class="num">cards</th>
+      <th class="num">txns</th><th class="num">exposure</th><th class="num">shared dev</th><th>band</th></tr></thead><tbody>
+      ${r.rings.map(x=>`<tr><td>${x.ring_id}</td><td class="num">${x.cards.length}</td><td class="num">${x.n_txns}</td>
+        <td class="num">${money(x.total_exposure_usd)}</td><td class="num">${x.shared_devices}</td><td>${band(x.risk_band)}</td></tr>`).join('')}
+      </tbody></table></div>`;
+};
+
+// ================= SPEND =================
+loaders.spend = async ()=>{
+  const s = await jget('/spend/intelligence?seed=7');
+  const cat = Object.fromEntries(Object.entries(s.summary.by_category));
+  const dep = Object.fromEntries(Object.entries(s.summary.by_department));
+  el('t-spend').innerHTML = `
+    <h1>Spend &amp; Expense intelligence</h1>
+    <p class="lede">${money(s.summary.total_spend_usd)} analyzed · subscriptions, duplicates, compliance &amp; anomalies</p>
+    <div class="grid g4">
+      ${kpi('Policy compliance', pct(s.compliance.compliance_rate), s.compliance.flagged_transactions+' flagged · '+money(s.compliance.flagged_amount_usd))}
+      ${kpi('Redundant SaaS savings', money(s.subscriptions.redundant_savings_usd), s.subscriptions.count+' subscriptions · '+money(s.subscriptions.total_annualized_usd)+'/yr')}
+      ${kpi('Duplicate spend', money(s.duplicates.recoverable_usd), s.duplicates.count+' duplicate charges')}
+      ${kpi('Spend anomalies', s.anomalies.count, 'employees over 2σ')}
+    </div>
+    <div class="grid g2">
+      <div><h2>Spend by category</h2><div class="card">${bars(cat)}</div></div>
+      <div><h2>Spend by department</h2><div class="card">${bars(dep)}</div></div>
+    </div>
+    <h2>Recurring subscriptions — consolidate redundant licenses</h2>
+    <div class="card" style="padding:4px 4px 0"><table><thead><tr><th>vendor</th><th>cadence</th>
+      <th class="num">monthly</th><th class="num">annualized</th><th class="num">subscribers</th><th>flag</th></tr></thead><tbody>
+      ${s.subscriptions.subscriptions.map(x=>`<tr><td>${x.merchant}</td><td>${x.cadence}</td>
+        <td class="num">${money(x.monthly_cost_usd)}</td><td class="num">${money(x.annualized_usd)}</td>
+        <td class="num">${x.subscribers}</td><td>${x.redundant?'<span class="pill b-medium">REDUNDANT</span>':'—'}</td></tr>`).join('')}
+      </tbody></table></div>
+    <h2>Policy violations</h2>
+    <div class="card">${bars(s.compliance.violations_by_type, null, n=>n)}</div>`;
+};
+
+// ================= TREASURY =================
+function lineChart(history, forecast){
+  const all=[...history.map(h=>h.balance_usd), ...forecast.flatMap(f=>[f.p10_usd,f.p90_usd])];
+  const min=Math.min(...all,0), max=Math.max(...all);
+  const W=860,H=220,pad=8, n=history.length+forecast.length;
+  const x=i=>pad+(W-2*pad)*i/(n-1);
+  const y=v=>H-pad-(H-2*pad)*(v-min)/((max-min)||1);
+  const hist=history.map((h,i)=>`${i?'L':'M'}${x(i).toFixed(1)} ${y(h.balance_usd).toFixed(1)}`).join(' ');
+  const fi=history.length-1;
+  const fc=forecast.map((f,i)=>`${i?'L':'M'}${x(fi+1+i).toFixed(1)} ${y(f.p50_usd).toFixed(1)}`).join(' ');
+  const bandTop=forecast.map((f,i)=>`${i?'L':'M'}${x(fi+1+i).toFixed(1)} ${y(f.p90_usd).toFixed(1)}`).join(' ');
+  const bandBot=forecast.slice().reverse().map((f,i)=>`L${x(n-1-i).toFixed(1)} ${y(f.p10_usd).toFixed(1)}`).join(' ');
+  const zero = min<0 ? `<line x1="${pad}" y1="${y(0)}" x2="${W-pad}" y2="${y(0)}" stroke="#dc2626" stroke-dasharray="3 3" opacity=".5"/>`:'';
+  return `<svg class="chart" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none">
+    <path d="${bandTop} ${bandBot} Z" fill="#635bff" opacity=".10"/>
+    <path d="${hist}" fill="none" stroke="#1b1e25" stroke-width="2"/>
+    <path d="${fc}" fill="none" stroke="#635bff" stroke-width="2" stroke-dasharray="5 4"/>
+    ${zero}</svg>`;
+}
+loaders.treasury = async ()=>{
+  const t = await jget('/treasury/forecast?seed=7');
+  const y=t.yield_opportunity;
+  el('t-treasury').innerHTML = `
+    <h1>Treasury &amp; Cash <span class="muted" style="font-size:14px">· Stripe Treasury financial account</span></h1>
+    <p class="lede">Cash-flow forecast · runway · idle-cash yield (overnight Treasury yield sweep) · backtest MAPE ${pct(t.backtest_mape)}</p>
+    <div class="grid g4">
+      ${kpi('Current balance', money1(t.current_balance_usd), 'across checking + treasury')}
+      ${kpi('Net / month', money(t.monthly_net_usd), 'in '+money(t.monthly_inflow_usd)+' · out '+money(t.monthly_outflow_usd))}
+      ${kpi('Runway', (t.runway_months??'∞')+' mo', 'status '+t.status, '')}
+      ${kpi('Yield opportunity', money(y.incremental_annual_yield_usd)+'/yr', '~'+pct(y.mmf_apy)+' APY Treasury yield')}
+    </div>
+    <h2>Cash-balance forecast (${t.forecast.length}-day horizon, 80% band)</h2>
+    <div class="card">${lineChart(t.history, t.forecast)}
+      <div class="legend"><span><i style="background:#1b1e25"></i>actual</span>
+      <span><i style="background:#635bff"></i>forecast (p50)</span>
+      <span><i style="background:#f6cdb6"></i>p10–p90 band</span>
+      ${t.shortfall_date?`<span class="red">projected shortfall ${t.shortfall_date}</span>`:''}</div></div>
+    <h2>Yield optimization</h2>
+    <div class="card">${y.recommendation}</div>`;
+};
+
+// ================= AP =================
+loaders.ap = async ()=>{
+  const a = await jget('/ap/intelligence?seed=7');
+  el('t-ap').innerHTML = `
+    <h1>Bill Pay · Accounts Payable</h1>
+    <p class="lede">${a.summary.total_invoices} invoices · duplicate detection, vendor-concentration risk &amp; payment-timing</p>
+    <div class="grid g4">
+      ${kpi('Open bills', money(a.summary.open_amount_usd), a.summary.open_invoices+' invoices · '+money(a.summary.due_next_7d_usd)+' due ≤7d')}
+      ${kpi('Duplicate invoices', a.duplicates.count, money(a.duplicates.exposure_usd)+' exposure')}
+      ${kpi('Vendor concentration', a.concentration.concentration.toUpperCase(), 'HHI '+a.concentration.hhi.toFixed(3))}
+      ${kpi('Float yield', money(a.payment_timing.float_yield_usd), money(a.payment_timing.early_pay_discount_usd)+' early-pay discounts')}
+    </div>
+    <h2>Top vendors &amp; concentration</h2>
+    <div class="card">${bars(Object.fromEntries(a.concentration.top_vendors.map(v=>[v.vendor+' ('+(v.share*100).toFixed(0)+'%)',v.amount_usd])))}</div>
+    <h2>Duplicate / double-billed invoices</h2>
+    <div class="card" style="padding:4px 4px 0"><table><thead><tr><th>invoice</th><th>duplicate of</th>
+      <th>vendor</th><th class="num">amount</th><th>issued</th></tr></thead><tbody>
+      ${a.duplicates.items.map(d=>`<tr><td>${d.invoice}</td><td>${d.duplicate_of}</td><td>${d.vendor}</td>
+        <td class="num">${money(d.amount_usd)}</td><td>${d.issued}</td></tr>`).join('')||'<tr><td class="muted">none</td></tr>'}
+      </tbody></table></div>
+    <h2>Payment-timing recommendation</h2>
+    <div class="card">${a.payment_timing.recommendation}</div>`;
+};
+
+// ================= CREDIT =================
+loaders.credit = async ()=>{
+  const c = await jget('/credit/underwrite?seed=7');
+  el('t-credit').innerHTML = `
+    <h1>Credit underwriting <span class="muted" style="font-size:14px">· dynamic, cash-based</span></h1>
+    <p class="lede">${c.company} · probability-of-loss model (AUC ${c.model_auc.toFixed(2)}) on a synthetic lending portfolio</p>
+    <div class="grid g4">
+      ${kpi('Probability of loss', pct(c.pd), 'PD model', '')}
+      ${kpi('Risk band', c.risk_band.toUpperCase(), 'action: '+c.action.replace(/_/g,' '))}
+      ${kpi('Recommended limit', money1(c.recommended_limit_usd), 'current '+money(c.current_limit_usd))}
+      ${kpi('Cash coverage', c.coverage_months.toFixed(1)+' mo', c.runway_months+' mo runway')}
+    </div>
+    <h2>Recommendation</h2>
+    <div class="card">
+      <div style="font-size:15px">Move limit <b>${money(c.current_limit_usd)} → ${money(c.recommended_limit_usd)}</b>
+      &nbsp; ${band(c.risk_band)} &nbsp;<span class="tag">${c.action.replace(/_/g,' ')}</span></div>
+      <p class="muted" style="margin:8px 0 0">${c.rationale}</p></div>
+    <h2>Risk drivers</h2>
+    <div class="card" style="padding:4px 4px 0"><table><thead><tr><th>factor</th><th>value</th><th>effect</th></tr></thead><tbody>
+      ${c.drivers.map(d=>`<tr><td>${d.factor}</td><td>${d.value}</td>
+        <td class="${d.effect.includes('lower')?'green':'red'}">${d.effect}</td></tr>`).join('')}</tbody></table></div>
+    <p class="note">Mirrors Stripe Capital's revenue-based underwriting (no personal guarantee, no credit check): offers scale up as processing volume and cash grow and can be cut within 24h for at-risk accounts.</p>`;
+};
+
+// ================= AGENTS =================
+let TOP=null;
+el('t-agents').innerHTML = `
+  <h1>Agentic workflows</h1>
+  <p class="lede">Narrow single-task agents + an orchestrator — Stripe's Agent Toolkit, with traces</p>
+  <div class="tools">
+    <button class="primary" onclick="runOrch()">▶ Run orchestrator on top fraud alert</button>
+    <button onclick="runInv()">🔎 Investigate top alert</button>
+    <span class="muted" id="agNote">one agent, many tasks, one decision</span>
+  </div>
+  <div class="card" id="agOut"><span class="muted">Run the orchestrator to see the full reasoning trace, consolidated actions, and financial impact.</span></div>`;
+async function topTxn(){ if(TOP) return TOP; const f=await jget('/fraud/alerts?seed=7&top=1'); TOP=f.alerts[0].txn_id; return TOP; }
+async function runInv(){ const id=await topTxn(); el('agOut').innerHTML='<span class="spin">investigating '+id+'…</span>';
+  const d=await jget('/agent/investigate/'+id+'?seed=7');
+  el('agOut').innerHTML=`<pre>${d.narrative}</pre><h2>Recommended actions</h2><ul class="acts">${d.recommended_actions.map(a=>'<li>'+a+'</li>').join('')}</ul><div class="muted" style="margin-top:8px"><b>tool calls:</b> ${d.steps.join('  →  ')}</div>`; }
+async function runOrch(){ const id=await topTxn(); el('agOut').innerHTML='<span class="spin">orchestrating '+id+'…</span>';
+  const d=await jpost('/agent/orchestrate',{txn_id:id,backend:'offline',seed:7});
+  el('agOut').innerHTML=`<pre class="muted">${d.trace.join('\n')}</pre><h2>Consolidated actions</h2><ul class="acts">${d.recommended_actions.map(a=>'<li>'+a+'</li>').join('')}</ul>
+    <div class="muted" style="margin-top:8px">category <b>${d.category}</b> · fraud ${band(d.fraud_band)} · impact <b>${money(d.financial_impact_usd)}</b> · backend ${d.backend} · ${Math.round(d.latency_ms)} ms</div>`; }
+loaders.agents = ()=>{};
+
+// ================= BENCHMARK =================
+el('t-benchmark').innerHTML = `
+  <h1>Financial-correctness benchmark</h1>
+  <p class="lede">Grades each backend vs held-out ground truth across 5 finance tasks — the promotion gate for agent models</p>
+  <div class="tools"><button class="primary" onclick="runBench()">▶ Run benchmark</button>
+    <span class="muted">deterministic engine is the reference; set ANTHROPIC_API_KEY for live Claude</span></div>
+  <div class="card" id="benchOut"><span class="muted">Click run — offline this grades the engine + simulated models; with a key it grades live Opus 4.8 / Sonnet 4.6 / Haiku 4.5.</span></div>`;
+async function runBench(){ el('benchOut').innerHTML='<span class="spin">running 5 tasks × backends…</span>';
+  const d=await jpost('/eval/run',{seed:7,limit:25});
+  const tasks=d.tasks;
+  el('benchOut').innerHTML=`<table><thead><tr><th>backend</th><th>kind</th><th class="num">overall</th>
+    ${tasks.map(t=>`<th class="num">${t.replace('_',' ')}</th>`).join('')}<th class="num">cost</th><th class="num">ms</th></tr></thead><tbody>
+    ${d.leaderboard.map((r,i)=>`<tr class="${i===0?'lead-best best':''}"><td>${r.backend}</td><td class="muted">${r.kind}</td>
+      <td class="num">${r.overall_accuracy.toFixed(3)}</td>${tasks.map(t=>`<td class="num">${r.by_task[t]==null?'—':r.by_task[t].toFixed(2)}</td>`).join('')}
+      <td class="num">$${r.total_cost_usd.toFixed(3)}</td><td class="num">${Math.round(r.avg_latency_ms)}</td></tr>`).join('')}
+    </tbody></table><p class="note">accuracy vs held-out ground truth · the deterministic engine is the reference</p>`; }
+loaders.benchmark = ()=>{};
+
+// ================= MODELS =================
+loaders.models = async ()=>{
+  const m = await jget('/models?seed=7');
+  el('t-models').innerHTML = `
+    <h1>Model registry</h1>
+    <p class="lede">Every model in the platform with its live metric — the architecture behind the product</p>
+    <div class="grid g2">
+    ${m.models.map(x=>`<div class="card">
+      <div style="display:flex;justify-content:space-between;align-items:start">
+        <div><div style="font-weight:700;font-size:15px">${x.name}</div>
+          <div class="muted" style="font-size:12px">${x.family}</div></div>
+        <span class="tag">${x.status}</span></div>
+      <div style="margin:12px 0;font-size:22px;font-weight:800;color:var(--stripe)">${x.primary_metric.value}
+        <span class="muted" style="font-size:12px;font-weight:500">${x.primary_metric.name}</span></div>
+      <div class="muted" style="font-size:12.5px">${x.description}</div>
+      <div style="margin-top:10px">${Object.entries(x.secondary).map(([k,v])=>`<span class="tag" style="margin-right:5px">${k}: ${v}</span>`).join('')}
+        ${x.n_features?`<span class="tag">${x.n_features} features</span>`:''}</div>
+    </div>`).join('')}</div>`;
+};
+</script>
+</body>
+</html>
