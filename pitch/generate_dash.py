@@ -36,8 +36,8 @@ def text(pos, s, fnt, fill=INK, anchor=None):
 SW = 300
 d.rectangle([0, 0, SW, H], fill=PANEL2)
 d.line([SW, 0, SW, H], fill=LINE, width=1)
-text((28, 30), "Stripe", font(B, 30), fill=STRIPE)
-bw = d.textlength("Stripe", font=font(B, 30))
+text((28, 30), "Strip", font(B, 30), fill=STRIPE)
+bw = d.textlength("Strip", font=font(B, 30))
 text((28 + bw, 30), "ify", font(B, 30), fill=INK)
 
 nav = [("COMPANY", None), ("Overview", "active"), ("Transactions", None), ("Cards", None),

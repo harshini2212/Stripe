@@ -1,0 +1,83 @@
+<!doctype html><html><head><meta charset="utf-8">
+<style>
+ body{margin:0;background:#fafaf8;width:2400px;height:1350px;overflow:hidden}
+ svg{font-family:'Ink Free','Segoe Print','Comic Sans MS',cursive}
+</style></head><body>
+<svg id="s" width="2400" height="1350" viewBox="0 0 2400 1350" xmlns="http://www.w3.org/2000/svg"></svg>
+<script>
+const svg=document.getElementById('s');let seed=7;const rnd=()=>{seed=(seed*9301+49297)%233280;return seed/233280-0.5;};
+const NS='http://www.w3.org/2000/svg';
+function el(n,a,txt){const e=document.createElementNS(NS,n);for(const k in a)e.setAttribute(k,a[k]);if(txt!=null)e.textContent=txt;svg.appendChild(e);return e;}
+function jit(x,y,j){return [x+rnd()*j,y+rnd()*j];}
+let hid=0;
+function sRect(x,y,w,h,stroke,fill,opts){
+  opts=opts||{};const j=opts.j==null?3.2:opts.j, sw=opts.sw==null?3.2:opts.sw;
+  if(opts.hatch){const id='h'+(hid++);
+    const p=document.createElementNS(NS,'pattern');p.setAttribute('id',id);p.setAttribute('width','14');p.setAttribute('height','14');p.setAttribute('patternUnits','userSpaceOnUse');p.setAttribute('patternTransform','rotate(-45)');
+    const l=document.createElementNS(NS,'line');l.setAttribute('x1','0');l.setAttribute('y1','0');l.setAttribute('x2','0');l.setAttribute('y2','14');l.setAttribute('stroke',stroke);l.setAttribute('stroke-width','1.6');l.setAttribute('opacity','.55');p.appendChild(l);svg.appendChild(p);
+    el('rect',{x:x,y:y,width:w,height:h,fill:'#fff'});el('rect',{x:x,y:y,width:w,height:h,fill:'url(#'+id+')'});
+  } else if(fill) el('rect',{x:x,y:y,width:w,height:h,fill:fill});
+  for(let pass=0;pass<2;pass++){
+    const pts=[[x,y],[x+w,y],[x+w,y+h],[x,y+h],[x,y]].map(function(p){return jit(p[0],p[1],j);});
+    let d='';pts.forEach(function(p,i){if(i==0)d+='M'+p[0]+','+p[1];else{const q=pts[i-1];const m=jit((p[0]+q[0])/2,(p[1]+q[1])/2,j*1.4);d+=' Q'+m[0]+','+m[1]+' '+p[0]+','+p[1];}});
+    el('path',{d:d,fill:'none',stroke:stroke,'stroke-width':pass?sw*0.8:sw,'stroke-linecap':'round',opacity:pass?.75:1});
+  }
+}
+function arrow(x1,y1,x2,y2,stroke){
+  const m=jit((x1+x2)/2,(y1+y2)/2,4);
+  el('path',{d:'M'+x1+','+y1+' Q'+m[0]+','+m[1]+' '+x2+','+y2,fill:'none',stroke:stroke,'stroke-width':3.4,'stroke-linecap':'round'});
+  const a=Math.atan2(y2-y1,x2-x1),L=18;
+  [-1,1].forEach(function(s){const ex=x2-L*Math.cos(a-s*0.5),ey=y2-L*Math.sin(a-s*0.5);el('path',{d:'M'+x2+','+y2+' L'+ex+','+ey,fill:'none',stroke:stroke,'stroke-width':3.4,'stroke-linecap':'round'});});
+}
+function text(x,y,s,size,fill,anchor,weight){el('text',{x:x,y:y,'font-size':size,fill:fill,'text-anchor':anchor||'middle','font-weight':weight||'normal'},s);}
+function lines(x,y,arr,size,fill,anchor,lh){lh=lh||1.45;arr.forEach(function(s,i){text(x,y+i*size*lh,s,size,fill,anchor);});}
+
+// header
+text(62,80,'Stripify',66,'#1e1e1e','start');
+text(62,124,'the correctness + trust layer that lets Stripe act on real money',28,'#8a8a8a','start');
+sRect(1855,45,485,60,'#5c5c5c','#e9ebee');text(2097,86,'stripify.up.railway.app',26,'#4c4c4c');
+
+// columns
+const cols=[
+ {t:'CONNECTORS',s:'issuing · treasury · AP · GL',c:'#1f6fd6',f:'#a5d4fb'},
+ {t:'UNIFIED LEDGER',s:'event-sourced',c:'#0c8a9c',f:'#a8ecee'},
+ {t:'DETERMINISTIC',s:'engine · runs first · $0',c:'#1f9a4b',f:'#b3f0c4'},
+ {t:'AGENTIC REVIEW',s:'grounded LLMs',c:'#6b57d8',f:'#d0c4fb'},
+ {t:'GATE',s:'guardrails',c:'#c79a00',f:'#fbe7a1'},
+ {t:'VERIFIED',s:'audit-ready',c:'#1e8f70',f:'#b7f0dc'},
+];
+const X=[70,465,860,1255,1650,2045],W=[360,360,360,360,300,315],Y=205,H=200;
+cols.forEach(function(c,i){sRect(X[i],Y,W[i],H,c.c,c.f);text(X[i]+W[i]/2,Y+92,c.t,c.t.length>10?34:42,c.c,'middle');text(X[i]+W[i]/2,Y+140,c.s,26,'#3d3d3d');
+  if(i<5)arrow(X[i]+W[i]+6,Y+H/2,X[i+1]-6,Y+H/2,'#2c2c2c');
+  arrow(X[i]+W[i]/2,Y+H+8,X[i]+W[i]/2,Y+H+82,c.c);});
+// detail boxes
+const DY=490,DH=390;
+cols.forEach(function(c,i){sRect(X[i],DY,W[i],DH,c.c,null,{hatch:true});});
+// col 1 pills
+['Stripe Issuing','Stripe Treasury','Bill Pay / AP','GL · NetSuite'].forEach(function(s,k){const py=DY+30+k*86;sRect(X[0]+30,py,W[0]-60,58,'#1f6fd6','#a5d4fb',{j:2});text(X[0]+W[0]/2,py+40,s,27,'#123b6b');});
+// col 2
+lines(X[1]+W[1]/2,DY+85,['one normalized','event stream'],29,'#1a3f47');
+lines(X[1]+W[1]/2,DY+215,['every txn keyed to','card · cash · GL'],25,'#3d5a60');
+text(X[1]+W[1]/2,DY+332,'-> tie-out anchor',27,'#0c8a9c');
+// col 3
+lines(X[2]+28,DY+72,['●  fraud ensemble -> AUC 0.95','●  policy replay  ($ impact)','●  tie-out reconcile','●  dup · subscription · limits'],24,'#1f3a2a','start',2.75);
+text(X[2]+W[2]/2,DY+352,'each -> Finding { evidence, $ }',24,'#1f9a4b');
+// col 4
+lines(X[3]+28,DY+72,['●  5 narrow agents + orchestrator','●  review analyst  (Opus 4.8)','●  fraud investigator  (Sonnet 4.6)','●  receipt / doc parse  (Haiku 4.5)'],23,'#2a2350','start',2.85);
+text(X[3]+W[3]/2,DY+352,'attribution: engine / llm / both',23,'#6b57d8');
+// col 5
+sRect(X[4]+30,DY+38,W[4]-60,58,'#1f9a4b','#b3f0c4',{j:2});text(X[4]+W[4]/2,DY+78,'PASS -> execute',27,'#1f7a3c');
+sRect(X[4]+30,DY+120,W[4]-60,58,'#d63a3a','#f8b8b8',{j:2});text(X[4]+W[4]/2,DY+160,'FAIL -> HALT',27,'#b12a2a');
+lines(X[4]+W[4]/2,DY+238,['halt: fraud>τ · PII ·','irreversible write ·','tie-out mismatch ·','benchmark below gate'],23,'#6b5a1a','middle',1.4);
+// col 6
+lines(X[5]+W[5]/2,DY+92,['close-ready','audit-ready'],29,'#173d33');
+lines(X[5]+W[5]/2,DY+225,['every number','traceable to the','txn that made it'],25,'#3a5c52');
+// models row
+text(70,946,'the models behind the numbers',30,'#e0731a','start');
+const M=[['fraud-ring graph  (community detection)',70,545],['causal runway  (do-operator · SCM)',640,545],['PD / credit model  (Stripe Capital limit)',1210,545],['idle-cash yield  (Treasury sweep)',1780,550]];
+M.forEach(function(m){sRect(m[1],975,m[2],90,'#e0731a','#fbd3a6',{j:2.6});text(m[1]+m[2]/2,1032,m[0],27,'#5a3a12');});
+arrow(X[2]+W[2]/2,DY+DH+6,X[2]+W[2]/2,968,'#e0731a');
+// footer
+sRect(70,1112,2260,95,'#5c5c5c','#e9ebee');
+text(1200,1172,'one orchestrated run   ·   categorize -> policy -> fraud -> dispute -> tie-out   ·   graded on the benchmark   ·   confirm before any write',27,'#3a3a3a');
+</script></body></html>
